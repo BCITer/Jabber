@@ -22,9 +22,10 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
-bin/
-obj/
-TestResults/
+JabberBCIT/JabberBCIT/bin/
+JabberBCIT/JabberBCIT/obj/
+JabberBCIT/TestResults/
+JabberBCIT/.vs
 ###################
 # Web publish log #
 ###################
