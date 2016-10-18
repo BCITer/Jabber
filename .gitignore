@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-/JabberBCIT/.vs/
+
 /JabberBCIT/JabberBCIT/ConnectionStrings.config
 /JabberBCIT/.vs/config/applicationhost.config
 =======
@@ -79,4 +78,4 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
->>>>>>> 144c370e3e92f57f66023b0b5b6d1dd01d278233
+
