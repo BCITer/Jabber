@@ -1,3 +1,7 @@
+
+/JabberBCIT/JabberBCIT/ConnectionStrings.config
+/JabberBCIT/.vs/config/applicationhost.config
+=======
 ###################
 # compiled source #
 ###################
@@ -74,3 +78,4 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+
