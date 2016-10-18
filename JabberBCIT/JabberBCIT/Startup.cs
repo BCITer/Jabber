@@ -8,6 +8,7 @@ namespace JabberBCIT
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
             ConfigureAuth(app);
         }
     }
