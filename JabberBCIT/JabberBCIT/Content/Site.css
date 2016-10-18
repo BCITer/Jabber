@@ -1,13 +1,12 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+     margin:0;
+    font-family:sans-serif;
+    font-size:28px;
+    line-height:100px;
+	color:#ffffff;
+    text-align:center;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -21,4 +20,58 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/* fullscreen setup */
+html, body {
+    /* give this to all tags from html to .fullscreen */
+    height:100%;
+}
+.fullscreen,
+.content-a {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+.fullscreen.overflow,
+.fullscreen.overflow .content-a {
+    height:auto;
+    min-height:100%;
+}
+
+/* content centering styles */
+.content-a {
+    display:table;
+}
+.content-b {
+	display:table-cell;
+    position:relative;
+	vertical-align:middle;
+	text-align:center;
+}
+
+/* visual styles */
+body{
+    margin:0;
+    font-family:sans-serif;
+    font-size:28px;
+    line-height:100px;
+	color:#ffffff;
+    text-align:center;
+}
+.fullscreen{
+	background:#9ed100;
+}
+
+.not-fullscreen {
+    height:50%;
+    background:#3073fd;
+}
+/* background setup */
+.background {
+    background-repeat:no-repeat;
+    /* custom background-position */
+    background-position:50% 50%;
+    /* ie8- graceful degradation */
+    background-position:50% 50% !important;
 }
