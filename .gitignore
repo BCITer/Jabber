@@ -31,6 +31,9 @@ JabberBCIT/JabberBCIT/obj/
 JabberBCIT/JabberBCIT.Tests/
 JabberBCIT/TestResults/
 JabberBCIT/.vs
+JabberBCIT/.vs/config
+JabberBCIT/JabberBCIT/obj/Debug
+Debug
 ###################
 # Web publish log #
 ###################
