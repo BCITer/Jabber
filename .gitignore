@@ -1,6 +1,7 @@
 
 /JabberBCIT/JabberBCIT/ConnectionStrings.config
 /JabberBCIT/.vs/config/applicationhost.config
+/JabberBCIT/.vs/JabberBCIT/v14/**
 =======
 ###################
 # compiled source #
@@ -28,8 +29,12 @@ _UpgradeReport_Files/
 ###############
 JabberBCIT/JabberBCIT/bin/
 JabberBCIT/JabberBCIT/obj/
+JabberBCIT/JabberBCIT.Tests/
 JabberBCIT/TestResults/
 JabberBCIT/.vs
+JabberBCIT/.vs/config
+JabberBCIT/JabberBCIT/obj/Debug
+Debug
 ###################
 # Web publish log #
 ###################
