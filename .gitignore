@@ -27,14 +27,13 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
-JabberBCIT/JabberBCIT/bin/
-JabberBCIT/JabberBCIT/obj/
-JabberBCIT/JabberBCIT.Tests/
-JabberBCIT/TestResults/
+JabberBCIT/JabberBCIT/bin
+JabberBCIT/JabberBCIT/obj
+JabberBCIT/JabberBCIT.Tests/bin
+JabberBCIT/JabberBCIT.Tests/obj
+JabberBCIT/TestResults/bin
 JabberBCIT/.vs
-JabberBCIT/.vs/config
 JabberBCIT/JabberBCIT/obj/Debug
-Debug
 ###################
 # Web publish log #
 ###################
@@ -83,4 +82,3 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
-

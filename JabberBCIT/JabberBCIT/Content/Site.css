@@ -1,3 +1,19 @@
 ﻿body { 
     padding-top: 50px; 
 }
+
+.ForgotPassTitle{
+    text-align: center;
+}
+
+.ForgotPassSubHeader{
+    margin: auto;
+    text-align: center;
+    display: block;
+}
+
+.ForgotPassForm{
+    margin: auto;
+    display: block;
+    width: 40%;
+}
