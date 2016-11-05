@@ -1,66 +1,35 @@
 ﻿
 @{
-    ViewBag.Title = "ForumMain";
+    ViewBag.Title = "Forum";
 }
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>BCIT Jabber - Forum - Topic</title>
     <!-- Bootstrap Core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../Content/forum.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="../fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
-<body>
+<body style="padding-top: 0px;">
 
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">App Name</a>
-            </div>
-            <!-- /.Brand and toggle get grouped for better mobile display -->
-            <!-- Top Menu Items -->
-            <!-- /.Top Menu Items-->
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div id="forum_sidebar">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="unknown.html"><i class="fa fa-fw fa-database"></i> Topics</a>
+                        <a href="unknown.html">Topics</a>
                     </li>
                     <li>
-                        <a href="unknown.html"><i class="fa fa-fw fa-database"></i> Topics</a>
+                        <a href="unknown.html">Topics</a>
                     </li>
                     <li>
-                        <a href="unknown.html"><i class="fa fa-fw fa-database"></i> Topics</a>
+                        <a href="unknown.html">Topics</a>
                     </li>
                     <li>
                 </ul>
             </div>
             <!-- /.Sidebar Menu Item -->
-        </nav>
         <!-- /.Navigation -->
 
         <div id="page-wrapper">
@@ -73,55 +42,186 @@
                         <h1 class="forum-header">
                             <b>Textbook - Buy / Sell / Trade</b>
                             <br>
-                            <small><small>[ A place to get cheap textbooks or sell unwanted textbooks ]</small></small>
+                            <small>[ A place to get cheap textbooks or sell unwanted textbooks ]</small>
                         </h1>
                     </div>
                 </div>
                 <!-- Posts -->
-                <div class="row">
-                    <div class="col-lg-6 text-center">
-                        <div class="panel panel-default">
-                            <div type="button" class="panel-body long-button btn-default">
-                                Post
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <div class="panel panel-default">
-                            <div type="button" class="panel-body long-button btn-default">
-                                Post
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <div class="panel panel-default">
-                            <div type="button" class="panel-body long-button btn-default">
-                                Post
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <div class="panel panel-default">
-                            <div type="button" class="panel-body long-button btn-default">
-                                Post
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <div class="panel panel-default">
-                            <div type="button" class="panel-body long-button btn-default">
-                                Post
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <div class="panel panel-default">
-                            <div type="button" class="panel-body long-button btn-default">
-                                Post
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <table class="table table-filter">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="text-center">1</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                    <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="pull-right media-meta">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 1 - I wonder how the layout is going to look like with this very very long title
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">2</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 2
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">3</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 3
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">4</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 4
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">5</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 5
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- ./Posts -->
                 <!-- Pagination -->
                 <div class="row text-center">
                     <div class="col-lg-12">
@@ -170,11 +270,4 @@
 
     </div>
     <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="../scripts/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../scripts/bootstrap.min.js"></script>
-
 </body>
-</html>
