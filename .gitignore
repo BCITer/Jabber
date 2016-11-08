@@ -1,4 +1,4 @@
-﻿
+﻿/JabberBCIT/JabberBCIT/AppSettings.config
 /JabberBCIT/JabberBCIT/ConnectionStrings.config
 /JabberBCIT/.vs/config/applicationhost.config
 /JabberBCIT/.vs/JabberBCIT/v14/**
@@ -82,4 +82,3 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
-
