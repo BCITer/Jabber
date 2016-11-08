@@ -15,5 +15,24 @@ namespace JabberBCIT.Controllers
         {
             return View(db.ForumPosts.ToList());
         }
+
+        public ActionResult CreateForumPost()
+        {
+            return View();
+        }
+
+        //public ActionResult CreateForumPost(ForumPost post)
+        //{
+        //    db.ForumPosts.Add(post);
+        //    db.SaveChanges();
+
+        //    return View
+        //}
+
+        public ActionResult ViewForumThread()
+        {
+
+            return View();
+        }
     }
 }
