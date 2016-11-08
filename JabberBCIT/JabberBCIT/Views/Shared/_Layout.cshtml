@@ -23,6 +23,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Forum", "ForumMain", "Forum")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Chat", "Chat", "Chat")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -37,6 +38,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
+    @Scripts.Render("~/Scripts/site.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>
