@@ -8,10 +8,12 @@ namespace JabberBCIT.Controllers
 {
     public class ForumController : Controller
     {
+        public ChitterDbContext db = ChitterDbContext.Create();
+
         // GET: Forum
         public ActionResult ForumMain()
         {
-            return View();
+            return View(db.ForumPosts.ToList());
         }
     }
 }
