@@ -1,11 +1,5 @@
-﻿@using JabberBCIT.Models
-@model LoginViewModel
-@{
-    ViewBag.Title = "Log in";
-}
-
-<h2>@ViewBag.Title.</h2>
-<div class="rows">
+﻿@model  JabberBCIT.Models.LoginViewModel
+<div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -44,9 +38,9 @@
                 <p>
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
+                <p>
+                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                </p>
             }
         </section>
     </div>

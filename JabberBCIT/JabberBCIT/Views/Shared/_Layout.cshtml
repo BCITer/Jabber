@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Jabber</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/login")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -26,7 +27,7 @@
                     <li>@Html.ActionLink("Chat", "Chat", "Chat")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial", new JabberBCIT.Models.LoginViewModel { })
             </div>
         </div>
     </div>
@@ -37,7 +38,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-
+    @Scripts.Render("~/bundles/login")
     @Scripts.Render("~/Scripts/site.js")
     @RenderSection("scripts", required: false)
 </body>
