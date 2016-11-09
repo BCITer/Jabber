@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace JabberBCIT.Controllers
 {
+    [Authorize]
     public class ForumController : Controller
     {
         public ChitterDbContext db = ChitterDbContext.Create();
