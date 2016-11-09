@@ -32,3 +32,20 @@ a.back-to-top {
 	-moz-border-radius: 30px;
 	border-radius: 30px;
 }
+
+/*
+    Padding to keep content from touching the edge
+*/
+.body-content{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.comment{
+    border-left-style:solid;
+    padding-left: 2px;
+}
+
+.comment_vote{
+    background: #27AE61;
+}
