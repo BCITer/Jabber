@@ -25,7 +25,6 @@ a.back-to-top {
 	text-indent: -9999px;
 	position: fixed;
 	z-index: 999;
-	right: 20px;
 	bottom: 20px;
 	background: #27AE61 url("up-arrow.png") no-repeat center 43%;
 	-webkit-border-radius: 30px;
@@ -41,11 +40,29 @@ a.back-to-top {
     padding-right: 15px;
 }
 
-.comment{
+.comment {
     border-left-style:solid;
+    border-left-color: red;
     padding-left: 2px;
 }
 
+.comment:before {
+    
+}
 .comment_vote{
-    background: #27AE61;
+    background: #27AE61 no-repeat center 43%;
+	width: 30px;
+	height: 30px;
+	z-index: 999;
+	text-indent: -9999px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+  vertical-align: middle;
+    text-align: center;
+}
+
+.block {
+    display: inline-block;
+    vertical-align: middle;
 }
