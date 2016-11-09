@@ -44,11 +44,15 @@ a.back-to-top {
     border-left-style:solid;
     border-left-color: red;
     padding-left: 2px;
+    overflow:hidden;
 }
 
-.comment:before {
-    
+.tick {
+  display: table-cell;
+    padding-left: 0;
+    padding-right: 1px;
 }
+
 .comment_vote{
     background: #27AE61 no-repeat center 43%;
 	width: 30px;
@@ -60,9 +64,13 @@ a.back-to-top {
 	border-radius: 30px;
   vertical-align: middle;
     text-align: center;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .block {
     display: inline-block;
     vertical-align: middle;
+    position: absolute;
+    top: 25%;
 }
