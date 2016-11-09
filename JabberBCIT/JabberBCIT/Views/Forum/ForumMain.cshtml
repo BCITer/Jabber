@@ -1,4 +1,4 @@
-﻿@model List<ForumPost>
+﻿
 @{
     ViewBag.Title = "Forum";
 }
@@ -47,7 +47,10 @@
                         <button class="btn btn-primary pull-right">Create Post</button>
                     </div>
                 </div>
-                <!-- ./Page Heading -->
+
+                <div class="row">
+                    @Html.ActionLink("Create a new post", "CreateForumPost", "Forum")
+                </div>
                 <!-- Posts -->
                 <table class="table table-filter">
                     <tbody>
