@@ -1,4 +1,4 @@
-﻿@model List<ForumPost>
+﻿
 @{
     ViewBag.Title = "Forum";
 }
@@ -44,17 +44,181 @@
                             <br>
                             <small>[ A place to get cheap textbooks or sell unwanted textbooks ]</small>
                         </h1>
-                        <button class="btn btn-primary pull-right">Create Post</button>
                     </div>
                 </div>
-                <!-- ./Page Heading -->
                 <!-- Posts -->
                 <table class="table table-filter">
                     <tbody>
-                        @foreach(var post in Model)
-                        {
-                            @Html.Partial("ForumPost", post);
-                        }
+                        <tr>
+                            <td>
+                                <div class="text-center">1</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                    <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="pull-right media-meta">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 1 - I wonder how the layout is going to look like with this very very long title
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">2</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 2
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">3</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 3
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">4</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 4
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-center">5</div>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+                                    </div>
+                                </a>
+                                <p class="vote-count">0</p>
+                                <a href="#">
+                                    <div class="vote">
+                                        <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                    <a href="#">
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">March 13, 2016</span>
+                                            <h4 class="title">
+                                                Post 5
+                                            </h4>
+                                            <span class="pull-right comments-count">3842 Comments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <!-- ./Posts -->
