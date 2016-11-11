@@ -39,38 +39,3 @@ a.back-to-top {
     padding-left: 15px;
     padding-right: 15px;
 }
-
-.comment {
-    border-left-style:solid;
-    border-left-color: red;
-    padding-left: 2px;
-    overflow:hidden;
-}
-
-.tick {
-  display: table-cell;
-    padding-left: 0;
-    padding-right: 1px;
-}
-
-.comment_vote{
-    background: #27AE61 no-repeat center 43%;
-	width: 30px;
-	height: 30px;
-	z-index: 999;
-	text-indent: -9999px;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	border-radius: 30px;
-  vertical-align: middle;
-    text-align: center;
-    margin-top: 3px;
-    margin-bottom: 3px;
-}
-
-.block {
-    display: inline-block;
-    vertical-align: middle;
-    position: absolute;
-    top: 25%;
-}
