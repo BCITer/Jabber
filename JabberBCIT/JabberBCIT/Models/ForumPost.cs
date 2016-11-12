@@ -1,10 +1,9 @@
 namespace JabberBCIT
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class ForumPost
     {
@@ -31,6 +30,8 @@ namespace JabberBCIT
         public short Votes { get; set; }
 
         public DateTime PostTimestamp { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }

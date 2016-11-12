@@ -22,44 +22,68 @@ namespace JabberBCIT
             return new ChitterDbContext();
         }
 
-      /*  protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ChatConversation>()
-                .HasMany(e => e.ChatMessages)
-                .WithRequired(e => e.ChatConversation)
-                .WillCascadeOnDelete(false);
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasMany(e => e.ChatConversations)
+        //        .WithRequired(e => e.ApplicationUser)
+        //        .HasForeignKey(e => e.UserID)
+        //        .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ChatMessage>()
-                .Property(e => e.Message)
-                .IsUnicode(false);
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasMany(e => e.ChatMessages)
+        //        .WithRequired(e => e.ApplicationUser)
+        //        .HasForeignKey(e => e.UserID)
+        //        .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Comment>()
-                .Property(e => e.Comment1)
-                .IsUnicode(false);
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasMany(e => e.Comments)
+        //        .WithRequired(e => e.ApplicationUser)
+        //        .HasForeignKey(e => e.UserID)
+        //        .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ForumPost>()
-                .Property(e => e.PostTitle)
-                .IsUnicode(false);
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasMany(e => e.ForumPosts)
+        //        .WithRequired(e => e.ApplicationUser)
+        //        .HasForeignKey(e => e.UserID)
+        //        .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ForumPost>()
-                .Property(e => e.Message)
-                .IsUnicode(false);
+        //    modelBuilder.Entity<ChatConversation>()
+        //        .HasMany(e => e.ChatMessages)
+        //        .WithRequired(e => e.ChatConversation)
+        //        .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ForumPost>()
-                .HasMany(e => e.Comments)
-                .WithRequired(e => e.ForumPost)
-                .WillCascadeOnDelete(false);
+        //    modelBuilder.Entity<ChatMessage>()
+        //        .Property(e => e.Message)
+        //        .IsUnicode(false);
 
-            modelBuilder.Entity<ForumPost>()
-                .HasMany(e => e.Tags)
-                .WithRequired(e => e.ForumPost)
-                .WillCascadeOnDelete(false);
+        //    modelBuilder.Entity<Comment>()
+        //        .Property(e => e.Comment1)
+        //        .IsUnicode(false);
 
-            modelBuilder.Entity<Tag>()
-                .Property(e => e.Tag1)
-                .IsUnicode(false);
+        //    modelBuilder.Entity<ForumPost>()
+        //        .Property(e => e.PostTitle)
+        //        .IsUnicode(false);
 
-            base.OnModelCreating(modelBuilder);
-        }*/
+        //    modelBuilder.Entity<ForumPost>()
+        //        .Property(e => e.Message)
+        //        .IsUnicode(false);
+
+        //    modelBuilder.Entity<ForumPost>()
+        //        .HasMany(e => e.Comments)
+        //        .WithRequired(e => e.ForumPost)
+        //        .WillCascadeOnDelete(false);
+
+        //    modelBuilder.Entity<ForumPost>()
+        //        .HasMany(e => e.Tags)
+        //        .WithRequired(e => e.ForumPost)
+        //        .WillCascadeOnDelete(false);
+
+        //    modelBuilder.Entity<Tag>()
+        //        .Property(e => e.Tag1)
+        //        .IsUnicode(false);
+
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }
