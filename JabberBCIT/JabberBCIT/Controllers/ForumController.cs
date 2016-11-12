@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace JabberBCIT.Controllers
 {
-    [Authorize]
+    // [Authorize] Uncommenting this makes it so you have to login to view the forums
     public class ForumController : Controller
     {
         // GET: Forum
