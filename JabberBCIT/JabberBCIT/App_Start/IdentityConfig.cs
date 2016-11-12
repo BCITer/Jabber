@@ -138,5 +138,18 @@ namespace JabberBCIT
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
+        /// <summary>
+        /// Sign in using email.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="isPersistent"></param>
+        /// <param name="shouldLockout"></param>
+        /// <returns></returns>
+        public async Task<SignInStatus> PasswordEmailSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
+        {
+            var user = UserManager.FindByEmail(userName);
+            return await PasswordSignInAsync(userName, password, isPersistent, shouldLockout);
+        }
     }
 }
