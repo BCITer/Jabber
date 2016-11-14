@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,7 +25,7 @@ namespace JabberBCIT.Controllers
         [HttpPost]
         public ActionResult CreateForumPost(ForumPost post)
         {
-            post.UserID = User.Identity.ToString();
+            post.UserID = User.Identity.GetUserId();
             post.PostTimestamp = DateTime.Now;
             post.Votes = 0;
 
