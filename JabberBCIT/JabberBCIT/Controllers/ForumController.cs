@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,10 +7,10 @@ using System.Web.Mvc;
 
 namespace JabberBCIT.Controllers
 {
+    // [Authorize] Uncommenting this makes it so you have to login to view the forums
     public class ForumController : Controller
     {
-        public ChitterDbContext db = ChitterDbContext.Create();
-
+        ChitterDbContext db = ChitterDbContext.Create();
         // GET: Forum
         public ActionResult ForumMain()
         {
@@ -21,17 +22,21 @@ namespace JabberBCIT.Controllers
             return View();
         }
 
-        //public ActionResult CreateForumPost(ForumPost post)
-        //{
-        //    db.ForumPosts.Add(post);
-        //    db.SaveChanges();
+        [HttpPost]
+        public ActionResult CreateForumPost(ForumPost post)
+        {
+            post.UserID = User.Identity.GetUserId();
+            post.PostTimestamp = DateTime.Now;
+            post.Votes = 0;
 
-        //    return View
-        //}
+            db.ForumPosts.Add(post);
+            db.SaveChanges();
+
+            return View();
+        }
 
         public ActionResult ViewForumThread()
         {
-
             return View();
         }
     }

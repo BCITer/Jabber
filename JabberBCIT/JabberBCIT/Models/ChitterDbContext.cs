@@ -22,7 +22,7 @@ namespace JabberBCIT
             return new ChitterDbContext();
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+      /*  protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ChatConversation>()
                 .HasMany(e => e.ChatMessages)
@@ -60,6 +60,6 @@ namespace JabberBCIT
                 .IsUnicode(false);
 
             base.OnModelCreating(modelBuilder);
-        }
+        }*/
     }
 }
