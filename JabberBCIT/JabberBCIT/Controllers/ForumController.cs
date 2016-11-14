@@ -39,5 +39,13 @@ namespace JabberBCIT.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ForumPostPartial(ForumPost p)
+        {
+
+
+            return PartialView();
+        }
     }
 }
