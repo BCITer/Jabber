@@ -7,24 +7,21 @@ namespace JabberBCIT
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class ChatMessage
+    public partial class CommentsVote
     {
         [Key]
-        public long MessageID { get; set; }
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long CommentID { get; set; }
 
-        public long ChatID { get; set; }
-
-        [Required]
-        [StringLength(128)]
+        [Key]
+        [Column(Order = 1)]
         public string UserID { get; set; }
 
-        [Required]
-        public string Message { get; set; }
-
-        public DateTime Timestamp { get; set; }
+        public short Value { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public virtual ChatConversation ChatConversation { get; set; }
+        public virtual Comment Comment { get; set; }
     }
 }
