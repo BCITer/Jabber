@@ -1,5 +1,6 @@
 namespace JabberBCIT
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,8 @@ namespace JabberBCIT
         public string UserID { get; set; }
 
         public long LastMessageSeenID { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChatMessage> ChatMessages { get; set; }
