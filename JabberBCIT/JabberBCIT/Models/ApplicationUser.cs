@@ -23,14 +23,21 @@ namespace JabberBCIT.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentsVote> CommentsVotes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ForumPost> ForumPosts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ForumPostsVote> ForumPostsVotes { get; set; }
         public ApplicationUser()
         {
-            JoinDate = DateTime.Now;
             ChatConversations = new HashSet<ChatConversation>();
             ChatMessages = new HashSet<ChatMessage>();
             Comments = new HashSet<Comment>();
+            CommentsVotes = new HashSet<CommentsVote>();
             ForumPosts = new HashSet<ForumPost>();
+            ForumPostsVotes = new HashSet<ForumPostsVote>();
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

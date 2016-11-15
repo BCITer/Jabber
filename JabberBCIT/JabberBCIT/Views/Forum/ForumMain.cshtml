@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ForumPost>
 @{
     ViewBag.Title = "Forum";
 }
@@ -56,7 +56,7 @@
                     <tbody>
                         @foreach(var post in Model)
                         {
-                            @Html.Partial("ForumPost", post);
+                            @Html.Partial("ForumPostPartial", post);
                         }
                     </tbody>
                 </table>
