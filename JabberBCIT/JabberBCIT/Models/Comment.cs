@@ -1,5 +1,6 @@
 namespace JabberBCIT
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,12 @@ namespace JabberBCIT
 
     public partial class Comment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Comment()
+        {
+            CommentsVotes = new HashSet<CommentsVote>();
+        }
+
         public long CommentID { get; set; }
 
         public long PostID { get; set; }
@@ -22,10 +29,15 @@ namespace JabberBCIT
 
         public long? ParentCommentID { get; set; }
 
-        public short Votes { get; set; }
-
         public DateTime PostTimestamp { get; set; }
 
+        public int Hidden { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         public virtual ForumPost ForumPost { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentsVote> CommentsVotes { get; set; }
     }
 }
