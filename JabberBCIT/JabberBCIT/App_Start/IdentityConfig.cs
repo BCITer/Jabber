@@ -30,7 +30,7 @@ namespace JabberBCIT
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new System.Net.Mail.MailAddress(
-                                "tech@pro.com", "2016");
+                                "Jabber@BCIT.com", "Email Confirmation");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
@@ -77,7 +77,7 @@ namespace JabberBCIT
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ChitterDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            manager.UserValidator = new CustomUserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
