@@ -242,6 +242,8 @@
     <Content Include="Content\Chat.css" />
     <Content Include="Content\createForumPost.css" />
     <Content Include="Content\forum.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\login.js" />
     <Content Include="Content\register.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
@@ -323,6 +325,7 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Forum\View.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
+    <Content Include="Views\Shared\_LoginOverLay.cshtml" />
     <Content Include="Views\Forum\CreateForumPost.cshtml" />
     <Content Include="Views\Forum\_Comment.cshtml" />
     <Content Include="Views\Shared\ForumPostPartial.cshtml" />
