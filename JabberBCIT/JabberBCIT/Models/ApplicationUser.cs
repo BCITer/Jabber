@@ -38,6 +38,7 @@ namespace JabberBCIT.Models
             CommentsVotes = new HashSet<CommentsVote>();
             ForumPosts = new HashSet<ForumPost>();
             ForumPostsVotes = new HashSet<ForumPostsVote>();
+            JoinDate = DateTime.Now;
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
