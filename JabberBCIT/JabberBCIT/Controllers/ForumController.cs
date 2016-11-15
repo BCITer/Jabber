@@ -10,7 +10,7 @@ namespace JabberBCIT.Controllers
     // [Authorize] Uncommenting this makes it so you have to login to view the forums
     public class ForumController : Controller
     {
-        ChitterDbContext db = ChitterDbContext.Create();
+        ChitterDbContext db = new ChitterDbContext();
         // GET: Forum
         public ActionResult ForumMain()
         {
@@ -27,7 +27,7 @@ namespace JabberBCIT.Controllers
         {
             post.UserID = User.Identity.GetUserId();
             post.PostTimestamp = DateTime.Now;
-            post.Votes = 0;
+            
 
             db.ForumPosts.Add(post);
             db.SaveChanges();
