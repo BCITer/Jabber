@@ -27,7 +27,7 @@ namespace JabberBCIT.Controllers
         {
             post.UserID = User.Identity.GetUserId();
             post.PostTimestamp = DateTime.Now;
-            post.Votes = 0;
+            
 
             db.ForumPosts.Add(post);
             db.SaveChanges();
