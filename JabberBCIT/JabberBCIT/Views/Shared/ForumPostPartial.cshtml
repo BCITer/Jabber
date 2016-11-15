@@ -12,7 +12,7 @@
                 <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
             </div>
         </a>
-        <p class="vote-count">@Html.DisplayFor(m => m.Votes)</p>
+        @*<p class="vote-count">@Html.DisplayFor(m => m.Votes)</p>*@
         <a href="#">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
@@ -26,11 +26,11 @@
             </a>
             <a href="#">
                 <div class="media-body">
-                    <span class="pull-right media-meta">March 13, 2016</span>
+                    <span class="pull-right media-meta">@Html.Display(Model.PostTimestamp.ToShortDateString())</span>
                     <h4 class="title">
                         @Html.DisplayFor(m => m.PostTitle)
                     </h4>
-                    <span class="pull-right comments-count">9001 Comments</span>
+                    
                 </div>
             </a>
         </div>

@@ -51,28 +51,56 @@ namespace JabberBCIT.Controllers
         }
 
         //
-        // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        // GET: /Profile/{id}
+        public async Task<ActionResult> Index(string id)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
-            var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+            var user = await UserManager.FindByIdAsync(id);
+            ProfileViewModel model = new ProfileViewModel
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                ID = user.Id,
+                UserName = user.UserName,
+                ProfilePicture = user.ProfilePicture,
+                JoinDate = user.JoinDate
             };
+            if (user.Id != User.Identity.GetUserId())
+            {
+                return View("Index", model);
+            }
+            //return view with edit button if profile viewed is same as one logged in
+            return View("CurrentProfile", model);
+        }
+
+        public async Task<ActionResult> Edit()
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            EditViewModel model = new EditViewModel
+            {
+                ID = user.Id,
+                UserName = user.UserName,
+                ProfilePicture = user.ProfilePicture
+            };
+
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(EditViewModel edit)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(edit);
+            }
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            user.UserName = edit.UserName;
+            user.ProfilePicture = edit.ProfilePicture;
+
+            var result = await UserManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                AddErrors(result);
+                return View();
+            }
+            return RedirectToAction("Index", new { id = user.Id });
         }
 
         //
@@ -228,7 +256,7 @@ namespace JabberBCIT.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Edit", new EditViewModel { ID = model.ID, UserName = model.UserName, ProfilePicture = model.ProfilePicture});
             }
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)

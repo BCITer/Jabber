@@ -30,7 +30,7 @@ namespace JabberBCIT
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new System.Net.Mail.MailAddress(
-                                "tech@pro.com", "2016");
+                                "Jabber@BCIT.com", "Email Confirmation");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
@@ -77,7 +77,7 @@ namespace JabberBCIT
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ChitterDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            manager.UserValidator = new CustomUserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -137,6 +137,19 @@ namespace JabberBCIT
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+        }
+        /// <summary>
+        /// Sign in using email.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="isPersistent"></param>
+        /// <param name="shouldLockout"></param>
+        /// <returns></returns>
+        public async Task<SignInStatus> PasswordEmailSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
+        {
+            var user = UserManager.FindByEmail(userName);
+            return await PasswordSignInAsync(userName, password, isPersistent, shouldLockout);
         }
     }
 }

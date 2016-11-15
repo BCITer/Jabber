@@ -1,0 +1,13 @@
+﻿.forum {
+    margin-top: 50px;
+}
+
+.submitBtn {
+    background-color: dodgerblue;
+    color:#eee;
+}
+
+#Message {
+    height: 400px;
+    resize: none;
+}

@@ -1,4 +1,4 @@
-﻿@model List<ForumPost>
+﻿@model IEnumerable<ForumPost>
 @{
     ViewBag.Title = "Forum";
 }
@@ -10,9 +10,7 @@
     <link href="../Content/forum.css" rel="stylesheet">
 </head>
 <body style="padding-top: 0px;">
-
     <div id="wrapper">
-
         <!-- Navigation -->
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div id="forum_sidebar">
@@ -43,17 +41,18 @@
                             <b>Textbook - Buy / Sell / Trade</b>
                             <br>
                             <small>[ A place to get cheap textbooks or sell unwanted textbooks ]</small>
+                            
+                            <button type="button" class="btn btn-primary pull-right" onclick="@("location.href='"+ Url.Action("CreateForumPost","Forum")+ "'")">Create Post</button>
                         </h1>
-                        <button class="btn btn-primary pull-right">Create Post</button>
                     </div>
                 </div>
-                <!-- ./Page Heading -->
+
                 <!-- Posts -->
                 <table class="table table-filter">
                     <tbody>
                         @foreach(var post in Model)
                         {
-                            @Html.Partial("ForumPost", post);
+                            @Html.Partial("ForumPostPartial", post);
                         }
                     </tbody>
                 </table>
