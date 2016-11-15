@@ -5,11 +5,17 @@
     clear: both;
     margin-top: 22px;
     right:30px;
-    top:30px;
+    top:28px;
+    width: 350px;
     background-color: #fff;
     padding: 0 2% 2% 2%;
     border-style: solid;
     -webkit-border-radius: 3px; 
     -moz-border-radius: 3px;
-     border-radius: 5px; 
+     border-radius: 5px;  
 }
+form{
+   
+}
+
+
