@@ -35,3 +35,7 @@ a.back-to-top {
 /*
     Padding to keep content from touching the edge
 */
+.body-content{		
+    padding-left: 15px;		
+    padding-right: 15px;		
+}
