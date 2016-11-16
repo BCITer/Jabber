@@ -335,6 +335,7 @@
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Forum\_Comment.cshtml" />
     <Content Include="Views\Shared\ForumPostPartial.cshtml" />
+    <Content Include="Views\Shared\_NotificationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
