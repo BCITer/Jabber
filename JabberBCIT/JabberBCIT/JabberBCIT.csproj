@@ -245,6 +245,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chat.css" />
     <Content Include="Content\createForumPost.css" />
+    <Content Include="Content\forgetPassword.css" />
     <Content Include="Content\forum.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\login.js" />
