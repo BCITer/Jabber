@@ -254,14 +254,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\11-4.jpg" />
+    <Content Include="Images\arrow_downward_white_24dp_1x.png" />
+    <Content Include="Images\arrow_downward_white_24dp_2x.png" />
+    <Content Include="Images\arrow_upward_white_24dp_1x.png" />
+    <Content Include="Images\arrow_upward_white_24dp_2x.png" />
     <Content Include="Images\BCIT-1.jpg" />
     <Content Include="Images\BCIT-2.jpg" />
     <Content Include="Images\bcit.jpg" />
     <Content Include="Images\BCIT2.jpg" />
-    <Content Include="Images\downvote.png" />
+    <Content Include="Images\registerBG.jpg" />
     <Content Include="Images\SE2_dan.jpg" />
     <Content Include="Images\splash_home.png" />
-    <Content Include="Images\upvote.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -273,6 +276,7 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="AppSettings.config" />
     <Content Include="Content\Comment.less" />
+    <None Include="Properties\PublishProfiles\4956 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\comment.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -327,7 +331,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Forum\ForumMain.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
-    <Content Include="Views\Forum\View.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Shared\_LoginOverLay.cshtml" />
     <Content Include="Views\Forum\CreateForumPost.cshtml" />
