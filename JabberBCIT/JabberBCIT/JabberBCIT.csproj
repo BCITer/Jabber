@@ -233,6 +233,7 @@
     <Compile Include="Models\ChitterDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ForumPost.cs" />
+    <Compile Include="Models\ForumViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="ChatHub.cs" />
@@ -338,6 +339,8 @@
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Forum\_Comment.cshtml" />
     <Content Include="Views\Shared\ForumPostPartial.cshtml" />
+    <Content Include="Views\Forum\ViewForumThread.cshtml" />
+    <Content Include="Views\Shared\ForumCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
