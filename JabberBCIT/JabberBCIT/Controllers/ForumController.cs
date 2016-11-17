@@ -12,22 +12,31 @@ namespace JabberBCIT.Controllers
     {
         ChitterDbContext db = new ChitterDbContext();
         // GET: Forum
-        public ActionResult ForumMain()
+        public ActionResult Index(string tag = "Global")
         {
-            return View(db.ForumPosts.ToList());
+
+            ForumPostsViewmodel p = new ForumPostsViewmodel();
+            p.Posts = db.ForumPosts.ToList();
+            
+            //db.ForumPosts.Select()
+
+            return View(p);
         }
 
         public ActionResult CreateForumPost()
         {
             return View();
         }
-
+        
         [HttpPost]
-        public ActionResult CreateForumPost(ForumPost post)
+        public ActionResult CreateForumPost(ForumPost post, string tag = "Global")
         {
             post.UserID = User.Identity.GetUserId();
             post.PostTimestamp = DateTime.Now;
-            
+            Tag t = new Tag();
+            t.Tag1 = tag;
+            t.ForumPost = post;
+            post.Tags.Add(t);
 
             db.ForumPosts.Add(post);
             db.SaveChanges();
@@ -43,8 +52,6 @@ namespace JabberBCIT.Controllers
         [HttpPost]
         public ActionResult ForumPostPartial(ForumPost p)
         {
-
-
             return PartialView();
         }
     }

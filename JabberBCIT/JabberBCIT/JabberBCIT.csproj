@@ -222,6 +222,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\ForumPostsViewmodel.cs" />
     <Compile Include="Models\ForumPostsVote.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -329,7 +330,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Forum\ForumMain.cshtml" />
+    <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Shared\_LoginOverLay.cshtml" />
@@ -338,6 +339,7 @@
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Forum\_Comment.cshtml" />
     <Content Include="Views\Shared\ForumPostPartial.cshtml" />
+    <Content Include="Views\Shared\ForumTagPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
