@@ -1,10 +1,9 @@
-﻿@model Comment
+﻿@model JabberBCIT.Models.CommentAndChildrenViewModel
 @{
     ViewBag.Title = "ForumCommentPartial";
 }
 <tr>
-    <td></td>
-    <td>
+    <td valign="top" style="width:40px">
         <a href="#">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
@@ -22,12 +21,36 @@
         <div class="media">
             <div class="media-body">
                 <h4 class="title">
-                    @Model.UserID
+                    @Model.comment.UserID
                 </h4>
                 <p>
-                    @Model.Comment1
+                    @Model.comment.Comment1
                 </p>
             </div>
+            <table>
+                    @{
+                        List<Comment> child = new List<Comment>();
+                        List<Comment> notChild = new List<Comment>();
+                        foreach (var comment in Model.comments)
+                        {
+                            if (comment.ParentCommentID == Model.comment.CommentID)
+                            {
+                                child.Add(comment);
+                            }
+                            else
+                            {
+                                notChild.Add(comment);
+                            }
+                        }
+                        foreach (var comment in child)
+                        {
+                            JabberBCIT.Models.CommentAndChildrenViewModel goat = new JabberBCIT.Models.CommentAndChildrenViewModel();
+                            goat.comment = comment;
+                            goat.comments = notChild;
+                            @Html.Partial("ForumCommentPartial", goat);
+                        }
+                    }
+            </table>
         </div>
     </td>
 </tr>

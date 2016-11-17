@@ -11,4 +11,9 @@ namespace JabberBCIT.Models
         public ForumPost post { get; set; }
         public List<Comment> comments { get; set; }
     }
+    public class CommentAndChildrenViewModel
+    {
+        public Comment comment { get; set; }
+        public List<Comment> comments { get; set; }
+    }
 }
