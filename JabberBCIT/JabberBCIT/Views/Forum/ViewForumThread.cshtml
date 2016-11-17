@@ -65,11 +65,29 @@
                 </table>
                 <!-- ./Page Heading -->
                 <!-- Comments -->
-                <table class="table table-filter">
+                <table>
                     <tbody>
-                        @foreach (var comment in Model.comments)
-                        {
-                            @Html.Partial("ForumCommentPartial", comment);
+                        @{
+                            List<Comment> child = new List<Comment>();
+                            List<Comment> notChild = new List<Comment>();
+                            foreach (var comment in Model.comments)
+                            {
+                                if (comment.ParentCommentID == null)
+                                {
+                                    child.Add(comment);
+                                }
+                                else
+                                {
+                                    notChild.Add(comment);
+                                }
+                            }
+                            foreach (var comment in child)
+                            {
+                                JabberBCIT.Models.CommentAndChildrenViewModel goat = new JabberBCIT.Models.CommentAndChildrenViewModel();
+                                goat.comment = comment;
+                                goat.comments = notChild;
+                                @Html.Partial("ForumCommentPartial", goat);
+                            }
                         }
                     </tbody>
                 </table>
