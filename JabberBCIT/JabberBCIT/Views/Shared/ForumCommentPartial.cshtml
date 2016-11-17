@@ -1,0 +1,33 @@
+﻿@model Comment
+@{
+    ViewBag.Title = "ForumCommentPartial";
+}
+<tr>
+    <td></td>
+    <td>
+        <a href="#">
+            <div class="vote">
+                <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+            </div>
+        </a>
+        @*<p class="vote-count">@Html.DisplayFor(m => m.Votes)</p>*@
+        <p class="vote-count">1</p>
+        <a href="#">
+            <div class="vote">
+                <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
+            </div>
+        </a>
+    </td>
+    <td>
+        <div class="media">
+            <div class="media-body">
+                <h4 class="title">
+                    @Model.UserID
+                </h4>
+                <p>
+                    @Model.Comment1
+                </p>
+            </div>
+        </div>
+    </td>
+</tr>
