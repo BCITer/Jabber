@@ -3,20 +3,22 @@ using System.Web.Routing;
 
 namespace JabberBCIT
 {
-    public class RouteConfig {
-        public static void RegisterRoutes(RouteCollection routes) {
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
                 name: "EditProfile",
-                url: "Profile/Edit/{id}",
+                url: "Profile/Edit",
                 defaults: new { controller = "Manage", action = "Edit" }
             );
 
             routes.MapRoute(
                 name: "Profile",
                 url: "Profile/{id}",
-                defaults: new { controller = "Manage", action = "Index"}
+                defaults: new { controller = "Manage", action = "Index" }
             );
 
             routes.MapRoute(

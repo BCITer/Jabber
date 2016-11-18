@@ -20,7 +20,6 @@ namespace JabberBCIT.Models
     /// </summary>
     public class ProfileViewModel
     {
-        public string ID { get; set; }
         public string UserName { get; set; }
         public string ProfilePicture { get; set; }
         public DateTime JoinDate { get; set; }
@@ -28,7 +27,7 @@ namespace JabberBCIT.Models
     /// <summary>
     /// Edit profile view model.
     /// </summary>
-    public class EditViewModel
+	public class EditProfileViewModel
     {
         public string ID { get; set; }
         [Required]
@@ -64,11 +63,6 @@ namespace JabberBCIT.Models
 
     public class ChangePasswordViewModel
     {
-        public string ID { get; set; }
-        public string UserName { get; set; }
-
-        public string ProfilePicture { get; set; }
-
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
