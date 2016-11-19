@@ -253,8 +253,14 @@
     <Content Include="Images\bcit.jpg" />
     <Content Include="Images\BCIT2.jpg" />
     <Content Include="Images\downvote.png" />
+    <Content Include="Images\down_arrow.png" />
+    <Content Include="Images\down_arrow_with_back.png" />
+    <Content Include="Images\homepage_gradient.png" />
+    <Content Include="Images\maincontent_summary.png" />
+    <Content Include="Images\maincontent_impeachment.jpg" />
     <Content Include="Images\SE2_dan.jpg" />
     <Content Include="Images\splash_home.png" />
+    <Content Include="Images\arrow_upward_white_24dp_2x.png" />
     <Content Include="Images\upvote.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
