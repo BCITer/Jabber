@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JabberBCIT.Models;
 
 namespace JabberBCIT.Controllers
 {
@@ -15,12 +16,8 @@ namespace JabberBCIT.Controllers
         public ActionResult Index(string tag = "Global")
         {
             ForumPostsViewmodel p = new ForumPostsViewmodel();
-            //Tag t = new JabberBCIT.Tag
-            //{
-            //    Tag1 = tag
-            //};
-            //p.Posts = (from ForumPost in db.ForumPosts where ForumPost.Tags.Contains(t) select new ForumPost());
-
+            
+            p.Posts = (from ForumPost in db.ForumPosts where ForumPost.Subforum.Name == tag select new ForumPost());
             p.Posts = db.ForumPosts.ToList();
 
             return View(p);
@@ -36,14 +33,19 @@ namespace JabberBCIT.Controllers
         {
             post.UserID = User.Identity.GetUserId();
             post.PostTimestamp = DateTime.Now;
-            Tag t = new Tag();
-            t.Tag1 = tag;
-            t.ForumPost = post;
-            post.Tags.Add(t);
 
-            db.ForumPosts.Add(post);
-            db.SaveChanges();
+            try
+            {
+                Subforum s = (from Subforum in db.Subforums where Subforum.Name == tag select new Subforum()).FirstOrDefault();
+                post.Subforum = s;
 
+                db.ForumPosts.Add(post);
+                db.SaveChanges();
+            }
+            finally
+            {
+                // subforum doesn't exist
+            }
             return View();
         }
 

@@ -1,6 +1,5 @@
-namespace JabberBCIT
+namespace JabberBCIT.Models
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -25,7 +24,7 @@ namespace JabberBCIT
 
         [Column("Comment")]
         [Required]
-        public string Comment1 { get; set; }
+        public string Text { get; set; }
 
         public long? ParentCommentID { get; set; }
 
@@ -33,7 +32,7 @@ namespace JabberBCIT
 
         public int Hidden { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
 
         public virtual ForumPost ForumPost { get; set; }
 

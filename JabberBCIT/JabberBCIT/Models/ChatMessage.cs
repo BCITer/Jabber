@@ -1,6 +1,5 @@
-namespace JabberBCIT
+namespace JabberBCIT.Models
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -23,7 +22,7 @@ namespace JabberBCIT
 
         public DateTime Timestamp { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
 
         public virtual ChatConversation ChatConversation { get; set; }
     }
