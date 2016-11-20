@@ -14,11 +14,14 @@ namespace JabberBCIT.Controllers
         // GET: Forum
         public ActionResult Index(string tag = "Global")
         {
-
             ForumPostsViewmodel p = new ForumPostsViewmodel();
+            //Tag t = new JabberBCIT.Tag
+            //{
+            //    Tag1 = tag
+            //};
+            //p.Posts = (from ForumPost in db.ForumPosts where ForumPost.Tags.Contains(t) select new ForumPost());
+
             p.Posts = db.ForumPosts.ToList();
-            
-            //db.ForumPosts.Select()
 
             return View(p);
         }
