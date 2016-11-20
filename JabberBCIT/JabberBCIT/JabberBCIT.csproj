@@ -99,6 +99,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -214,11 +216,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Models\CommentsVote.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\ForumPostsVote.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,6 +233,7 @@
     <Compile Include="Models\ChitterDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ForumPost.cs" />
+    <Compile Include="Models\ForumViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="ChatHub.cs" />
@@ -242,12 +247,18 @@
     <Content Include="Content\Chat.css" />
     <Content Include="Content\createForumPost.css" />
     <Content Include="Content\forum.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\login.js" />
     <Content Include="Content\register.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\11-4.jpg" />
+    <Content Include="Images\arrow_downward_white_24dp_1x.png" />
+    <Content Include="Images\arrow_downward_white_24dp_2x.png" />
+    <Content Include="Images\arrow_upward_white_24dp_1x.png" />
+    <Content Include="Images\arrow_upward_white_24dp_2x.png" />
     <Content Include="Images\BCIT-1.jpg" />
     <Content Include="Images\BCIT-2.jpg" />
     <Content Include="Images\bcit.jpg" />
@@ -258,10 +269,11 @@
     <Content Include="Images\homepage_gradient.png" />
     <Content Include="Images\maincontent_summary.png" />
     <Content Include="Images\maincontent_impeachment.jpg" />
-    <Content Include="Images\SE2_dan.jpg" />
-    <Content Include="Images\splash_home.png" />
     <Content Include="Images\arrow_upward_white_24dp_2x.png" />
     <Content Include="Images\upvote.png" />
+    <Content Include="Images\registerBG.jpg" />
+    <Content Include="Images\SE2_dan.jpg" />
+    <Content Include="Images\splash_home.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -273,6 +285,7 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="AppSettings.config" />
     <Content Include="Content\Comment.less" />
+    <None Include="Properties\PublishProfiles\4956 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\comment.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -319,7 +332,7 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\CurrentProfile.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
@@ -327,11 +340,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Forum\ForumMain.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
-    <Content Include="Views\Forum\View.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
+    <Content Include="Views\Shared\_LoginOverLay.cshtml" />
     <Content Include="Views\Forum\CreateForumPost.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Forum\_Comment.cshtml" />
     <Content Include="Views\Shared\ForumPostPartial.cshtml" />
+    <Content Include="Views\Forum\ViewForumThread.cshtml" />
+    <Content Include="Views\Shared\ForumCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

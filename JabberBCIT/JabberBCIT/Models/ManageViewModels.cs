@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System;
 
 namespace JabberBCIT.Models
 {
@@ -12,6 +13,28 @@ namespace JabberBCIT.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+    }
+
+    /// <summary>
+    /// Profile page view model.
+    /// </summary>
+    public class ProfileViewModel
+    {
+        public string ID { get; set; }
+        public string UserName { get; set; }
+        public string ProfilePicture { get; set; }
+        public DateTime JoinDate { get; set; }
+    }
+    /// <summary>
+    /// Edit profile view model.
+    /// </summary>
+    public class EditViewModel
+    {
+        public string ID { get; set; }
+        [Required]
+        public string UserName { get; set; }
+        public string ProfilePicture { get; set; }
+
     }
 
     public class ManageLoginsViewModel
@@ -41,6 +64,11 @@ namespace JabberBCIT.Models
 
     public class ChangePasswordViewModel
     {
+        public string ID { get; set; }
+        public string UserName { get; set; }
+
+        public string ProfilePicture { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]

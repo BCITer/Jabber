@@ -86,11 +86,11 @@ namespace JabberBCIT
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequiredLength = 3,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults
@@ -137,6 +137,19 @@ namespace JabberBCIT
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+        }
+        /// <summary>
+        /// Sign in using email.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="isPersistent"></param>
+        /// <param name="shouldLockout"></param>
+        /// <returns></returns>
+        public async Task<SignInStatus> PasswordEmailSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
+        {
+            var user = UserManager.FindByEmail(userName);
+            return await PasswordSignInAsync(userName, password, isPersistent, shouldLockout);
         }
     }
 }

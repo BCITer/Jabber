@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JabberBCIT.Models;
 
 namespace JabberBCIT.Controllers
 {
     // [Authorize] Uncommenting this makes it so you have to login to view the forums
     public class ForumController : Controller
     {
-        ChitterDbContext db = ChitterDbContext.Create();
+        ChitterDbContext db = new ChitterDbContext();
         // GET: Forum
         public ActionResult ForumMain()
         {
@@ -27,17 +28,22 @@ namespace JabberBCIT.Controllers
         {
             post.UserID = User.Identity.GetUserId();
             post.PostTimestamp = DateTime.Now;
-            post.Votes = 0;
+            
 
             db.ForumPosts.Add(post);
             db.SaveChanges();
-
-            return View();
+            ViewThreadViewModel model = new ViewThreadViewModel();
+            model.post = post;
+            model.comments = db.Comments.Where(x => x.PostID == post.PostID).ToList();
+            return View("ViewForumThread", model);
         }
 
-        public ActionResult ViewForumThread()
+        public ActionResult ViewForumThread(int? id)
         {
-            return View();
+            ViewThreadViewModel model = new ViewThreadViewModel();
+            model.post = db.ForumPosts.Find(id);
+            model.comments = db.Comments.Where(x => x.PostID == id).ToList();
+            return View(model);
         }
 
         [HttpPost]

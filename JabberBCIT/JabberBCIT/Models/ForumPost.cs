@@ -1,5 +1,6 @@
 namespace JabberBCIT
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,7 @@ namespace JabberBCIT
         public ForumPost()
         {
             Comments = new HashSet<Comment>();
+            ForumPostsVotes = new HashSet<ForumPostsVote>();
             Tags = new HashSet<Tag>();
         }
 
@@ -28,12 +30,15 @@ namespace JabberBCIT
 
         public string Message { get; set; }
 
-        public short Votes { get; set; }
-
         public DateTime PostTimestamp { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ForumPostsVote> ForumPostsVotes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tags { get; set; }
