@@ -26,7 +26,13 @@ namespace JabberBCIT
                 url: "Forum/{tag}",
                 defaults: new { controller = "Forum", action = "Index",  tag = UrlParameter.Optional }
             );
-            
+
+            routes.MapRoute(
+                name: "ViewThread",
+                url: "Forum/{tag}/{id}",
+                defaults: new { controller = "Forum", action = "ViewForumThread", id = UrlParameter.Optional }
+            );
+
             routes.MapRoute(
                 name: "EditProfile",
                 url: "Profile/Edit",

@@ -19,7 +19,7 @@
                 @foreach (var subforum in Model.Subforums)
                 {
                     <li>
-                        <a href="@Url.Action(@subforum.Name, "Forum")">@subforum.Name</a>
+                        <a href="/Forum/@subforum.Name/">@subforum.Name</a>
                     </li>
                 }
             </ul>
