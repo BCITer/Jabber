@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace JabberBCIT.Controllers
 {
@@ -12,7 +14,7 @@ namespace JabberBCIT.Controllers
     public class ForumController : Controller
     {
         ChitterDbContext db = ChitterDbContext.Create;
-        
+
         // GET: Forum
         public ActionResult Index(string tag = "Global")
         {
@@ -22,42 +24,46 @@ namespace JabberBCIT.Controllers
             p.Posts = (from post in db.ForumPosts where post.Subforum.Name == tag select post).ToList();
             p.Subforums = db.Subforums.ToList();
             ViewBag.ForumTitle = tag;
-            
+
             return View(p);
         }
-        
+
         public ActionResult CreateForumPost()
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult CreateForumPost(ForumPost post, string tag = "Global")
         {
+            ViewThreadViewModel model = new ViewThreadViewModel();
             post.UserID = User.Identity.GetUserId();
             post.PostTimestamp = DateTime.Now;
 
             try
             {
                 Subforum s = (from subforum in db.Subforums where subforum.Name == tag select subforum).FirstOrDefault();
-                post.Subforum = s;
+                //post.Subforum = s;
 
                 db.ForumPosts.Add(post);
                 db.SaveChanges();
+                model.post = post;
+                model.comments = db.Comments.Where(x => x.PostID == post.PostID).ToList();
+                return View("ViewForumThread", model);
             }
-            finally
+            catch (DbEntityValidationException dbEx)
             {
-                // subforum doesn't exist
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
             }
-            return View();
-
-
-            db.ForumPosts.Add(post);
-            db.SaveChanges();
-            ViewThreadViewModel model = new ViewThreadViewModel();
-            model.post = post;
-            model.comments = db.Comments.Where(x => x.PostID == post.PostID).ToList();
-            return View("ViewForumThread", model);
+            return Index();
         }
 
         public ActionResult ViewForumThread(int? id)
