@@ -46,11 +46,20 @@ namespace JabberBCIT.Controllers
                 // subforum doesn't exist
             }
             return View();
+            db.ForumPosts.Add(post);
+            db.SaveChanges();
+            ViewThreadViewModel model = new ViewThreadViewModel();
+            model.post = post;
+            model.comments = db.Comments.Where(x => x.PostID == post.PostID).ToList();
+            return View("ViewForumThread", model);
         }
 
-        public ActionResult ViewForumThread()
+        public ActionResult ViewForumThread(int? id)
         {
-            return View();
+            ViewThreadViewModel model = new ViewThreadViewModel();
+            model.post = db.ForumPosts.Find(id);
+            model.comments = db.Comments.Where(x => x.PostID == id).ToList();
+            return View(model);
         }
 
         [HttpPost]

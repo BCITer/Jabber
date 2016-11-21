@@ -1,34 +1,28 @@
 ﻿@model JabberBCIT.Models.ProfileViewModel
 
-<div>
-    <h4>@Model.UserName</h4>
+@Styles.Render("~/Content/Profile.css")
+
+<div class="container">
+    <h1>My Profile</h1>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProfilePicture)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProfilePicture)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.JoinDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.JoinDate)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-4 avatar">
+            <img src="~/Images/avatar.jpg" alt="Profile image" class="img-thumbnail" />
+        </div>
+        <div class="col-md-8 info">
+            <table class="table">
+                <tr> 
+                    <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                    <th>@Html.DisplayFor(model => model.UserName)</th>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.JoinDate)</th>
+                    <th>@Html.DisplayFor(model => model.JoinDate)</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit Profile", "Edit", "Manage", new { id = Model.ID }, new { @class = "btn btn-default" })
-</p>

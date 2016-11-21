@@ -86,11 +86,11 @@ namespace JabberBCIT
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
+                RequiredLength = 3,
                 RequireNonLetterOrDigit = false,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults
@@ -146,10 +146,10 @@ namespace JabberBCIT
         /// <param name="isPersistent"></param>
         /// <param name="shouldLockout"></param>
         /// <returns></returns>
-        public async Task<SignInStatus> PasswordEmailSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
+        public async Task<SignInStatus> PasswordEmailSignInAsync(string email, string password, bool isPersistent, bool shouldLockout)
         {
-            var user = UserManager.FindByEmail(userName);
-            return await PasswordSignInAsync(userName, password, isPersistent, shouldLockout);
+            var user = UserManager.FindByEmail(email);
+            return await PasswordSignInAsync(user.UserName, password, isPersistent, shouldLockout);
         }
     }
 }

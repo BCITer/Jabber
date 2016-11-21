@@ -237,6 +237,7 @@
     <Compile Include="Models\ChitterDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ForumPost.cs" />
+    <Compile Include="Models\ForumViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="Models\Subforum.cs" />
@@ -266,6 +267,14 @@
     <Content Include="Images\BCIT-2.jpg" />
     <Content Include="Images\bcit.jpg" />
     <Content Include="Images\BCIT2.jpg" />
+    <Content Include="Images\downvote.png" />
+    <Content Include="Images\down_arrow.png" />
+    <Content Include="Images\down_arrow_with_back.png" />
+    <Content Include="Images\homepage_gradient.png" />
+    <Content Include="Images\maincontent_summary.png" />
+    <Content Include="Images\maincontent_impeachment.jpg" />
+    <Content Include="Images\arrow_upward_white_24dp_2x.png" />
+    <Content Include="Images\upvote.png" />
     <Content Include="Images\registerBG.jpg" />
     <Content Include="Images\SE2_dan.jpg" />
     <Content Include="Images\splash_home.png" />
@@ -342,7 +351,8 @@
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Forum\_Comment.cshtml" />
     <Content Include="Views\Shared\ForumPostPartial.cshtml" />
-    <Content Include="Views\Shared\ForumTagPartial.cshtml" />
+    <Content Include="Views\Forum\ViewForumThread.cshtml" />
+    <Content Include="Views\Shared\ForumCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
