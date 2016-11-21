@@ -16,10 +16,33 @@ namespace JabberBCIT.Controllers
         public ActionResult Index(string tag = "Global")
         {
             ForumPostsViewmodel p = new ForumPostsViewmodel();
-            p.Posts = db.ForumPosts.ToList();
+
+            // get the forum posts from this subforum
+            p.Posts = getPosts(tag);
             p.Subforums = db.Subforums.ToList();
             
             return View(p);
+        }
+
+        private class pseudoPost : ForumPost
+        { }
+
+        public List<ForumPost> getPosts(string tag)
+        {
+            return (from post in db.ForumPosts where post.Subforum.Name == tag select new pseudoPost()).ToList();
+            //        new ForumPost()
+            //{
+            //    ForumPostsVotes = post.ForumPostsVotes,
+            //    Comments = post.Comments,
+            //    Message = post.Message,
+            //    PostID = post.PostID,
+            //    PostTimestamp = post.PostTimestamp,
+            //    PostTitle = post.PostTitle,
+            //    Subforum = post.Subforum,
+            //    SubforumID = post.SubforumID,
+            //    User = post.User,
+            //    UserID = post.UserID
+            //}
         }
 
         public ActionResult CreateForumPost()
@@ -46,6 +69,8 @@ namespace JabberBCIT.Controllers
                 // subforum doesn't exist
             }
             return View();
+
+
             db.ForumPosts.Add(post);
             db.SaveChanges();
             ViewThreadViewModel model = new ViewThreadViewModel();
