@@ -7,7 +7,6 @@ namespace JabberBCIT.Models
     using System.Security.Claims;
     using System.Threading.Tasks;
     
-
     public partial class User : IdentityUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

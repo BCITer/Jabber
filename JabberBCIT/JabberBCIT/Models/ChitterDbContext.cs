@@ -110,8 +110,8 @@ namespace JabberBCIT
                 .WithMany(e => e.Subforums)
                 .Map(m => m.ToTable("UserSubforums").MapLeftKey("SubforumID").MapRightKey("UserID"));
 
-            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(x => x.UserId);
-            modelBuilder.Entity<IdentityRole>().HasKey<string>(x => x.Id);
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey(x => x.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(x => new { x.RoleId, x.UserId });
         }
     }

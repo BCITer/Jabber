@@ -16,11 +16,13 @@
             <div id="forum_sidebar">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a>Global</a>
+                        <a href="">Global</a>
                     </li>
                     @foreach (var subforum in Model.Subforums)
                     {
-                        @Html.Partial("ForumTagPartial", subforum);
+                        <li>
+                            <a href="">@subforum.Name</a>
+                        </li>
                     }
                 </ul>
             </div>
