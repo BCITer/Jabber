@@ -36,34 +36,24 @@ namespace JabberBCIT.Controllers
         [HttpPost]
         public ActionResult CreateForumPost(ForumPost post, string tag = "Global")
         {
-            ViewThreadViewModel model = new ViewThreadViewModel();
-            post.UserID = User.Identity.GetUserId();
-            post.PostTimestamp = DateTime.Now;
-
             try
             {
-                Subforum s = (from subforum in db.Subforums where subforum.Name == tag select subforum).FirstOrDefault();
-                //post.Subforum = s;
-
+                // post.UserID = User.Identity.GetUserId();
+                post.UserID = "b0394e3f-3a78-44eb-a2be-a60bb318ef3d";
+                post.PostTimestamp = DateTime.Now;
+                post.Subforum = db.Subforums.Where(x => x.Name == tag).FirstOrDefault();
                 db.ForumPosts.Add(post);
                 db.SaveChanges();
-                model.post = post;
-                model.comments = db.Comments.Where(x => x.PostID == post.PostID).ToList();
-                return View("ViewForumThread", model);
             }
-            catch (DbEntityValidationException dbEx)
+            catch
             {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Trace.TraceInformation("Property: {0} Error: {1}",
-                                                validationError.PropertyName,
-                                                validationError.ErrorMessage);
-                    }
-                }
+                return RedirectToAction("Index");
             }
-            return Index();
+
+            ViewThreadViewModel model = new ViewThreadViewModel();
+            model.post = post;
+            model.comments = db.Comments.Where(x => x.PostID == post.PostID).ToList();
+            return View("ViewForumThread", model);
         }
 
         public ActionResult ViewForumThread(int? id)
