@@ -10,6 +10,24 @@ namespace JabberBCIT
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "CreatePostInSubForum",
+                url: "Forum/{tag}/CreateForumPost",
+                defaults: new { controller = "Forum", action = "CreateForumPost", tag = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "CreatePostInGlobal",
+                url: "Forum/CreateForumPost",
+                defaults: new { controller = "Forum", action = "CreateForumPost" }
+            );
+
+            routes.MapRoute(
+                name: "ViewSubForum",
+                url: "Forum/{tag}",
+                defaults: new { controller = "Forum", action = "Index",  tag = UrlParameter.Optional }
+            );
+            
+            routes.MapRoute(
                 name: "EditProfile",
                 url: "Profile/Edit",
                 defaults: new { controller = "Manage", action = "Edit" }

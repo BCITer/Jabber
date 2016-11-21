@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using JabberBCIT.Models;
 
 namespace JabberBCIT.Models
 {
-    public class CustomUserValidator<T> : UserValidator<ApplicationUser> {
+    public class CustomUserValidator<T> : UserValidator<User> {
 
-        public CustomUserValidator(ApplicationUserManager manager) : base (manager)
+        public CustomUserValidator(UserManager manager) : base (manager)
         {
 
         }
 
-        public override async Task<IdentityResult> ValidateAsync(ApplicationUser user)
+        public override async Task<IdentityResult> ValidateAsync(User user)
         {
             IdentityResult result = await base.ValidateAsync(user);
 

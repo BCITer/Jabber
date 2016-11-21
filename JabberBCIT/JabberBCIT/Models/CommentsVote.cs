@@ -1,12 +1,8 @@
-namespace JabberBCIT
+namespace JabberBCIT.Models
 {
-    using Models;
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
+    
     public partial class CommentsVote
     {
         [Key]
@@ -20,7 +16,7 @@ namespace JabberBCIT
 
         public short Value { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
 
         public virtual Comment Comment { get; set; }
     }
