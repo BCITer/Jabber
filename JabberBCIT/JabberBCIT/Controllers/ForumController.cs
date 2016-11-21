@@ -11,14 +11,15 @@ namespace JabberBCIT.Controllers
     // [Authorize] Uncommenting this makes it so you have to login to view the forums
     public class ForumController : Controller
     {
-        ChitterDbContext db = new ChitterDbContext();
+        ChitterDbContext db = ChitterDbContext.Create();
         // GET: Forum
         public ActionResult Index(string tag = "Global")
         {
             ForumPostsViewmodel p = new ForumPostsViewmodel();
-            
-            p.Posts = (from ForumPost in db.ForumPosts where ForumPost.Subforum.Name == tag select new ForumPost());
             p.Posts = db.ForumPosts.ToList();
+
+            //(from ForumPost in db.ForumPosts where ForumPost.Subforum.Name == tag select new ForumPost());
+
 
             return View(p);
         }

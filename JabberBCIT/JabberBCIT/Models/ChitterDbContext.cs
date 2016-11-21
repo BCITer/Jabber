@@ -1,21 +1,14 @@
 namespace JabberBCIT
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using Models;
+    using System.Data.Entity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public partial class ChitterDbContext : IdentityDbContext<User>
     {
-        public ChitterDbContext()
-            : base("name=ChitterContext")
-        {
-        }
-
-        public static ChitterDbContext db;
-
+        public ChitterDbContext() : base("name=ChitterContext")
+        { }
+        
         public virtual DbSet<ChatConversation> ChatConversations { get; set; }
         public virtual DbSet<ChatMessage> ChatMessages { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -26,11 +19,7 @@ namespace JabberBCIT
 
         public static ChitterDbContext Create()
         {
-            if (db == null)
-            {
-                db = new ChitterDbContext();
-            }
-            return db;
+            return new ChitterDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
