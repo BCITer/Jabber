@@ -1,12 +1,8 @@
-namespace JabberBCIT
+namespace JabberBCIT.Models
 {
-    using Models;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
+    
     public partial class ChatMessage
     {
         [Key]
@@ -23,7 +19,7 @@ namespace JabberBCIT
 
         public DateTime Timestamp { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
 
         public virtual ChatConversation ChatConversation { get; set; }
     }

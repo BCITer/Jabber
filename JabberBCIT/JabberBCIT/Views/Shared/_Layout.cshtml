@@ -125,6 +125,7 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/login")
     @Styles.Render("~/Content/register.css")
+    @Styles.Render("~/Content/forgetPassword.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="body-content">
@@ -140,7 +141,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Forum", "ForumMain", "Forum")</li>
+                    <li>@Html.ActionLink("Forum", "Index", "Forum")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Chat", "Chat", "Chat")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
