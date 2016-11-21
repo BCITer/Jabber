@@ -3,12 +3,16 @@ namespace JabberBCIT
     using Models;
     using System.Data.Entity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin;
 
     public partial class ChitterDbContext : IdentityDbContext<User>
     {
-        public ChitterDbContext() : base("name=ChitterContext")
+        private ChitterDbContext() : base("name=ChitterContext")
         { }
-        
+
+        private static ChitterDbContext db;
+
         public virtual DbSet<ChatConversation> ChatConversations { get; set; }
         public virtual DbSet<ChatMessage> ChatMessages { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -17,7 +21,19 @@ namespace JabberBCIT
         public virtual DbSet<ForumPostsVote> ForumPostsVotes { get; set; }
         public virtual DbSet<Subforum> Subforums { get; set; }
 
-        public static ChitterDbContext Create()
+        public static ChitterDbContext Create
+        {
+            get
+            {
+                if (db == null)
+                {
+                    db = new ChitterDbContext();
+                }
+                return db;
+            }
+        }
+
+        public static ChitterDbContext dontUseThis()
         {
             return new ChitterDbContext();
         }

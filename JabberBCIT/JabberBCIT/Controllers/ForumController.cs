@@ -11,40 +11,21 @@ namespace JabberBCIT.Controllers
     // [Authorize] Uncommenting this makes it so you have to login to view the forums
     public class ForumController : Controller
     {
-        ChitterDbContext db = ChitterDbContext.Create();
+        ChitterDbContext db = ChitterDbContext.Create;
+        
         // GET: Forum
         public ActionResult Index(string tag = "Global")
         {
             ForumPostsViewmodel p = new ForumPostsViewmodel();
 
             // get the forum posts from this subforum
-            p.Posts = getPosts(tag);
+            p.Posts = (from post in db.ForumPosts where post.Subforum.Name == tag select post).ToList();
             p.Subforums = db.Subforums.ToList();
+            ViewBag.ForumTitle = tag;
             
             return View(p);
         }
-
-        private class pseudoPost : ForumPost
-        { }
-
-        public List<ForumPost> getPosts(string tag)
-        {
-            return (from post in db.ForumPosts where post.Subforum.Name == tag select new pseudoPost()).ToList();
-            //        new ForumPost()
-            //{
-            //    ForumPostsVotes = post.ForumPostsVotes,
-            //    Comments = post.Comments,
-            //    Message = post.Message,
-            //    PostID = post.PostID,
-            //    PostTimestamp = post.PostTimestamp,
-            //    PostTitle = post.PostTitle,
-            //    Subforum = post.Subforum,
-            //    SubforumID = post.SubforumID,
-            //    User = post.User,
-            //    UserID = post.UserID
-            //}
-        }
-
+        
         public ActionResult CreateForumPost()
         {
             return View();
@@ -58,7 +39,7 @@ namespace JabberBCIT.Controllers
 
             try
             {
-                Subforum s = (from Subforum in db.Subforums where Subforum.Name == tag select new Subforum()).FirstOrDefault();
+                Subforum s = (from subforum in db.Subforums where subforum.Name == tag select subforum).FirstOrDefault();
                 post.Subforum = s;
 
                 db.ForumPosts.Add(post);
