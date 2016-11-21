@@ -27,6 +27,10 @@ namespace JabberBCIT {
                      "~/Content/login.css"));
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
                      "~/Content/login.js"));
+            bundles.Add(new StyleBundle("~/Content/home").Include(
+                    "~/Content/Home.less"));
+            bundles.Add(new StyleBundle("~/Content/register").Include(
+                    "~/Content/register.css"));
         }
     }
 }

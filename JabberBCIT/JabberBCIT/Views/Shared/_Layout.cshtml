@@ -145,9 +145,17 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Chat", "Chat", "Chat")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Chat","BasicChat","Home")</li>
+                    <li>@Html.ActionLink("Chat", "BasicChat", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial", new JabberBCIT.Models.LoginViewModel { })
+                <div class="navbar-collapse uncollapse-hidden collapse" id="LanguageMenu" aria-expanded="false" style="height: 1px;">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/LT/Home/Index/">EN</a></li>
+                        <li><a href="/LT/Nach Hause/Index/">DE</a></li>
+                        <li><a href="/LT/Accueil/Index/">FR</a></li>
+                        <li><a href="/LT/Acasă/Index/">RO</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
