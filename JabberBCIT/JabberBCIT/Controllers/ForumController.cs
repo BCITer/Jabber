@@ -17,10 +17,8 @@ namespace JabberBCIT.Controllers
         {
             ForumPostsViewmodel p = new ForumPostsViewmodel();
             p.Posts = db.ForumPosts.ToList();
-
-            //(from ForumPost in db.ForumPosts where ForumPost.Subforum.Name == tag select new ForumPost());
-
-
+            p.Subforums = db.Subforums.ToList();
+            
             return View(p);
         }
 
