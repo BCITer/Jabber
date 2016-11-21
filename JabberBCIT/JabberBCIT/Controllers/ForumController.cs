@@ -11,17 +11,21 @@ namespace JabberBCIT.Controllers
     // [Authorize] Uncommenting this makes it so you have to login to view the forums
     public class ForumController : Controller
     {
-        ChitterDbContext db = ChitterDbContext.Create();
+        ChitterDbContext db = ChitterDbContext.Create;
+        
         // GET: Forum
         public ActionResult Index(string tag = "Global")
         {
             ForumPostsViewmodel p = new ForumPostsViewmodel();
-            p.Posts = db.ForumPosts.ToList();
+
+            // get the forum posts from this subforum
+            p.Posts = (from post in db.ForumPosts where post.Subforum.Name == tag select post).ToList();
             p.Subforums = db.Subforums.ToList();
+            ViewBag.ForumTitle = tag;
             
             return View(p);
         }
-
+        
         public ActionResult CreateForumPost()
         {
             return View();
@@ -35,7 +39,7 @@ namespace JabberBCIT.Controllers
 
             try
             {
-                Subforum s = (from Subforum in db.Subforums where Subforum.Name == tag select new Subforum()).FirstOrDefault();
+                Subforum s = (from subforum in db.Subforums where subforum.Name == tag select subforum).FirstOrDefault();
                 post.Subforum = s;
 
                 db.ForumPosts.Add(post);
@@ -46,6 +50,8 @@ namespace JabberBCIT.Controllers
                 // subforum doesn't exist
             }
             return View();
+
+
             db.ForumPosts.Add(post);
             db.SaveChanges();
             ViewThreadViewModel model = new ViewThreadViewModel();
