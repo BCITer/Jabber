@@ -217,6 +217,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Models\AspNetRole.cs" />
+    <Compile Include="Models\ForumViewModels.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
@@ -237,7 +238,6 @@
     <Compile Include="Models\ChitterDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ForumPost.cs" />
-    <Compile Include="Models\ForumViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="Models\Subforum.cs" />
@@ -263,21 +263,19 @@
     <Content Include="Images\arrow_downward_white_24dp_2x.png" />
     <Content Include="Images\arrow_upward_white_24dp_1x.png" />
     <Content Include="Images\arrow_upward_white_24dp_2x.png" />
+    <Content Include="Images\avatar.jpg" />
     <Content Include="Images\BCIT-1.jpg" />
     <Content Include="Images\BCIT-2.jpg" />
     <Content Include="Images\bcit.jpg" />
     <Content Include="Images\BCIT2.jpg" />
-    <Content Include="Images\downvote.png" />
     <Content Include="Images\down_arrow.png" />
-    <Content Include="Images\down_arrow_with_back.png" />
     <Content Include="Images\homepage_gradient.png" />
-    <Content Include="Images\maincontent_summary.png" />
     <Content Include="Images\maincontent_impeachment.jpg" />
-    <Content Include="Images\arrow_upward_white_24dp_2x.png" />
-    <Content Include="Images\upvote.png" />
+    <Content Include="Images\maincontent_summary.png" />
     <Content Include="Images\registerBG.jpg" />
     <Content Include="Images\SE2_dan.jpg" />
     <Content Include="Images\splash_home.png" />
+    <Content Include="Images\vignette.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -353,6 +351,7 @@
     <Content Include="Views\Shared\ForumPostPartial.cshtml" />
     <Content Include="Views\Forum\ViewForumThread.cshtml" />
     <Content Include="Views\Shared\ForumCommentPartial.cshtml" />
+    <Content Include="Views\Shared\_NotificationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
