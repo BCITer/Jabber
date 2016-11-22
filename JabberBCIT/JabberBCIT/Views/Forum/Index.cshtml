@@ -1,0 +1,95 @@
+﻿@model JabberBCIT.Models.ForumPostsViewmodel
+@{
+    ViewBag.Title = "Forum";
+}
+
+<head>
+    <!-- Bootstrap Core CSS -->
+    @Styles.Render("~/Content/bootstrap.min.css")
+    <!-- Custom CSS -->
+    @Styles.Render("~/Content/forum.css")
+</head>
+<body style="padding-top: 0px;">
+    <div id="wrapper">
+        <div id="forum_sidebar">
+            <ul class="nav navbar-nav side-nav">
+                @foreach (var subforum in Model.Subforums)
+                {
+                    <li>
+                        <a href="/Forum/@subforum.Name/">@subforum.Name</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="forum-header">
+                            <b>@ViewBag.ForumTitle Forum</b>
+                            <br>
+                            <small>Talk about your stuff!</small>
+                            <button type="button" class="btn btn-primary pull-right" onclick="@("location.href='"+ Url.Action("CreatePost","Forum")+ "'")">Create Post</button>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Posts -->
+                <table class="table table-filter">
+                    <tbody>
+                        @foreach(var post in Model.Posts)
+                        {
+                            @Html.Partial("PostPartial", post);
+                        }
+                    </tbody>
+                </table>
+                <!-- ./Posts -->
+                <!-- Pagination -->
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#">&laquo;</a>
+                            </li>
+                            <li class="active">
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">4</a>
+                            </li>
+                            <li>
+                                <a href="#">5</a>
+                            </li>
+                            <li>
+                                <a href="#">&raquo;</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Footer -->
+                <footer>
+                    <div class="row text-center">
+                        <div class="col-lg-12">
+                            <p>Copyright &copy; BCIT Jabber 2016</p>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+</body>
