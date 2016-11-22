@@ -16,3 +16,10 @@ $('a.back-to-top').click(function () {
     }, 700);
     return false;
 });
+
+$('a.downArrow').click(function () {
+    $('html, body').animate({
+        scrollTop: 400
+    }, 400);
+    return false;
+});
