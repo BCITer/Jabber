@@ -23,7 +23,15 @@ namespace JabberBCIT.Models
         public string UserName { get; set; }
         public string ProfilePicture { get; set; }
         public DateTime JoinDate { get; set; }
+        public string userId { get; set; }
+        public IEnumerable<ForumPost> posts { get; set; }
+
+        public ProfileViewModel()
+        {
+            posts = new List<ForumPost>();
+        }
     }
+   
     /// <summary>
     /// Edit profile view model.
     /// </summary>

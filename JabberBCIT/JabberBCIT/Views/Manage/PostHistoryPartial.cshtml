@@ -1,0 +1,8 @@
+﻿@model JabberBCIT.Models.ForumPost
+@{
+    ViewBag.Title = "PostHistoryPartial";
+}
+<tr>
+    <td>@Model.PostTimestamp</td>
+    <td>@Html.ActionLink(@Model.PostTitle, "ViewThread", "Forum", new { id = Model.PostID }, null)</td>
+</tr>
