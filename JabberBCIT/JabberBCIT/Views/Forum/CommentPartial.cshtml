@@ -1,5 +1,5 @@
 ﻿@using JabberBCIT.Models
-@model JabberBCIT.Models.CommentAndChildrenViewModel
+@model JabberBCIT.Models.CommentViewModel
 @{
     ViewBag.Title = "CommentPartial";
 }
@@ -18,25 +18,20 @@
             </div>
         </a>
     </td>
-    <td>
-        <div class="media">
-            <div class="media-body">
-                <h4 class="title">
-                    @Model.comment.UserID
-                </h4>
-                <p>
-                    @Model.comment.Text
-                </p>
-            </div>
-            <table>
-                @{
-                    List<Comment> notChild = Model.comments.Where(x => x.ParentCommentID != Model.comment.CommentID).ToList();
-                    foreach (var comment in Model.comments.Where(x => x.ParentCommentID == Model.comment.CommentID).ToList())
-                    {
-                        @Html.Partial("CommentPartial", new JabberBCIT.Models.CommentAndChildrenViewModel() { comment = comment, comments = notChild });
-                    }
-                }
-            </table>
+    <td class="media">
+        <div class="media-body">
+            <h4 class="title">
+                @Model.comment.UserID
+            </h4>
+            <p>
+                @Model.comment.Text
+            </p>
         </div>
+        <table>
+            @foreach (var childCommentID in Model.childCommentIDs)
+            {
+                Html.RenderAction("CommentPartial", new { id = childCommentID });
+            }
+        </table>
     </td>
 </tr>

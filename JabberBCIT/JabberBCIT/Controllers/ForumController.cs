@@ -5,8 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 
 namespace JabberBCIT.Controllers
 {
@@ -22,7 +20,6 @@ namespace JabberBCIT.Controllers
 
             // get the forum posts from this subforum
             viewModel.Posts = db.ForumPosts.Where(x => x.Subforum.Name == tag).ToList();
-            viewModel.Subforums = db.Subforums.ToList();
             ViewBag.ForumTitle = tag;
 
             return View(viewModel);
@@ -52,12 +49,27 @@ namespace JabberBCIT.Controllers
             return RedirectToAction("ViewThread", new { id = post.PostID});
         }
 
-        public ActionResult ViewThread(int? id)
+        public ActionResult ViewThread(int id)
         {
             ViewThreadViewModel viewModel = new ViewThreadViewModel();
             viewModel.post = db.ForumPosts.Find(id);
-            viewModel.comments = db.Comments.Where(x => x.PostID == id).ToList();
+            viewModel.childCommentIDs = db.Comments.Where(x => x.PostID == id && x.ParentCommentID == null).Select(x => x.CommentID).ToList();
             return View(viewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult CommentPartial(int id)
+        {
+            var viewModel = new CommentViewModel();
+            viewModel.comment = db.Comments.Find(id);
+            viewModel.childCommentIDs = db.Comments.Where(x => x.ParentCommentID == id).Select(x => x.CommentID).ToList();
+            return PartialView(viewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult SidebarPartial()
+        {
+            return PartialView(db.Subforums.ToList());
         }
 
     }
