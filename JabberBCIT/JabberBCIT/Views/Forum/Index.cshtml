@@ -1,4 +1,4 @@
-﻿@model JabberBCIT.Models.ForumPostsViewmodel
+﻿@model List<long>
 @{
     ViewBag.Title = "Forum";
 }
@@ -28,9 +28,9 @@
                 <!-- Posts -->
                 <table class="table table-filter">
                     <tbody>
-                        @foreach(var post in Model.Posts)
+                        @foreach (var postID in Model)
                         {
-                            @Html.Partial("PostPartial", post);
+                            Html.RenderAction("PostPartial", new { id = postID });
                         }
                     </tbody>
                 </table>

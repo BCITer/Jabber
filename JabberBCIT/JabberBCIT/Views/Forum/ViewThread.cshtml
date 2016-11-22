@@ -1,5 +1,5 @@
 ﻿@using JabberBCIT.Models
-@model ViewThreadViewModel
+@model PostViewModel
 @{
     ViewBag.Title = "ViewThread";
 }
@@ -32,8 +32,7 @@
                                     <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
                                 </div>
                             </a>
-                            @*<p class="vote-count">@Html.DisplayFor(m => m.Votes)</p>*@
-                            <p class="vote-count">1</p>
+                            <p class="vote-count">@Model.votes</p>
                             <a href="#">
                                 <div class="vote">
                                     <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
@@ -45,7 +44,7 @@
                             <h1 class="forum-header">
                                 <b>@Model.post.PostTitle</b>
                                 <br>
-                                @* <small>@Model.post.UserID</small> *@
+                                <small>@Model.author</small>
                             </h1>
                             <p>@Model.post.Message</p>
                         </td>
