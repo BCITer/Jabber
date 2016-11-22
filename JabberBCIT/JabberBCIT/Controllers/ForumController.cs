@@ -18,23 +18,23 @@ namespace JabberBCIT.Controllers
         // GET: Forum
         public ActionResult Index(string tag = "Global")
         {
-            ForumPostsViewmodel p = new ForumPostsViewmodel();
+            ForumPostsViewmodel viewModel = new ForumPostsViewmodel();
 
             // get the forum posts from this subforum
-            p.Posts = (from post in db.ForumPosts where post.Subforum.Name == tag select post).ToList();
-            p.Subforums = db.Subforums.ToList();
+            viewModel.Posts = db.ForumPosts.Where(x => x.Subforum.Name == tag).ToList();
+            viewModel.Subforums = db.Subforums.ToList();
             ViewBag.ForumTitle = tag;
 
-            return View(p);
+            return View(viewModel);
         }
 
-        public ActionResult CreateForumPost()
+        public ActionResult CreatePost()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateForumPost(ForumPost post, string tag = "Global")
+        public ActionResult CreatePost(ForumPost post, string tag = "Global")
         {
             try
             {
@@ -49,25 +49,16 @@ namespace JabberBCIT.Controllers
             {
                 return RedirectToAction("Index");
             }
-
-            ViewThreadViewModel model = new ViewThreadViewModel();
-            model.post = post;
-            model.comments = db.Comments.Where(x => x.PostID == post.PostID).ToList();
-            return View("ViewForumThread", model);
+            return RedirectToAction("ViewThread", new { id = post.PostID});
         }
 
-        public ActionResult ViewForumThread(int? id)
+        public ActionResult ViewThread(int? id)
         {
-            ViewThreadViewModel model = new ViewThreadViewModel();
-            model.post = db.ForumPosts.Find(id);
-            model.comments = db.Comments.Where(x => x.PostID == id).ToList();
-            return View(model);
+            ViewThreadViewModel viewModel = new ViewThreadViewModel();
+            viewModel.post = db.ForumPosts.Find(id);
+            viewModel.comments = db.Comments.Where(x => x.PostID == id).ToList();
+            return View(viewModel);
         }
 
-        [HttpPost]
-        public ActionResult ForumPostPartial(ForumPost p)
-        {
-            return PartialView();
-        }
     }
 }
