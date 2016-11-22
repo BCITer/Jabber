@@ -5,8 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 
 namespace JabberBCIT.Controllers
 {
@@ -18,14 +16,8 @@ namespace JabberBCIT.Controllers
         // GET: Forum
         public ActionResult Index(string tag = "Global")
         {
-            ForumPostsViewmodel viewModel = new ForumPostsViewmodel();
-
-            // get the forum posts from this subforum
-            viewModel.Posts = db.ForumPosts.Where(x => x.Subforum.Name == tag).ToList();
-            viewModel.Subforums = db.Subforums.ToList();
             ViewBag.ForumTitle = tag;
-
-            return View(viewModel);
+            return View(db.ForumPosts.Where(x => x.Subforum.Name == tag).Select(x => x.PostID).ToList());
         }
 
         public ActionResult CreatePost()
@@ -52,12 +44,41 @@ namespace JabberBCIT.Controllers
             return RedirectToAction("ViewThread", new { id = post.PostID});
         }
 
-        public ActionResult ViewThread(int? id)
+        public ActionResult ViewThread(int id)
         {
-            ViewThreadViewModel viewModel = new ViewThreadViewModel();
+            PostViewModel viewModel = new PostViewModel();
             viewModel.post = db.ForumPosts.Find(id);
-            viewModel.comments = db.Comments.Where(x => x.PostID == id).ToList();
+            viewModel.author = db.Users.Find(viewModel.post.UserID).UserName; 
+            viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
+            viewModel.childCommentIDs = db.Comments.Where(x => x.PostID == id && x.ParentCommentID == null).Select(x => x.CommentID).ToList();
             return View(viewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult CommentPartial(int id)
+        {
+            var viewModel = new CommentViewModel();
+            viewModel.comment = db.Comments.Find(id);
+            viewModel.author = db.Users.Find(viewModel.comment.UserID).UserName;
+            viewModel.votes = db.CommentsVotes.Where(x => x.CommentID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
+            viewModel.childCommentIDs = db.Comments.Where(x => x.ParentCommentID == id).Select(x => x.CommentID).ToList();
+            return PartialView(viewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult SidebarPartial()
+        {
+            return PartialView(db.Subforums.ToList());
+        }
+
+        [ChildActionOnly]
+        public ActionResult PostPartial(int id)
+        {
+            PostViewModel viewModel = new PostViewModel();
+            viewModel.post = db.ForumPosts.Find(id);
+            viewModel.author = db.Users.Find(viewModel.post.UserID).UserName;
+            viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
+            return PartialView(viewModel);
         }
 
     }

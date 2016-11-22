@@ -1,4 +1,4 @@
-﻿@model JabberBCIT.Models.ForumPostsViewmodel
+﻿@model List<long>
 @{
     ViewBag.Title = "Forum";
 }
@@ -11,16 +11,7 @@
 </head>
 <body style="padding-top: 0px;">
     <div id="wrapper">
-        <div id="forum_sidebar">
-            <ul class="nav navbar-nav side-nav">
-                @foreach (var subforum in Model.Subforums)
-                {
-                    <li>
-                        <a href="/Forum/@subforum.Name/">@subforum.Name</a>
-                    </li>
-                }
-            </ul>
-        </div>
+        @{Html.RenderAction("SidebarPartial"); }
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -37,9 +28,9 @@
                 <!-- Posts -->
                 <table class="table table-filter">
                     <tbody>
-                        @foreach(var post in Model.Posts)
+                        @foreach (var postID in Model)
                         {
-                            @Html.Partial("PostPartial", post);
+                            Html.RenderAction("PostPartial", new { id = postID });
                         }
                     </tbody>
                 </table>
