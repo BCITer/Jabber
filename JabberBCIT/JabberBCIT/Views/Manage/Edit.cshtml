@@ -6,17 +6,18 @@
 
     <p class="text-success">@ViewBag.StatusMessage</p>
 
-    @using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
 
-        <hr />
+    @Html.AntiForgeryToken()
 
-        <div class="row">
-            <div class="col-md-4 avatar">
-                <img src="~/Images/avatar.jpg" alt="Profile image" class="img-thumbnail" />
-            </div>
-            <div class="col-md-8 infoContainer">
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4 avatar">
+            <img src="~/Images/avatar.jpg" alt="Profile image" class="img-thumbnail" />
+        </div>
+        <div class="col-md-8 infoContainer">
+            @using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
                 <h3>Personal info</h3>
                 <hr />
 
@@ -43,13 +44,11 @@
                         </div>
                     </div>
                 </div>
-                @Html.Action("ChangePassword", new JabberBCIT.Models.ChangePasswordViewModel { })
-            </div>
+            }
+            @Html.Action("ChangePassword", new JabberBCIT.Models.ChangePasswordViewModel { })
         </div>
-    }
+    </div>
     <div>
         @Html.ActionLink("Back to profile", "Index", "Manage", new { id = Model.ID }, null)
     </div>
 </div>
-
-
