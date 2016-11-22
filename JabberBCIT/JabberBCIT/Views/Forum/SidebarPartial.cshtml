@@ -1,0 +1,17 @@
+﻿@using JabberBCIT.Models
+@model List<Subforum>
+
+@{
+    ViewBag.Title = "SidebarPartial";
+}
+
+<div id="forum_sidebar">
+    <ul class="nav navbar-nav side-nav">
+        @foreach (var subforum in Model)
+        {
+            <li>
+                <a href="/Forum/@subforum.Name/">@subforum.Name</a>
+            </li>
+        }
+    </ul>
+</div>
