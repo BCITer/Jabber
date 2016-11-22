@@ -19,6 +19,7 @@ namespace JabberBCIT.Models
             ForumPosts = new HashSet<ForumPost>();
             ForumPostsVotes = new HashSet<ForumPostsVote>();
             Subforums = new HashSet<Subforum>();
+            JoinDate = DateTime.Now;
         }
         
         public string ProfilePicture { get; set; }
