@@ -352,6 +352,8 @@
     <Content Include="Views\Forum\CommentPartial.cshtml" />
     <Content Include="Views\Shared\_NotificationPartial.cshtml" />
     <Content Include="Views\Forum\SidebarPartial.cshtml" />
+    <Content Include="Views\Manage\PostHistory.cshtml" />
+    <Content Include="Views\Manage\PostHistoryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

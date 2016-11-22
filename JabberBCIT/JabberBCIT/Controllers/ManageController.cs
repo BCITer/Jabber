@@ -15,6 +15,7 @@ namespace JabberBCIT.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private UserManager _userManager;
+        private ChitterDbContext database = ChitterDbContext.dontUseThis();
 
         public ManageController()
         {
@@ -32,9 +33,9 @@ namespace JabberBCIT.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -55,12 +56,17 @@ namespace JabberBCIT.Controllers
         public async Task<ActionResult> Index(string id)
         {
             var user = await UserManager.FindByIdAsync(id);
+            var posts = database.ForumPosts.Where(f => f.UserID == user.Id);
+
             ProfileViewModel model = new ProfileViewModel
             {
                 UserName = user.UserName,
                 ProfilePicture = user.ProfilePicture,
-                JoinDate = user.JoinDate
+                JoinDate = user.JoinDate,
+                userId = id,
+                posts = posts.ToList()
             };
+
             if (user.Id != User.Identity.GetUserId())
             {
                 return View(model);
@@ -369,7 +375,7 @@ namespace JabberBCIT.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -421,6 +427,6 @@ namespace JabberBCIT.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

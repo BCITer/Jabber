@@ -149,6 +149,10 @@ namespace JabberBCIT
         public async Task<SignInStatus> PasswordEmailSignInAsync(string email, string password, bool isPersistent, bool shouldLockout)
         {
             var user = UserManager.FindByEmail(email);
+            if (user == null)
+            {
+                return SignInStatus.Failure;
+            }
             return await PasswordSignInAsync(user.UserName, password, isPersistent, shouldLockout);
         }
     }

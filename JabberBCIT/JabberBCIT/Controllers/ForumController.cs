@@ -30,8 +30,8 @@ namespace JabberBCIT.Controllers
         {
             try
             {
-                // post.UserID = User.Identity.GetUserId();
-                post.UserID = "b0394e3f-3a78-44eb-a2be-a60bb318ef3d";
+                post.UserID = User.Identity.GetUserId();
+                //post.UserID = "b0394e3f-3a78-44eb-a2be-a60bb318ef3d";
                 post.PostTimestamp = DateTime.Now;
                 post.Subforum = db.Subforums.Where(x => x.Name == tag).FirstOrDefault();
                 db.ForumPosts.Add(post);
