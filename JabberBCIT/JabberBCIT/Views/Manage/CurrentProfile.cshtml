@@ -7,7 +7,7 @@
     <h1>My Profile</h1>
     <hr />
     <div class="row">
-        <div class="col-md-4 avatar">
+        <div class="col-md-4 avatar ">
             <img src="~/Images/avatar.jpg" alt="Profile image" class="img-thumbnail" id="profile-image"/>
             <label class="update btn btn-primary">
                 Upload&hellip; <input type="file" style="display: none;" onmouseup="readURL(this)">
@@ -31,8 +31,8 @@
             </table>
         </div>
     </div>
-    <p>
-                @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
-                        @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-default" })
-    </p>
+    <div class="row">
+                @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-info col-md-offset-1" })
+                        @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-info" })
+    </div>
 </div>
