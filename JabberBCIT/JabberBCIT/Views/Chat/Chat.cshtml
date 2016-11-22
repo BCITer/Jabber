@@ -8,11 +8,15 @@
 
 <h2 id="Title">Chat</h2>
 <div class="container">
-    <ul id="discussion"></ul>
-    <input type="text" id="message" placeholder="Enter message here" />
-    <input type="button" id="sendmessage" class="btn btn-primary" value="Send" />
-    <input type="hidden" id="displayname" />
-    
+    <div id="fullchat">
+        <ul id="discussion"></ul>
+        <ul id="chatlist">
+            <ol id="onlinelist">Users Online</ol>
+        </ul>
+        <input type="text" id="message" placeholder="Enter message here" />
+        <input type="button" id="sendmessage" class="btn btn-primary" value="Send" />
+        <input type="hidden" id="displayname" />
+    </div>
 </div>
 @section scripts {
     <!--Script references. -->
@@ -30,7 +34,8 @@
                 $(this).blur();
                 $('#sendmessage').focus().click();//give your submit an ID
 
-                $('#discussion').scrollTop($('#discussion')[0].scrollHeight);
+                //$('#discussion').scrollTop($('#discussion')[0].scrollHeight);
+                $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight")}, 0);
             }
         }
         $('#message').keypress(keypressHandler);

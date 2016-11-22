@@ -216,6 +216,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Models\AspNetRole.cs" />
+    <Compile Include="Models\ForumViewModels.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\AspNetUserClaim.cs" />
+    <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\CommentsVote.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
@@ -227,15 +232,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ChatConversation.cs" />
     <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\ChitterDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ForumPost.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Tag.cs" />
     <Compile Include="ChatHub.cs" />
+    <Compile Include="Models\Subforum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\CustomUserValidator.cs" />
@@ -245,7 +249,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chat.css" />
     <Content Include="Content\createForumPost.css" />
-    <Content Include="Content\forgetPassword.css" />
     <Content Include="Content\forum.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\login.js" />
@@ -259,13 +262,19 @@
     <Content Include="Images\arrow_downward_white_24dp_2x.png" />
     <Content Include="Images\arrow_upward_white_24dp_1x.png" />
     <Content Include="Images\arrow_upward_white_24dp_2x.png" />
+    <Content Include="Images\avatar.jpg" />
     <Content Include="Images\BCIT-1.jpg" />
     <Content Include="Images\BCIT-2.jpg" />
     <Content Include="Images\bcit.jpg" />
     <Content Include="Images\BCIT2.jpg" />
+    <Content Include="Images\down_arrow.png" />
+    <Content Include="Images\homepage_gradient.png" />
+    <Content Include="Images\maincontent_impeachment.jpg" />
+    <Content Include="Images\maincontent_summary.png" />
     <Content Include="Images\registerBG.jpg" />
     <Content Include="Images\SE2_dan.jpg" />
     <Content Include="Images\splash_home.png" />
+    <Content Include="Images\vignette.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -330,15 +339,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Forum\ForumMain.cshtml" />
+    <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Shared\_LoginOverLay.cshtml" />
-    <Content Include="Views\Forum\CreateForumPost.cshtml" />
+    <Content Include="Views\Forum\CreatePost.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Forum\_Comment.cshtml" />
-    <Content Include="Views\Shared\ForumPostPartial.cshtml" />
+    <Content Include="Views\Forum\PostPartial.cshtml" />
+    <Content Include="Views\Forum\ViewThread.cshtml" />
+    <Content Include="Views\Forum\CommentPartial.cshtml" />
+    <Content Include="Views\Shared\_NotificationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

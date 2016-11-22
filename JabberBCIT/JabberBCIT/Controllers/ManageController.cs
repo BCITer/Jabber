@@ -14,13 +14,13 @@ namespace JabberBCIT.Controllers
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private UserManager _userManager;
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(UserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,11 +38,11 @@ namespace JabberBCIT.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
+        public UserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>();
             }
             private set
             {
@@ -57,23 +57,28 @@ namespace JabberBCIT.Controllers
             var user = await UserManager.FindByIdAsync(id);
             ProfileViewModel model = new ProfileViewModel
             {
-                ID = user.Id,
                 UserName = user.UserName,
                 ProfilePicture = user.ProfilePicture,
                 JoinDate = user.JoinDate
             };
             if (user.Id != User.Identity.GetUserId())
             {
-                return View("Index", model);
+                return View(model);
             }
             //return view with edit button if profile viewed is same as one logged in
             return View("CurrentProfile", model);
         }
 
-        public async Task<ActionResult> Edit()
+        public async Task<ActionResult> Edit(ManageMessageId? message)
         {
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.ChangeProfileSuccess ? "Updated profile."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : "";
+
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            EditViewModel model = new EditViewModel
+            EditProfileViewModel model = new EditProfileViewModel
             {
                 ID = user.Id,
                 UserName = user.UserName,
@@ -84,7 +89,7 @@ namespace JabberBCIT.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(EditViewModel edit)
+        public async Task<ActionResult> Edit(EditProfileViewModel edit)
         {
             if (!ModelState.IsValid)
             {
@@ -98,9 +103,13 @@ namespace JabberBCIT.Controllers
             if (!result.Succeeded)
             {
                 AddErrors(result);
-                return View();
+                return View(edit);
             }
-            return RedirectToAction("Index", new { id = user.Id });
+            if (user != null)
+            {
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            }
+            return RedirectToAction("Edit", "Manage", new { Message = ManageMessageId.ChangeProfileSuccess });
         }
 
         //
@@ -254,22 +263,21 @@ namespace JabberBCIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View("Edit", new EditViewModel { ID = model.ID, UserName = model.UserName, ProfilePicture = model.ProfilePicture});
-            }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
+                var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    if (user != null)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+                    return RedirectToAction("Edit", "Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                AddErrors(result);
             }
-            AddErrors(result);
-            return View(model);
+            return RedirectToAction("Edit");
         }
 
         //
@@ -405,6 +413,7 @@ namespace JabberBCIT.Controllers
         {
             AddPhoneSuccess,
             ChangePasswordSuccess,
+            ChangeProfileSuccess,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,

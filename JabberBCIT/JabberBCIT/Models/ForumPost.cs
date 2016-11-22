@@ -1,11 +1,8 @@
-namespace JabberBCIT
+namespace JabberBCIT.Models
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class ForumPost
     {
@@ -14,7 +11,6 @@ namespace JabberBCIT
         {
             Comments = new HashSet<Comment>();
             ForumPostsVotes = new HashSet<ForumPostsVote>();
-            Tags = new HashSet<Tag>();
         }
 
         [Key]
@@ -32,15 +28,16 @@ namespace JabberBCIT
 
         public DateTime PostTimestamp { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public long SubforumID { get; set; }
+
+        public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ForumPostsVote> ForumPostsVotes { get; set; }
+        public virtual Subforum Subforum { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<ForumPostsVote> ForumPostsVotes { get; set; }
     }
 }

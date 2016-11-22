@@ -1,12 +1,10 @@
-namespace JabberBCIT
+namespace JabberBCIT.Models
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
+    
     public partial class Comment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +23,7 @@ namespace JabberBCIT
 
         [Column("Comment")]
         [Required]
-        public string Comment1 { get; set; }
+        public string Text { get; set; }
 
         public long? ParentCommentID { get; set; }
 
@@ -33,7 +31,7 @@ namespace JabberBCIT
 
         public int Hidden { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
 
         public virtual ForumPost ForumPost { get; set; }
 
