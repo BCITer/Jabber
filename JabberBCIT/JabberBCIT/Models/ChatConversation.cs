@@ -1,11 +1,9 @@
-namespace JabberBCIT
+namespace JabberBCIT.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
+    
     [Table("ChatConversation")]
     public partial class ChatConversation
     {
@@ -23,6 +21,8 @@ namespace JabberBCIT
         public string UserID { get; set; }
 
         public long LastMessageSeenID { get; set; }
+
+        public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChatMessage> ChatMessages { get; set; }

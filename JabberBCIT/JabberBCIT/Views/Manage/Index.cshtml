@@ -1,44 +1,31 @@
-﻿@model JabberBCIT.Models.IndexViewModel
-@{
-    ViewBag.Title = "Manage";
-}
+﻿@model JabberBCIT.Models.ProfileViewModel
 
-<h2>@ViewBag.Title.</h2>
-
-<p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>@Model.UserName</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>profile picture</dt>
-        <dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
 
-        </dd>
-        <dt>user name</dt>
         <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
 
-        </dd>
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>Gender</dt>
-        <dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfilePicture)
+        </dt>
 
-        </dd>
-        @*<dt>External Logins:</dt>
         <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>*@
+            @Html.DisplayFor(model => model.ProfilePicture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JoinDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JoinDate)
+        </dd>
     </dl>
 </div>

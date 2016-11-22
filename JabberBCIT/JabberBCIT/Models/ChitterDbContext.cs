@@ -1,29 +1,81 @@
 namespace JabberBCIT
 {
+    using Models;
     using System.Data.Entity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin;
 
-    public partial class ChitterDbContext : IdentityDbContext<ApplicationUser>
+    public partial class ChitterDbContext : IdentityDbContext<User>
     {
+        private ChitterDbContext() : base("name=ChitterContext")
+        { }
+
+        private static ChitterDbContext db;
+
         public virtual DbSet<ChatConversation> ChatConversations { get; set; }
         public virtual DbSet<ChatMessage> ChatMessages { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<CommentsVote> CommentsVotes { get; set; }
         public virtual DbSet<ForumPost> ForumPosts { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<ForumPostsVote> ForumPostsVotes { get; set; }
+        public virtual DbSet<Subforum> Subforums { get; set; }
 
-        public ChitterDbContext()
-            : base("name=ChitterContext", throwIfV1Schema: false)
+        public static ChitterDbContext Create
         {
+            get
+            {
+                if (db == null)
+                {
+                    db = new ChitterDbContext();
+                }
+                return db;
+            }
         }
 
-        public static ChitterDbContext Create()
+        public static ChitterDbContext dontUseThis()
         {
             return new ChitterDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ChatConversations)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ChatMessages)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Comments)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.CommentsVotes)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ForumPosts)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ForumPostsVotes)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<ChatConversation>()
                 .HasMany(e => e.ChatMessages)
                 .WithRequired(e => e.ChatConversation)
@@ -34,8 +86,13 @@ namespace JabberBCIT
                 .IsUnicode(false);
 
             modelBuilder.Entity<Comment>()
-                .Property(e => e.Comment1)
+                .Property(e => e.Text)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Comment>()
+                .HasMany(e => e.CommentsVotes)
+                .WithRequired(e => e.Comment)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ForumPost>()
                 .Property(e => e.PostTitle)
@@ -51,13 +108,27 @@ namespace JabberBCIT
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ForumPost>()
-                .HasMany(e => e.Tags)
+                .HasMany(e => e.ForumPostsVotes)
                 .WithRequired(e => e.ForumPost)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Tag>()
-                .Property(e => e.Tag1)
+            modelBuilder.Entity<Subforum>()
+                .Property(e => e.Name)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Subforum>()
+                .HasMany(e => e.ForumPosts)
+                .WithRequired(e => e.Subforum)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Subforum>()
+                .HasMany(e => e.Users)
+                .WithMany(e => e.Subforums)
+                .Map(m => m.ToTable("UserSubforums").MapLeftKey("SubforumID").MapRightKey("UserID"));
+
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey(x => x.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(x => new { x.RoleId, x.UserId });
 
             base.OnModelCreating(modelBuilder);
         }

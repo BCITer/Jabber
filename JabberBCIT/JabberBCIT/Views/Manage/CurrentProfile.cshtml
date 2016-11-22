@@ -1,0 +1,28 @@
+﻿@model JabberBCIT.Models.ProfileViewModel
+
+@Styles.Render("~/Content/Profile.css")
+
+<div class="container">
+    <h1>My Profile</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4 avatar">
+            <img src="~/Images/avatar.jpg" alt="Profile image" class="img-thumbnail" />
+        </div>
+        <div class="col-md-8 info">
+            <table class="table">
+                <tr> 
+                    <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                    <th>@Html.DisplayFor(model => model.UserName)</th>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.JoinDate)</th>
+                    <th>@Html.DisplayFor(model => model.JoinDate)</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
+    </p>
+</div>
