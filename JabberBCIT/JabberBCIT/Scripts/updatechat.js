@@ -6,6 +6,7 @@
         // Add the message to the page.
         $('#discussion').append('<li><strong>' + htmlEncode(name)
             + '</strong>: ' + htmlEncode(message) + '</li>');
+        $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
     };
     // Get the user name and store it to prepend to messages.
     $('#displayname').val(prompt('Enter your name:', ''));
