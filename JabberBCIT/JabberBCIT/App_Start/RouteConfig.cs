@@ -13,25 +13,22 @@ namespace JabberBCIT
             routes.MapRoute(
                 name: "CreatePostInSubForum",
                 url: "Forum/{tag}/CreatePost",
-                defaults: new { controller = "Forum", action = "CreatePost", tag = UrlParameter.Optional }
+                defaults: new { controller = "Forum", action = "CreatePost"}
             );
-
             routes.MapRoute(
-                name: "CreatePostInGlobal",
-                url: "Forum/CreatePost",
-                defaults: new { controller = "Forum", action = "CreatePost" }
+                name: "VoteComment",
+                url: "Forum/{tag}/{id}/Vote/{commentID}/{value}",
+                defaults: new { controller = "Forum", action = "VoteComment" }
             );
-
-            routes.MapRoute(
-                name: "ViewSubForum",
-                url: "Forum/{tag}",
-                defaults: new { controller = "Forum", action = "Index",  tag = UrlParameter.Optional }
-            );
-
             routes.MapRoute(
                 name: "ViewThread",
                 url: "Forum/{tag}/{id}",
-                defaults: new { controller = "Forum", action = "ViewThread", id = UrlParameter.Optional }
+                defaults: new { controller = "Forum", action = "ViewThread"}
+            );
+            routes.MapRoute(
+                name: "ViewForum",
+                url: "Forum/{tag}",
+                defaults: new { controller = "Forum", action = "Index"}
             );
 
             routes.MapRoute(

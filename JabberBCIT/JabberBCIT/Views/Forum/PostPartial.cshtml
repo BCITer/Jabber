@@ -24,14 +24,14 @@
             <a href="#" class="pull-left">
                 <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
             </a>
-            <a href="@Model.post.PostID">
+            <a href="@Model.post.PostID/">
                 <div class="media-body">
                     <span class="pull-right media-meta">@Html.Display(@Model.post.PostTimestamp.ToShortDateString())</span>
                     <h4 class="title">
                         @Model.post.PostTitle
                     </h4>
                     <small>
-                        @Model.author
+                        @Model.post.User.UserName
                     </small>
                 </div>
             </a>

@@ -5,13 +5,13 @@
 }
 <tr>
     <td valign="top" style="width:40px">
-        <a href="#">
+        <a href="Vote/@Model.comment.CommentID/1">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
             </div>
         </a>
         <p class="vote-count">@Model.votes</p>
-        <a href="#">
+        <a href="Vote/@Model.comment.CommentID/-1">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
             </div>
@@ -20,7 +20,7 @@
     <td class="media">
         <div class="media-body">
             <h4 class="title">
-                @Model.author
+                @Model.comment.User.UserName
             </h4>
             <p>
                 @Model.comment.Text
