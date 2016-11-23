@@ -6,9 +6,9 @@
 
 <head>
     <!-- Bootstrap Core CSS -->
-    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../../Content/forum.css" rel="stylesheet">
+    <link href="/Content/forum.css" rel="stylesheet">
 </head>
 <body style="padding-top: 0px;">
     <div id="wrapper">
@@ -44,7 +44,7 @@
                             <h1 class="forum-header">
                                 <b>@Model.post.PostTitle</b>
                                 <br>
-                                <small>@Model.author</small>
+                                <small>@Model.post.User.UserName</small>
                             </h1>
                             <p>@Model.post.Message</p>
                         </td>
