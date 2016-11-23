@@ -20,6 +20,16 @@
                     <th>@Html.DisplayFor(model => model.JoinDate)</th>
                 </tr>
             </table>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Post</th>
+                </tr>
+                @foreach (var model in Model.posts)
+                {
+                    @Html.Partial("PostHistoryPartial", model);
+                }
+            </table>
         </div>
     </div>
     <p>
