@@ -20,6 +20,7 @@ namespace JabberBCIT.Models
     /// </summary>
     public class ProfileViewModel
     {
+        public string Email { get; set; }
         public string UserName { get; set; }
         public string ProfilePicture { get; set; }
         public DateTime JoinDate { get; set; }

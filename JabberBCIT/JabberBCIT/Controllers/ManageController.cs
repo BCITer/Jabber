@@ -64,7 +64,8 @@ namespace JabberBCIT.Controllers
                 ProfilePicture = user.ProfilePicture,
                 JoinDate = user.JoinDate,
                 userId = id,
-                posts = posts.ToList()
+                posts = posts.ToList(),
+                Email = user.Email
             };
 
             if (user.Id != User.Identity.GetUserId())
