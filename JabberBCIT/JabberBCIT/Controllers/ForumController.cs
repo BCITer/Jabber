@@ -43,6 +43,23 @@ namespace JabberBCIT.Controllers
             return RedirectToAction(post.Subforum.Name, new { id = post.PostID });
         }
 
+        public ActionResult CreateComment()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult CreateComment(ForumPost post, string tag)
+        //{
+
+        //}
+
+        //[HttpPost]
+        //public ActionResult CreateComment(Comment comment, string tag)
+        //{
+
+        //}
+        
         public ActionResult ViewThread(int id)
         {
             PostViewModel viewModel = new PostViewModel();
@@ -99,8 +116,5 @@ namespace JabberBCIT.Controllers
             viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
             return PartialView(viewModel);
         }
-
-
-
     }
 }
