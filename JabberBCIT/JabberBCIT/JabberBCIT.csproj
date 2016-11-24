@@ -391,6 +391,7 @@
     <Content Include="Views\Forum\SidebarPartial.cshtml" />
     <Content Include="Views\Manage\PostHistory.cshtml" />
     <Content Include="Views\Manage\PostHistoryPartial.cshtml" />
+    <Content Include="Views\Forum\CreateComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
