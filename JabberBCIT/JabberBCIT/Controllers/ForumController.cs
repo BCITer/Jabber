@@ -5,8 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 
 namespace JabberBCIT.Controllers
 {
@@ -16,16 +14,10 @@ namespace JabberBCIT.Controllers
         ChitterDbContext db = ChitterDbContext.Create;
 
         // GET: Forum
-        public ActionResult Index(string tag = "Global")
+        public ActionResult Index(string tag)
         {
-            ForumPostsViewmodel viewModel = new ForumPostsViewmodel();
-
-            // get the forum posts from this subforum
-            viewModel.Posts = db.ForumPosts.Where(x => x.Subforum.Name == tag).ToList();
-            viewModel.Subforums = db.Subforums.ToList();
             ViewBag.ForumTitle = tag;
-
-            return View(viewModel);
+            return View(db.ForumPosts.Where(x => x.Subforum.Name == tag).Select(x => x.PostID).ToList());
         }
 
         public ActionResult CreatePost()
@@ -34,12 +26,11 @@ namespace JabberBCIT.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatePost(ForumPost post, string tag = "Global")
+        public ActionResult CreatePost(ForumPost post, string tag)
         {
             try
             {
-                // post.UserID = User.Identity.GetUserId();
-                post.UserID = "b0394e3f-3a78-44eb-a2be-a60bb318ef3d";
+                post.UserID = User.Identity.GetUserId();
                 post.PostTimestamp = DateTime.Now;
                 post.Subforum = db.Subforums.Where(x => x.Name == tag).FirstOrDefault();
                 db.ForumPosts.Add(post);
@@ -49,16 +40,67 @@ namespace JabberBCIT.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("ViewThread", new { id = post.PostID});
+            return RedirectToAction(post.Subforum.Name, new { id = post.PostID });
         }
 
-        public ActionResult ViewThread(int? id)
+        public ActionResult ViewThread(int id)
         {
-            ViewThreadViewModel viewModel = new ViewThreadViewModel();
+            PostViewModel viewModel = new PostViewModel();
             viewModel.post = db.ForumPosts.Find(id);
-            viewModel.comments = db.Comments.Where(x => x.PostID == id).ToList();
+            viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
+            viewModel.childCommentIDs = db.Comments.Where(x => x.PostID == id && x.ParentCommentID == null).Select(x => x.CommentID).ToList();
             return View(viewModel);
         }
+
+        public ActionResult VoteComment(int commentID, short value)
+        {
+            if (value == 1 || value == -1)
+            {
+                if (db.Comments.Any(x => x.CommentID == commentID))
+                {
+                    var oldVote = db.CommentsVotes.Find(commentID, User.Identity.GetUserId());
+                    if (oldVote != null)
+                    {
+                        oldVote.Value = value;
+                    }
+                    else db.CommentsVotes.Add(new CommentsVote()
+                    {
+                        UserID = User.Identity.GetUserId(),
+                        CommentID = commentID,
+                        Value = value
+                    });
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("ViewThread");
+        }
+
+        [ChildActionOnly]
+        public ActionResult CommentPartial(int id)
+        {
+            var viewModel = new CommentViewModel();
+            viewModel.comment = db.Comments.Find(id);
+            viewModel.votes = db.CommentsVotes.Where(x => x.CommentID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
+            viewModel.childCommentIDs = db.Comments.Where(x => x.ParentCommentID == id).Select(x => x.CommentID).ToList();
+            return PartialView(viewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult SidebarPartial()
+        {
+            return PartialView(db.Subforums.ToList());
+        }
+
+        [ChildActionOnly]
+        public ActionResult PostPartial(int id)
+        {
+            PostViewModel viewModel = new PostViewModel();
+            viewModel.post = db.ForumPosts.Find(id);
+            viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
+            return PartialView(viewModel);
+        }
+
+
 
     }
 }

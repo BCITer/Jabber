@@ -1,34 +1,20 @@
 ﻿@using JabberBCIT.Models
-@model ViewThreadViewModel
+@model PostViewModel
 @{
     ViewBag.Title = "ViewThread";
 }
 
 <head>
     <!-- Bootstrap Core CSS -->
-    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../../Content/forum.css" rel="stylesheet">
+    <link href="/Content/forum.css" rel="stylesheet">
 </head>
 <body style="padding-top: 0px;">
     <div id="wrapper">
         <!-- Navigation -->
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div id="forum_sidebar">
-            <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="@Url.Action("", "Forum")">Global</a>
-                </li>
-                @*
-                    @foreach (var subforum in Model.Subforums)
-                    {
-                        <li>
-                            <a href="@subforum.Name">@subforum.Name</a>
-                        </li>
-                    }
-                *@
-            </ul>
-        </div>
+        @{Html.RenderAction("SidebarPartial"); }
         <!-- /.Sidebar Menu Item -->
         <!-- /.Navigation -->
 
@@ -46,8 +32,7 @@
                                     <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
                                 </div>
                             </a>
-                            @*<p class="vote-count">@Html.DisplayFor(m => m.Votes)</p>*@
-                            <p class="vote-count">1</p>
+                            <p class="vote-count">@Model.votes</p>
                             <a href="#">
                                 <div class="vote">
                                     <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
@@ -59,7 +44,7 @@
                             <h1 class="forum-header">
                                 <b>@Model.post.PostTitle</b>
                                 <br>
-                                <small>@Model.post.UserID</small>
+                                <small>@Model.post.User.UserName</small>
                             </h1>
                             <p>@Model.post.Message</p>
                         </td>
@@ -68,12 +53,9 @@
                 <!-- ./Page Heading -->
                 <!-- Comments -->
                 <table>
-                    @{
-                        List<Comment> notChild = Model.comments.Where(x => x.ParentCommentID != null).ToList();
-                        foreach (var comment in Model.comments.Where(x => x.ParentCommentID == null).ToList())
-                        {
-                            @Html.Partial("CommentPartial", new JabberBCIT.Models.CommentAndChildrenViewModel() { comment = comment, comments = notChild });
-                        }
+                    @foreach (var childCommentID in Model.childCommentIDs)
+                    {
+                        Html.RenderAction("CommentPartial", new { id = childCommentID });
                     }
                 </table>
                 <!-- ./Comments -->

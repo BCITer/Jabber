@@ -1,10 +1,11 @@
-﻿@model JabberBCIT.Models.ForumPost
+﻿@using JabberBCIT.Models
+@model JabberBCIT.Models.PostViewModel
 @{
     ViewBag.Title = "PostPartial";
 }
 <tr>
     <td>
-        <div class="text-center">1</div>
+        <p class="vote-count">@Model.votes</p>
     </td>
     <td>
         <a href="#">
@@ -12,7 +13,6 @@
                 <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
             </div>
         </a>
-        <p class="vote-count">@*@Html.DisplayFor(m => m.ForumPostsVotes.ToString())*@</p>
         <a href="#">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
@@ -24,12 +24,15 @@
             <a href="#" class="pull-left">
                 <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
             </a>
-            <a href="@Model.PostID">
+            <a href="@Model.post.PostID/">
                 <div class="media-body">
-                    <span class="pull-right media-meta">@Html.Display(Model.PostTimestamp.ToShortDateString())</span>
+                    <span class="pull-right media-meta">@Html.Display(@Model.post.PostTimestamp.ToShortDateString())</span>
                     <h4 class="title">
-                        @Html.DisplayFor(m => m.PostTitle)
+                        @Model.post.PostTitle
                     </h4>
+                    <small>
+                        @Model.post.User.UserName
+                    </small>
                 </div>
             </a>
         </div>
