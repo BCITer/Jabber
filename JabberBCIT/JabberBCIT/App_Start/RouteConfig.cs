@@ -34,13 +34,13 @@ namespace JabberBCIT
             routes.MapRoute(
                 name: "ReplyComment",
                 url: "Forum/{tag}/{id}/{commentID}/Reply",
-                defaults: new { controller = "Forum", action = "CreateComment" }
+                defaults: new { controller = "Forum", action = "ReplyToComment" }
             );
 
             routes.MapRoute(
                 name: "ReplyThread",
                 url: "Forum/{tag}/{id}/Reply",
-                defaults: new { controller = "Forum", action = "CreateComment"}
+                defaults: new { controller = "Forum", action = "ReplyToPost"}
             );
             
             routes.MapRoute(

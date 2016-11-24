@@ -48,18 +48,27 @@ namespace JabberBCIT.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult CreateComment(ForumPost post, string tag)
-        //{
+        [HttpPost]
+        public ActionResult ReplyToPost(Comment post, string id)
+        {
+            ForumPost p = db.ForumPosts.Find(id);
 
-        //}
+            post.UserID = User.Identity.GetUserId();
+            post.PostTimestamp = DateTime.Now;
+            
+            
 
-        //[HttpPost]
-        //public ActionResult CreateComment(Comment comment, string tag)
-        //{
+            return RedirectToAction("ViewThread");
+        }
 
-        //}
-        
+        [HttpPost]
+        public ActionResult ReplyToComment(Comment comment, string commentID)
+        {
+
+
+            return RedirectToAction("ViewThread");
+        }
+
         public ActionResult ViewThread(int id)
         {
             PostViewModel viewModel = new PostViewModel();
