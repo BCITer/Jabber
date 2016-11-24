@@ -49,23 +49,21 @@ namespace JabberBCIT.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReplyToPost(Comment post, string id)
+        public ActionResult CreateComment(Comment comment, long? commentID, long id)
         {
-            ForumPost p = db.ForumPosts.Find(id);
-
-            post.UserID = User.Identity.GetUserId();
-            post.PostTimestamp = DateTime.Now;
-            
-            
-
-            return RedirectToAction("ViewThread");
-        }
-
-        [HttpPost]
-        public ActionResult ReplyToComment(Comment comment, string commentID)
-        {
-
-
+            try
+            {
+                comment.UserID = User.Identity.GetUserId();
+                comment.PostTimestamp = DateTime.Now;
+                comment.PostID = id;
+                comment.ParentCommentID = commentID;
+                db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("ViewThread");
         }
 
