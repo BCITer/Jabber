@@ -22,6 +22,9 @@ namespace JabberBCIT
         public virtual DbSet<ForumPostsVote> ForumPostsVotes { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
 
+        public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<NewNotification> NewNotifications { get; set; }
+
         public static ChitterDbContext Create()
         {
             return new ChitterDbContext();
@@ -107,6 +110,14 @@ namespace JabberBCIT
 
             modelBuilder.Entity<Tag>()
                 .Property(e => e.Tag1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notification>()
+                .Property(e => e.Type)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<NewNotification>()
+                .Property(e => e.Type)
                 .IsUnicode(false);
 
             base.OnModelCreating(modelBuilder);
