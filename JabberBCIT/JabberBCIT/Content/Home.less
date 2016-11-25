@@ -1,5 +1,6 @@
-﻿@media only screen and (min-width : 320px) {
-    body, html {
+﻿
+@media only screen and (max-width : 768px) and (orientation: landscape){
+     body, html {
         height: 100%;
     }
 
@@ -7,31 +8,25 @@
         /* The image used will be styled inside Home/index.cshtml */
 
         /* max height of image */
-        min-height: 425px;    
-        background-size: 425px 425px;
+        min-height: 368px;    
+        background-size: 768px 368px;
         background-repeat: no-repeat;
     }
 
     h3{
         text-align:center;
         color: black;
-
     }
 
     .content{
         color: #777;
         background-color: white;
+        width:400px;
         text-align: center;
         text-align: justify;
     }
-
-    .caption {
-        position: absolute;
-        left: 0;
-        top: 30%;
+    .para-content{
         width: 100%;
-        text-align: center;
-        color: #000;
     }
 
     .caption span.border {
@@ -112,9 +107,8 @@
         display: none;
     }
 }
-
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
+/* Small Devices */
+@media only screen and (max-width : 768px) and (orientation : portrait) {
       body, html {
         height: 100%;
     }
@@ -123,24 +117,24 @@
         /* The image used will be styled inside Home/index.cshtml */
 
         /* max height of image */
-        min-height: 868px;    
-        background-size: 868px 868px;
+        min-height: 368px;    
+        background-size: 468px 368px;
         background-repeat: no-repeat;
     }
 
     h3{
         text-align:center;
         color: black;
-
     }
 
     .content{
+        word-break: break-all;
         color: #777;
         background-color: white;
         text-align: center;
-        padding: 50px 80px;
         text-align: justify;
     }
+    
 
     .caption {
         position: absolute;
@@ -170,69 +164,13 @@
    .collapse-hidden{
         display: none;
     }
+
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-    body, html {
-        height: 100%;
-    }
 
-    .parallax {
-        /* The image used will be styled inside Home/index.cshtml */
-
-        /* max height of image */
-        min-height: 1092px;    
-        background-size: 1092px 1092px;
-        background-repeat: no-repeat;
-    }
-
-    h3{
-        text-align:center;
-        color: black;
-
-    }
-
-    .content{
-        color: #777;
-        background-color: white;
-        text-align: center;
-        padding: 50px 80px;
-        text-align: justify;
-    }
-
-    .caption {
-        position: absolute;
-        left: 0;
-        top: 30%;
-        width: 100%;
-        text-align: center;
-        color: #000;
-    }
-
-    .caption span.border {
-        background-color: #111111;
-        color: #fff;
-        padding: 18px;
-        font-size: 60px;
-        letter-spacing: 5px;
-    }
-
-    .title{
-    
-        margin-top: 100px;
-        background-color:rgba(0,0,0,0.8);
-        padding: 10px 50px 50px;
-        border-radius: 5px;
-        box-shadow: 0 0 12px black;
-    }
-    .collapse-hidden{
-        display: none;
-    }
-}
 
 /* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
+@media only screen and (min-width : 768px) {
     body, html {
         height: 100%;
     }

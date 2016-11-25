@@ -287,8 +287,11 @@
     <Content Include="Content\Chat.css" />
     <Content Include="Content\createForumPost.css" />
     <Content Include="Content\forum.css" />
+    <Content Include="Content\forum.js" />
+    <Content Include="Content\HomeGlobal.js" />
     <Content Include="Content\login.css" />
     <Content Include="Content\login.js" />
+    <Content Include="Content\Notification.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
@@ -299,6 +302,7 @@
     <Content Include="Images\arrow_downward_white_24dp_2x.png" />
     <Content Include="Images\arrow_upward_white_24dp_1x.png" />
     <Content Include="Images\arrow_upward_white_24dp_2x.png" />
+    <Content Include="Images\avatar.jpg" />
     <Content Include="Images\BCIT-1.jpg" />
     <Content Include="Images\BCIT-2.jpg" />
     <Content Include="Images\bcit.jpg" />

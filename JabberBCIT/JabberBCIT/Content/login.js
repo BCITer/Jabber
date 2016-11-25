@@ -5,7 +5,7 @@
         || !('onmsgesturechange' in window); // works on ie10
     })();
     window.isDesktop = isDesktop;
-    if ($(window).width() > 992) {
+    if ($(window).width() > 768) {
         $('#loginLink').on('mouseover', function () {
             $container.stop(true).fadeIn(100);
         }).on('mouseleave', function () {
