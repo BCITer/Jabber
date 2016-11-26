@@ -17,7 +17,9 @@ namespace JabberBCIT.Controllers
         public ActionResult Index(string tag)
         {
             ViewBag.ForumTitle = tag;
-            return View(db.ForumPosts.Where(x => x.Subforum.Name == tag).Select(x => x.PostID).ToList());
+            var posts = db.ForumPosts.Where(x => x.Subforum.Name == tag).Select(x => x.PostID).ToList();
+            posts.Sort((post1, post2) => post1.CompareTo(post2));
+            return View(posts);
         }
 
         public ActionResult CreatePost()
