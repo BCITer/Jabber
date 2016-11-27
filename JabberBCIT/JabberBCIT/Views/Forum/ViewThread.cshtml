@@ -72,9 +72,9 @@
                 <!-- ./Page Heading -->
                 <!-- Comments -->
                 <table>
-                    @foreach (var childCommentID in Model.childCommentIDs)
+                    @foreach (var childComments in Model.childComments)
                     {
-                        Html.RenderAction("CommentPartial", new { id = childCommentID });
+                        Html.RenderPartial("CommentPartial", childComments);
                     }
                 </table>
                 <!-- ./Comments -->

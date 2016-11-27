@@ -28,6 +28,7 @@ namespace JabberBCIT.Controllers
                     });
                 }
                 ViewBag.ForumTitle = tag;
+                listPostViewModel.Sort((post1, post2) => post2.votes.CompareTo(post1.votes));
                 return View(listPostViewModel);
             }
             return new EmptyResult();
@@ -80,17 +81,37 @@ namespace JabberBCIT.Controllers
 
         public ActionResult ViewThread(long id)
         {
-            if (db.ForumPosts.Any( x => x.PostID == id))
+            if (db.ForumPosts.Any(x => x.PostID == id))
             {
                 PostViewModel viewModel = new PostViewModel();
                 viewModel.post = db.ForumPosts.Find(id);
                 viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
-                viewModel.childCommentIDs = db.Comments.Where(x => x.PostID == id && x.ParentCommentID == null).Select(x => x.CommentID).ToList();
+                viewModel.childComments = getCommentTree(id);
+                
                 return View(viewModel);
             }
             return new EmptyResult();
         }
 
+        List<CommentViewModel> getCommentTree(long basePostID)
+        {
+            List<CommentViewModel> model = new List<CommentViewModel>();
+            
+            // create commentviewmodels for every comment in this thread
+            foreach (var comment in db.Comments.Where(x => x.PostID == basePostID).ToList())
+            {
+                model.Add(new CommentViewModel()
+                {
+                    votes = comment.CommentsVotes.Sum(x => x.Value),
+                    comment = comment,
+                    childComments = new List<CommentViewModel>(),
+                });
+            }
+
+            model.ForEach(i => i.childComments = model.Where(ch => ch.comment.ParentCommentID == i.comment.CommentID).ToList());
+            return model;
+        }
+        
         public void VoteComment(long id, short value)
         {
             if (value == 1 || value == -1)
@@ -133,16 +154,6 @@ namespace JabberBCIT.Controllers
                     db.SaveChanges();
                 }
             }
-        }
-
-        [ChildActionOnly]
-        public ActionResult CommentPartial(int id)
-        {
-            var viewModel = new CommentViewModel();
-            viewModel.comment = db.Comments.Find(id);
-            viewModel.votes = db.CommentsVotes.Where(x => x.CommentID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
-            viewModel.childCommentIDs = db.Comments.Where(x => x.ParentCommentID == id).Select(x => x.CommentID).ToList();
-            return PartialView(viewModel);
         }
 
         [ChildActionOnly]

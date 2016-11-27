@@ -21,9 +21,9 @@
             <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
         </div>
         <table>
-            @foreach (var childCommentID in Model.childCommentIDs)
+            @foreach (var childComment in Model.childComments)
             {
-                Html.RenderAction("CommentPartial", new { id = childCommentID });
+                Html.RenderPartial("CommentPartial", childComment);
             }
         </table>
     </td>
