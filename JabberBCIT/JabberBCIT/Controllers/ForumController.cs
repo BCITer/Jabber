@@ -16,10 +16,17 @@ namespace JabberBCIT.Controllers
         // GET: Forum
         public ActionResult Index(string tag)
         {
+            var listPostViewModel = new List<PostViewModel>();
+            foreach (var p in db.ForumPosts.Where(p => p.Subforum.Name == tag))
+            {
+                listPostViewModel.Add(new PostViewModel()
+                {
+                    post = p,
+                    votes = db.ForumPostsVotes.Where(x => x.PostID == p.PostID).Select(x => x.Value).AsEnumerable().Sum(x => x)
+                });
+            }
             ViewBag.ForumTitle = tag;
-            var posts = db.ForumPosts.Where(x => x.Subforum.Name == tag).Select(x => x.PostID).ToList();
-            posts.Sort((post1, post2) => post1.CompareTo(post2));
-            return View(posts);
+            return View(listPostViewModel);
         }
 
         public ActionResult CreatePost()
@@ -115,15 +122,6 @@ namespace JabberBCIT.Controllers
         public ActionResult SidebarPartial()
         {
             return PartialView(db.Subforums.ToList());
-        }
-
-        [ChildActionOnly]
-        public ActionResult PostPartial(int id)
-        {
-            PostViewModel viewModel = new PostViewModel();
-            viewModel.post = db.ForumPosts.Find(id);
-            viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
-            return PartialView(viewModel);
         }
     }
 }
