@@ -24,11 +24,15 @@ namespace JabberBCIT.Controllers
                     listPostViewModel.Add(new PostViewModel()
                     {
                         post = p,
-                        votes = db.ForumPostsVotes.Where(x => x.PostID == p.PostID).Select(x => x.Value).AsEnumerable().Sum(x => x)
+                        votes = p.ForumPostsVotes.Sum(x => x.Value)
                     });
                 }
                 ViewBag.ForumTitle = tag;
+
+                // DO YOUR SORTING HERE //
                 listPostViewModel.Sort((post1, post2) => post2.votes.CompareTo(post1.votes));
+                // DO YOUR SORTING HERE //
+
                 return View(listPostViewModel);
             }
             return new EmptyResult();
@@ -85,7 +89,7 @@ namespace JabberBCIT.Controllers
             {
                 PostViewModel viewModel = new PostViewModel();
                 viewModel.post = db.ForumPosts.Find(id);
-                viewModel.votes = db.ForumPostsVotes.Where(x => x.PostID == id).Select(x => x.Value).AsEnumerable().Sum(x => x);
+                viewModel.votes = viewModel.post.ForumPostsVotes.Sum(x => x.Value);
                 viewModel.childComments = getCommentTree(id);
                 
                 return View(viewModel);
@@ -108,8 +112,12 @@ namespace JabberBCIT.Controllers
                 });
             }
 
+            // DO YOUR SORTING HERE //
+            model.Sort((comment1, comment2) => comment2.votes.CompareTo(comment1.votes));
+            // DO YOUR SORTING HERE //
+
             model.ForEach(i => i.childComments = model.Where(ch => ch.comment.ParentCommentID == i.comment.CommentID).ToList());
-            return model;
+            return model.Where(x => x.comment.ParentCommentID == null).ToList();
         }
         
         public void VoteComment(long id, short value)
