@@ -42,6 +42,7 @@ namespace JabberBCIT.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult CreatePost(ForumPost post, string tag)
         {
@@ -74,6 +75,17 @@ namespace JabberBCIT.Controllers
                 comment.PostID = id;
                 comment.ParentCommentID = commentID;
                 db.Comments.Add(comment);
+
+                // add a notification to the user of the parent comment
+                db.Notifications.Add(new Notification()
+                {
+                    // the userid associated with this comment is the 
+                    // user of the parent comment's id
+                    UserID = db.Users.Find(db.Comments.Find(comment.ParentCommentID)).Id,
+                    ObjectID = comment.CommentID,
+                    Type = "Comment",
+                });
+
                 db.SaveChanges();
             }
             catch

@@ -15,15 +15,15 @@ namespace JabberBCIT.Models
         [StringLength(128)]
         public string UserID { get; set; }
 
-        //ForumPost/Comment/Chat/Message
         [Required]
         [StringLength(500)]
+        ///ForumPost/Comment/Chat/Message
         public string Type { get; set; }
 
-        //PostID/CommentID/ChatID/MessageID
+        ///PostID/CommentID/ChatID/MessageID
         public long ObjectID { get; set; }
 
-        //0 for no, 1 for yes
+        ///0 for no, 1 for yes
         public short Seen { get; set; }
     }
 }
