@@ -21,6 +21,9 @@ namespace JabberBCIT
         public virtual DbSet<ForumPostsVote> ForumPostsVotes { get; set; }
         public virtual DbSet<Subforum> Subforums { get; set; }
 
+        public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<NewNotification> NewNotifications { get; set; }
+
         public static ChitterDbContext Create
         {
             get
@@ -125,6 +128,14 @@ namespace JabberBCIT
                 .HasMany(e => e.Users)
                 .WithMany(e => e.Subforums)
                 .Map(m => m.ToTable("UserSubforums").MapLeftKey("SubforumID").MapRightKey("UserID"));
+
+            modelBuilder.Entity<Notification>()
+                .Property(e => e.Type)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<NewNotification>()
+                .Property(e => e.Type)
+                .IsUnicode(false);
 
             modelBuilder.Entity<IdentityUserLogin>().HasKey(x => x.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey(x => x.Id);

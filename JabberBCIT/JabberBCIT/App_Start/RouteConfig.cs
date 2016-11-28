@@ -11,15 +11,22 @@ namespace JabberBCIT
             routes.AppendTrailingSlash = true;
 
             routes.MapRoute(
-                name: "CreatePostInSubForum",
-                url: "Forum/{tag}/CreatePost",
-                defaults: new { controller = "Forum", action = "CreatePost"}
+                name: "VotePost",
+                url: "Vote/Post/{id}/{value}",
+                defaults: new { controller = "Forum", action = "VotePost" }
             );
             routes.MapRoute(
                 name: "VoteComment",
-                url: "Forum/{tag}/{id}/Vote/{commentID}/{value}",
+                url: "Vote/Comment/{id}/{value}",
                 defaults: new { controller = "Forum", action = "VoteComment" }
             );
+
+            routes.MapRoute(
+                name: "CreatePost",
+                url: "Forum/{tag}/CreatePost",
+                defaults: new { controller = "Forum", action = "CreatePost"}
+            );
+
             routes.MapRoute(
                 name: "ViewThread",
                 url: "Forum/{tag}/{id}",
@@ -30,7 +37,17 @@ namespace JabberBCIT
                 url: "Forum/{tag}",
                 defaults: new { controller = "Forum", action = "Index"}
             );
-
+            routes.MapRoute(
+                name: "ReplyThread",
+                url: "Forum/{tag}/{id}/Reply",
+                defaults: new { controller = "Forum", action = "CreateComment" }
+            );
+            routes.MapRoute(
+                name: "ReplyComment",
+                url: "Forum/{tag}/{id}/{commentID}/Reply",
+                defaults: new { controller = "Forum", action = "CreateComment" }
+            );
+           
             routes.MapRoute(
                 name: "EditProfile",
                 url: "Profile/Edit",
