@@ -105,7 +105,25 @@ namespace JabberBCIT.Controllers
 
             return View(model);
         }
-
+        /// <summary>
+        /// This function will upload the image to cloudinary and return the secure URI to the client 
+        /// </summary>
+        /// <param name="file"> Image file </param>
+        /// <returns></returns>
+        public string UploadImage(HttpPostedFileBase file)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            string currPath = HostingEnvironment.ApplicationPhysicalPath;
+            string imagePath = currPath + "\\Images\\" + fileName;
+            file.SaveAs(imagePath); //Save our image temporarily to our Images folder
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(imagePath)
+            };
+            var uploadResult = cloudinary.Upload(uploadParams);
+            System.IO.File.Delete(imagePath); //delete our image from Images folder after we upload 
+            return uploadResult.SecureUri.ToString(); 
+        }
         [HttpPost]
         public async Task<ActionResult> Edit(EditProfileViewModel edit)
         {
@@ -113,32 +131,13 @@ namespace JabberBCIT.Controllers
             {
                 return View(edit);
             }
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId()); 
-            if (Request.Files.Count > 0)
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            edit.ProfilePicture = user.ProfilePicture; 
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
-                if(Request.Files[0].ContentLength > 0)
-                {
-                    var file = Request.Files[0];
-                    var fileName = Path.GetFileName(file.FileName);
-                    string currPath = HostingEnvironment.ApplicationPhysicalPath;
-                    string imagePath = currPath + "\\Images\\" + fileName;
-                    file.SaveAs(imagePath);
-                    var uploadParams = new ImageUploadParams()
-                    {
-                        File = new FileDescription(imagePath)
-                    };
-                    var uploadResult = cloudinary.Upload(uploadParams);
-                    edit.ProfilePicture = uploadResult.SecureUri.ToString();
-                }
-                else
-                {
-                    edit.ProfilePicture = user.ProfilePicture; //Avoid null constraint 
-                }
+                var file = Request.Files[0];
+                edit.ProfilePicture = UploadImage(file); 
             }
-            else
-            {
-                edit.ProfilePicture = user.ProfilePicture; //Avoid null constraint 
-            } 
             user.UserName = edit.UserName;
             user.ProfilePicture = edit.ProfilePicture;
 
