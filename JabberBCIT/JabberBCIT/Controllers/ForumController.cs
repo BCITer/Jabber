@@ -81,7 +81,7 @@ namespace JabberBCIT.Controllers
                 {
                     // the userid associated with this comment is the 
                     // user of the parent comment's id
-                    UserID = db.Users.Find(db.Comments.Find(comment.ParentCommentID)).Id,
+                    UserID = db.Comments.Find(comment.ParentCommentID).User.Id,
                     ObjectID = comment.CommentID,
                     Type = "Comment",
                 });
