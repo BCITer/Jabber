@@ -1,4 +1,4 @@
-﻿@model JabberBCIT.Models.ForumPostsViewmodel
+﻿@model List<JabberBCIT.Models.PostViewModel>
 @{
     ViewBag.Title = "Forum";
 }
@@ -8,19 +8,26 @@
     @Styles.Render("~/Content/bootstrap.min.css")
     <!-- Custom CSS -->
     @Styles.Render("~/Content/forum.css")
+    <!-- Janky voting code -->
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+            $(document).ready(function() {
+                $(".voteButton").click(function (e) {
+                    console.log("Please help");
+                    e.preventDefault();
+                    $.ajax({
+                        url:$(this).attr("href"),
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                });
+            });
+    </script>
 </head>
 <body style="padding-top: 0px;">
     <div id="wrapper">
-        <div id="forum_sidebar">
-            <ul class="nav navbar-nav side-nav">
-                @foreach (var subforum in Model.Subforums)
-                {
-                    <li>
-                        <a href="/Forum/@subforum.Name/">@subforum.Name</a>
-                    </li>
-                }
-            </ul>
-        </div>
+        @{Html.RenderAction("SidebarPartial"); }
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -37,9 +44,9 @@
                 <!-- Posts -->
                 <table class="table table-filter">
                     <tbody>
-                        @foreach(var post in Model.Posts)
+                        @foreach (var post in Model)
                         {
-                            @Html.Partial("PostPartial", post);
+                            @Html.Partial("PostPartial", post)
                         }
                     </tbody>
                 </table>
