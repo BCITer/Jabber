@@ -3,16 +3,17 @@
 @Styles.Render("~/Content/Profile.css")
 @Scripts.Render("~/Scripts/profile.js")
 
-<div class="container">
+<div id="container" class="container">
     <h1>My Profile</h1>
     <hr />
     <div class="row">
-        <div class="col-md-4 avatar ">
-            <img src="~/Images/avatar.jpg" alt="Profile image" class="img-thumbnail" id="profile-image"/>
+        <div class="col-md-4 avatar">
+            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail"/>
+            
             <label class="update btn btn-primary">
-                Upload&hellip; <input type="file" style="display: none;" onmouseup="readURL(this)">
+                Upload&hellip; <input type="file" name="img" style="display: none;" onchange="@Url.Action("","")">
             </label>
-            @*@Html.ActionLink("UPLOAD", "EditImage", "Manage", null, new { @class = "update btn btn-default"})*@
+           @*Html.ActionLink("UPLOAD", "EditImage", "Manage", null, new { @class = "update btn btn-default"})*@
         </div>
         <div class="col-md-8 info">
             <table class="table">
@@ -41,8 +42,8 @@
             </table>
         </div>
     </div>
-    <div class="row">
-                @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-info col-md-offset-1" })
-                        @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-info" })
-    </div>
+    <p>
+                @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-default" })
+    </p>
 </div>
