@@ -1,5 +1,4 @@
-﻿@using JabberBCIT.Models
-@model JabberBCIT.Models.CommentViewModel
+﻿@model JabberBCIT.Models.CommentViewModel
 @{
     ViewBag.Title = "CommentPartial";
 }
@@ -25,6 +24,7 @@
             <p>
                 @Model.comment.Text
             </p>
+            <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
         </div>
         <table>
             @foreach (var childCommentID in Model.childCommentIDs)
