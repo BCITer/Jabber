@@ -19,14 +19,23 @@ namespace JabberBCIT {
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/HomeGlobal").Include(
+                     "~/Content/HomeGlobal.js"));
+             bundles.Add(new ScriptBundle("~/bundles/forum").Include(
+                   "~/Content/forum.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
             bundles.Add(new StyleBundle("~/Content/login").Include(
-                     "~/Content/login.css"));
-            bundles.Add(new ScriptBundle("~/bundles/login").Include(
-                     "~/Content/login.js"));
+                     "~/Content/login.css"));            
+            bundles.Add(new StyleBundle("~/Content/home").Include(
+                    "~/Content/Home.less"));
+            bundles.Add(new StyleBundle("~/Content/register").Include(
+                    "~/Content/register.css"));
+            bundles.Add(new StyleBundle("~/Content/notification").Include(
+                    "~/Content/Notification.css"));
+            
         }
     }
 }

@@ -1,0 +1,75 @@
+﻿#noti_Container {
+    position: relative;
+}
+
+/* Circle button */
+#noti_Button {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background: #FFF;
+    margin: 15px 10px 0 10px;
+    cursor: pointer;
+}
+
+/* Red notify counter */
+#noti_Counter {
+    display: block;
+    position: absolute;
+    background: #E1141E;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 1px 3px;
+    margin: 15px 0 0 25px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    z-index: 1;
+}
+
+/* Notification window, hidden when page loads */
+#notifications {
+    display: none;
+    width: 330px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: #FFF;
+    border: solid 1px rgba(100, 100, 100, .20);
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .20);
+    z-index: 0;
+}
+/* Arrow over notification window */
+#notifications:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    color: transparent;
+    border: 10px solid #CCC;
+    border-color: transparent transparent #FFF;
+    margin-top: -20px;
+    margin-left: 10px;
+}  
+
+.seeAll {
+    background:#F6F7F8;
+    padding:8px;
+    font-size:12px;
+    font-weight:bold;
+    border-top:solid 1px rgba(100, 100, 100, .30);
+    text-align:center;
+}
+.seeAll a {
+    color:#3b5998;
+}
+.seeAll a:hover {
+    background:#F6F7F8;
+    color:#3b5998;
+    text-decoration:underline;
+}
+    

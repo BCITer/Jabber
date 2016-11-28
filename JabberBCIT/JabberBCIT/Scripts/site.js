@@ -19,7 +19,7 @@ $('a.back-to-top').click(function () {
 
 $('a.downArrow').click(function () {
     $('html, body').animate({
-        scrollTop: 400
+        scrollTop: 900
     }, 400);
     return false;
 });
