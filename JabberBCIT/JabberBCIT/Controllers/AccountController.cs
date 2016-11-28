@@ -166,7 +166,7 @@ namespace JabberBCIT.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email };
+                var user = new User { UserName = model.UserName, Email = model.Email, ProfilePicture = "https://res.cloudinary.com/dkzi67ch6/image/upload/v1480057234/avatar_r3svy9.jpg" };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

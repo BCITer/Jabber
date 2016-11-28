@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
+using System.Web;
 
 namespace JabberBCIT.Models
 {
@@ -40,7 +41,9 @@ namespace JabberBCIT.Models
     {
         public string ID { get; set; }
         [Required]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
+        [Display(Name = "Profile Picture")]
         public string ProfilePicture { get; set; }
 
     }

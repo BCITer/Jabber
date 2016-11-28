@@ -7,6 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using JabberBCIT.Models;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+using System.IO;
+using System.Web.Hosting;
+using System.Web.Configuration;
 
 namespace JabberBCIT.Controllers
 {
@@ -16,6 +21,13 @@ namespace JabberBCIT.Controllers
         private ApplicationSignInManager _signInManager;
         private UserManager _userManager;
         private ChitterDbContext database = ChitterDbContext.dontUseThis();
+        private static string _cloudName = WebConfigurationManager.AppSettings["cloudName"];
+        private static string _apiKey = WebConfigurationManager.AppSettings["apiKey"];
+        private static string _apiSecret = WebConfigurationManager.AppSettings["apiSecret"];
+        private Cloudinary cloudinary = new Cloudinary(new Account(
+            _cloudName,
+            _apiKey,
+            _apiSecret));
 
         public ManageController()
         {
@@ -57,7 +69,6 @@ namespace JabberBCIT.Controllers
         {
             var user = await UserManager.FindByIdAsync(id);
             var posts = database.ForumPosts.Where(f => f.UserID == user.Id);
-
             ProfileViewModel model = new ProfileViewModel
             {
                 UserName = user.UserName,
@@ -89,7 +100,7 @@ namespace JabberBCIT.Controllers
             {
                 ID = user.Id,
                 UserName = user.UserName,
-                ProfilePicture = user.ProfilePicture
+                ProfilePicture = user.ProfilePicture,
             };
 
             return View(model);
@@ -102,7 +113,32 @@ namespace JabberBCIT.Controllers
             {
                 return View(edit);
             }
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId()); 
+            if (Request.Files.Count > 0)
+            {
+                if(Request.Files[0].ContentLength > 0)
+                {
+                    var file = Request.Files[0];
+                    var fileName = Path.GetFileName(file.FileName);
+                    string currPath = HostingEnvironment.ApplicationPhysicalPath;
+                    string imagePath = currPath + "\\Images\\" + fileName;
+                    file.SaveAs(imagePath);
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(imagePath)
+                    };
+                    var uploadResult = cloudinary.Upload(uploadParams);
+                    edit.ProfilePicture = uploadResult.SecureUri.ToString();
+                }
+                else
+                {
+                    edit.ProfilePicture = user.ProfilePicture; //Avoid null constraint 
+                }
+            }
+            else
+            {
+                edit.ProfilePicture = user.ProfilePicture; //Avoid null constraint 
+            } 
             user.UserName = edit.UserName;
             user.ProfilePicture = edit.ProfilePicture;
 

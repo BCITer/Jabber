@@ -51,28 +51,8 @@
       <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.19.0\lib\net45\Google.Apis.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.19.0\lib\net45\Google.Apis.Auth.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.19.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Core.1.19.0\lib\net45\Google.Apis.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Drive.v3, Version=1.19.0.682, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Drive.v3.1.19.0.682\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.19.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    <Reference Include="CloudinaryDotNet, Version=1.0.27.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.0.27\lib\net40\CloudinaryDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -326,6 +306,7 @@
     <Content Include="AppSettings.config" />
     <Content Include="Content\Comment.less" />
     <None Include="Properties\PublishProfiles\4956 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\TechProLab420161022090937 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\comment.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
