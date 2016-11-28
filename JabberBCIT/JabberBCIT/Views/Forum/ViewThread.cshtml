@@ -9,6 +9,22 @@
     <link href="/Content/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/Content/forum.css" rel="stylesheet">
+    <!-- Janky voting code -->
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".voteButton").click(function (e) {
+                console.log("Please help");
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr("href"),
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body style="padding-top: 0px;">
     <div id="wrapper">
@@ -27,13 +43,13 @@
                     <tr>
                         <td></td>
                         <td>
-                            <a href="#">
+                            <a href="/Vote/Post/@Model.post.PostID/1" class="voteButton">
                                 <div class="vote">
                                     <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
                                 </div>
                             </a>
                             <p class="vote-count">@Model.votes</p>
-                            <a href="#">
+                            <a href="/Vote/Post/@Model.post.PostID/-1" class="voteButton">
                                 <div class="vote">
                                     <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
                                 </div>
@@ -47,16 +63,18 @@
                                 <small>@Model.post.User.UserName</small>
                             </h1>
                             <p>@Model.post.Message</p>
-                            <button type="button" class="btn pull-left" onclick="@("location.href='Reply'")">Reply to thread</button>
+                            <form action="Reply">
+                                <input type="submit" class="btn" value="Reply" />
+                            </form>
                         </td>
                     </tr>
                 </table>
                 <!-- ./Page Heading -->
                 <!-- Comments -->
                 <table>
-                    @foreach (var childCommentID in Model.childCommentIDs)
+                    @foreach (var childComments in Model.childComments)
                     {
-                        Html.RenderAction("CommentPartial", new { id = childCommentID });
+                        Html.RenderPartial("CommentPartial", childComments);
                     }
                 </table>
                 <!-- ./Comments -->
