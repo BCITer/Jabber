@@ -24,18 +24,28 @@ namespace JabberBCIT.Controllers
                     listPostViewModel.Add(new PostViewModel()
                     {
                         post = p,
+                        PostTimestamp = p.PostTimestamp,
                         votes = p.ForumPostsVotes.Sum(x => x.Value)
                     });
                 }
                 ViewBag.ForumTitle = tag;
 
-                // DO YOUR SORTING HERE //
-                listPostViewModel.Sort((post1, post2) => post2.votes.CompareTo(post1.votes));
-                // DO YOUR SORTING HERE //
+                // DO YOUR SORTING IN FOLLOWING METHOD//
+                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2))
 
                 return View(listPostViewModel);
             }
             return new EmptyResult();
+        }
+
+        public int sortFunction(PostViewModel p1, PostViewModel p2)
+        {
+            int compare = p2.votes.CompareTo(p1.votes);
+            if (compare == 0)
+            {
+                return p2.PostTimestamp.CompareTo(p1.PostTimestamp);
+            }
+            return compare;
         }
 
         public ActionResult CreatePost()
