@@ -1,35 +1,29 @@
 ﻿@model JabberBCIT.Models.CommentViewModel
-@{
-    ViewBag.Title = "CommentPartial";
-}
+
 <tr>
     <td valign="top" style="width:40px">
-        <a href="Vote/@Model.comment.CommentID/1">
+        <a href="/Vote/Comment/@Model.comment.CommentID/1" class="voteButton">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
             </div>
         </a>
         <p class="vote-count">@Model.votes</p>
-        <a href="Vote/@Model.comment.CommentID/-1">
+        <a href="/Vote/Comment/@Model.comment.CommentID/-1" class="voteButton">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
             </div>
         </a>
     </td>
-    <td class="media">
+    <td>
         <div class="media-body">
-            <h4 class="title">
-                @Model.comment.User.UserName
-            </h4>
-            <p>
-                @Model.comment.Text
-            </p>
+            <h4 class="title">@Model.comment.User.UserName</h4>
+            <p>@Model.comment.Text</p>
             <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
         </div>
         <table>
-            @foreach (var childCommentID in Model.childCommentIDs)
+            @foreach (var childComment in Model.childComments)
             {
-                Html.RenderAction("CommentPartial", new { id = childCommentID });
+                Html.RenderPartial("CommentPartial", childComment);
             }
         </table>
     </td>

@@ -24,7 +24,7 @@ namespace JabberBCIT
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<NewNotification> NewNotifications { get; set; }
 
-        public static ChitterDbContext Create()
+        public static ChitterDbContext Create
         {
             get
             {
