@@ -31,7 +31,7 @@ namespace JabberBCIT.Controllers
                 ViewBag.ForumTitle = tag;
 
                 // DO YOUR SORTING IN FOLLOWING METHOD//
-                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2))
+                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2));
 
                 return View(listPostViewModel);
             }

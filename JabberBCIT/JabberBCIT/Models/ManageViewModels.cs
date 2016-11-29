@@ -22,8 +22,10 @@ namespace JabberBCIT.Models
     public class ProfileViewModel
     {
         public string Email { get; set; }
+        [Display(Name = "Username")]
         public string UserName { get; set; }
         public string ProfilePicture { get; set; }
+        [Display(Name = "Date Joined")]
         public DateTime JoinDate { get; set; }
         public string userId { get; set; }
         public IEnumerable<ForumPost> posts { get; set; }
