@@ -1,4 +1,5 @@
-﻿@model JabberBCIT.Models.CommentViewModel
+﻿@using Microsoft.AspNet.Identity
+@model JabberBCIT.Models.CommentViewModel
 
 <tr>
     <td valign="top" style="width:40px">
@@ -19,8 +20,11 @@
             <h4 class="title">@Model.comment.User.UserName</h4>
             <p>@Model.comment.Text</p>
             <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
-            
-            <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Delete'")">Delete</button>
+            @if (User.Identity.GetUserName().Equals(Model.comment.User.UserName) )
+            {
+                <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Delete'")">Delete</button>
+            }
+                
     </div>
         <table>
             @foreach (var childComment in Model.childComments)
