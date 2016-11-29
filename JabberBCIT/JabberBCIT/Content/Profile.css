@@ -11,11 +11,11 @@
 
 .img-thumbnail {
     user-drag: none; 
-user-select: none;
--moz-user-select: none;
--webkit-user-drag: none;
--webkit-user-select: none;
--ms-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .avatar {
@@ -33,4 +33,23 @@ user-select: none;
 .avatar label.update {
     top:0;
     left:0;
+}
+
+/* Info Section */
+
+.table#profile-info tbody>tr>th:first-child {
+    width: 200px;
+}
+
+.table#profile-info tbody>tr:first-child>th {
+    border-top: 0;
+}
+
+.table#profile-post tbody>tr>th:first-child {
+    border-top: 0;
+    width: 200px;
+}
+
+.table#profile-post tbody>tr>th:nth-child(2) {
+    border-top: 0;
 }
