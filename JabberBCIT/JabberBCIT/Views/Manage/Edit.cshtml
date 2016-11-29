@@ -1,5 +1,9 @@
 ﻿@model JabberBCIT.Models.EditProfileViewModel
+@{
+    ViewBag.Title = "Edit Profile";
+}
 
+@Styles.Render("~/Content/Profile.css")
 <div class="container">
     <h1>Edit Profile</h1>
 
@@ -11,14 +15,10 @@
 
     <div class="row">
         <div class="col-md-4 avatar">
-            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail" width="250" height="250" />
-            @*<label class="update btn btn-primary">
-                    Upload&hellip; <input type="file" name="upload" style="display: none;">
-                </label>*@
-            @*Html.ActionLink("UPLOAD", "EditImage", "Manage", null, new { @class = "update btn btn-default"})*@
+            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail" width="250" height="250" />            
         </div>
         <div class="col-md-8 infoContainer">
-            @using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { encType = "multipart/form-data", name = "Upload", @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { encType = "multipart/form-data",name = "Upload", @class = "form-horizontal", role = "form" }))
             {
                 <h3>Personal info</h3>
                 <hr />
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         @Html.HiddenFor(model => model.ID)
                         @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
+                        <div class="col-md-5">
                             @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
@@ -35,27 +35,22 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ProfilePicture, htmlAttributes: new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            <label class="btn btn-default">
-                                Select a photo<input type="file" id="Avatar" name="upload" style="display: none;" />
-                            </label>
-                            <span id="fn"></span>&nbsp;&nbsp;
-                            <span id="fs"></span>
+                            <input type="file" id="Avatar" name="upload" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
-                            <input type="submit" value="Update" class="btn btn-default" />
+                            <input type="submit" id="profile-update"value="Update" class="btn btn-default" />
                         </div>
                     </div>
                 </div>
             }
-            <br />
-            @Html.Action("ChangePassword", new JabberBCIT.Models.ChangePasswordViewModel { })
+            @*<br /> 
+            @Html.Action("ChangePassword", new JabberBCIT.Models.ChangePasswordViewModel { })*@
         </div>
     </div>
+    <br /> 
     <div>
         @Html.ActionLink("Back to profile", "Index", "Manage", new { id = Model.ID }, null)
     </div>
 </div>
-
-@Scripts.Render("~/Content/preview.js")

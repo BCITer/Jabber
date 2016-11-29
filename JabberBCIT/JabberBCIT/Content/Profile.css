@@ -1,5 +1,5 @@
-﻿.avatar > img{
-    margin:20px 35px;
+﻿.avatar > img {
+    margin:20px 90px;
 }
 
 .avatar >  label{
@@ -18,6 +18,8 @@
     -ms-user-select: none;
 }
 
+.avatar {
+}
 .avatar:hover img{
     opacity:0.5;
 }
@@ -33,6 +35,31 @@
     left:0;
 }
 
-.subBtn {
-    margin:0px 62px;
+/* Info Section */
+
+.table#profile-info tbody>tr>th:first-child {
+    width: 200px;
+}
+
+.table#profile-info tbody>tr:first-child>th {
+    border-top: 0;
+}
+
+.table#profile-post tbody>tr>th:first-child {
+    border-top: 0;
+    width: 200px;
+}
+
+.table#profile-post tbody>tr>th:nth-child(2) {
+    border-top: 0;
+}
+
+/* Edit Profile */
+
+input[type=file]#Avatar {
+    margin-top: 5px;
+}
+
+input[type=submit]#profile-update {
+    margin-top: 7px;
 }

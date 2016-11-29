@@ -30,11 +30,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="forum-header">
+                        <h1 id="header-forum">
                             <b>@ViewBag.ForumTitle Forum</b>
                             <br>
                             <small>Talk about your stuff!</small>
-                            <button type="button" class="btn btn-primary pull-right" onclick="@("location.href='" + Url.Action("CreatePost", "Forum") + "'")">Create Post</button>
+                            <button type="button" id="button-create-post" class="btn btn-primary pull-right" onclick="@("location.href='"+ Url.Action("CreatePost","Forum")+ "'")">Create Post</button>
                         </h1>
                     </div>
                 </div>

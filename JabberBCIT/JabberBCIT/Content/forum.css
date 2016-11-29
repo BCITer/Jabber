@@ -59,79 +59,6 @@
     #page-wrapper {
         padding: 10px;
     }
-
-    /* Header */
-    .forum-header {
-        padding-bottom: 9px;
-        margin: 10px 0 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    /* Posts */
-    .vote {
-        margin-right: auto;
-        margin-left: auto;
-        height: 18px;
-        width: 18px;
-        display:block;
-        cursor: pointer;
-    }
-    .vote-icon {
-        margin-right: 10%;
-        margin-left: 10%;
-    }
-    .vote-count {
-        margin: 0px;
-        text-align:center;
-    }
-    .table-filter {
-	    background-color: #fff;
-	    border-bottom: 1px solid #eee;
-    }
-    .table-filter tbody tr:hover {
-	    cursor: pointer;
-	    background-color: #eee;
-    }
-    .table-filter tbody tr td {
-	    padding: 10px;
-	    vertical-align: middle;
-	    border-top-color: #eee;
-    }
-    .table-filter tbody tr td:nth-child(2) {
-	    padding: 2px;
-	    vertical-align: middle;
-	    border-top-color: #eee;
-    }
-    .table-filter tr td:first-child {
-	    width: 38px;
-    }
-    .table-filter tr td:nth-child(2) {
-	    width: 38px;
-    }
-    .table-filter .media-photo {
-	    width: 35px;
-    }
-    .table-filter .media-meta {
-        margin-left: 5px;
-	    font-size: 11px;
-	    color: #999;
-    }
-    .table-filter .media .title {
-	    color: #2BBCDE;
-	    font-size: 14px;
-	    font-weight: bold;
-	    line-height: normal;
-	    margin: 0;
-    }
-    .table-filter .media span.comments-count {
-        margin-top: 5px;
-        margin-left: 5px;
-        bottom: 0;
-        font-weight: bold;
-        font-size: .8em;
-	    color: #5cb85c;
-    }
-
 }
 
 @media(max-width:768px) {
@@ -161,5 +88,83 @@
     #forum_sidebar .side-nav{
         display: none !important;
     }
+    button[type=button]#button-create-post {
+        margin-right: 10px;
+    }
+    h1#header-forum>b, h1#header-forum>small {
+        margin-left: 10px;
+    }
 }
 
+/* Header */
+#header-forum {
+    padding-bottom: 9px;
+    margin: 10px 0 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Posts */
+.vote-icon-up {
+    margin-right: auto;
+    margin-left: auto;
+    height: 18px;
+    width: 13px;
+    display:block;
+    cursor: pointer;
+}
+.vote-icon-down {
+    margin-right: auto;
+    margin-left: auto;
+    height: 18px;
+    width: 14px;
+    display:block;
+    cursor: pointer;
+}
+.vote-count {
+    margin: 0px;
+    text-align:center;
+}
+.table-filter {
+	background-color: #fff;
+	border-bottom: 1px solid #eee;
+}
+.table-filter tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+.table-filter tbody tr td {
+	padding: 10px;
+	vertical-align: middle;
+	border-top-color: #eee;
+}
+.table-filter tbody tr td:nth-child(2) {
+	padding: 2px;
+	vertical-align: middle;
+	border-top-color: #eee;
+}
+.table-filter tr td:first-child {
+	width: 70px;
+}
+.table-filter .media-photo {
+	width: 35px;
+}
+.table-filter .media-meta {
+    margin-left: 5px;
+	font-size: 11px;
+	color: #999;
+}
+.table-filter .media .title {
+	color: #2BBCDE;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: normal;
+	margin: 0;
+}
+.table-filter .media span.comments-count {
+    margin-top: 5px;
+    margin-left: 5px;
+    bottom: 0;
+    font-weight: bold;
+    font-size: .8em;
+	color: #5cb85c;
+}
