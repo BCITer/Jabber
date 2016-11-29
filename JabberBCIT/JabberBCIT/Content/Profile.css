@@ -53,3 +53,13 @@
 .table#profile-post tbody>tr>th:nth-child(2) {
     border-top: 0;
 }
+
+/* Edit Profile */
+
+input[type=file]#Avatar {
+    margin-top: 5px;
+}
+
+input[type=submit]#profile-update {
+    margin-top: 7px;
+}
