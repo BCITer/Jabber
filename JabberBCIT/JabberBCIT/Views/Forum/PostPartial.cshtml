@@ -4,18 +4,12 @@
 }
 <tr>
     <td>
-        <p class="vote-count">@Model.votes</p>
-    </td>
-    <td>
         <a href="/Vote/Post/@Model.post.PostID/1" class="voteButton">
-            <div class="vote">
-                <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
-            </div>
+            <span class="glyphicon glyphicon-chevron-up vote-icon-up"></span>
         </a>
+        <p class="vote-count">@Model.votes</p>
         <a href="/Vote/Post/@Model.post.PostID/-1" class="voteButton">
-            <div class="vote">
-                <span class="vote glyphicon glyphicon-chevron-down vote-icon"></span>
-            </div>
+            <span class="glyphicon glyphicon-chevron-down vote-icon-down"></span>
         </a>
     </td>
     <td>
