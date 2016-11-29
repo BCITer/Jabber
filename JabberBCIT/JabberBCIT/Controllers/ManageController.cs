@@ -15,7 +15,7 @@ namespace JabberBCIT.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private UserManager _userManager;
-        private ChitterDbContext database = ChitterDbContext.dontUseThis();
+        private ChitterDbContext database = ChitterDbContext.Create;
 
         public ManageController()
         {

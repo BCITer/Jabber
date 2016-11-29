@@ -1,4 +1,7 @@
-﻿@model List<JabberBCIT.Models.Notification>
+﻿@model JabberBCIT.Models.NotificationViewModel
+
+@Styles.Render("~/Content/Notifications.css")
+@Scripts.Render("~/Scripts/Notifications.js")
 
 @if (Request.IsAuthenticated)
 {
@@ -8,18 +11,26 @@
 
         <ul class="nav navbar-nav navbar-right hidden-lg hidden-md">
             <li id="noti_Container" class="">
-                <div id="noti_Counter"></div>   <!--SHOW NOTIFICATIONS COUNT.-->
+                <div id="noti_Counter"> 
+                    @{ 
+                        if (Model.newNotifications != 0)
+                        {
+                            @Model.newNotifications;
+                        }
+                    }
+                </div>   <!--count of unseen notifications-->
                 <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
                 <div id="noti_Button"></div>
                 <!--THE NOTIFICAIONS DROPDOWN BOX.-->
                 <div id="notifications">
                     <h3>Notifications</h3>
                     <div style="height:300px;">
-                        @foreach(var notification in Model)
+                        @foreach(var notification in Model.notifications)
                         {
                             <div>
-                                @
+                                @notification.Type;
                             </div>
+                            <br />
                         }
                     </div>
                     <div class="seeAll"><a href="#">See All</a></div>

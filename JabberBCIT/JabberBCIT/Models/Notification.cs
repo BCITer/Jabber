@@ -1,10 +1,7 @@
 namespace JabberBCIT.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class Notification
     {
@@ -23,7 +20,7 @@ namespace JabberBCIT.Models
         ///PostID/CommentID/ChatID/MessageID
         public long ObjectID { get; set; }
 
-        ///0 for no, 1 for yes
+        ///1 for no, 0 for yes
         public short Seen { get; set; }
     }
 }

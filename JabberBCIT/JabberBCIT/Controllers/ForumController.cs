@@ -76,27 +76,24 @@ namespace JabberBCIT.Controllers
                 comment.ParentCommentID = commentID;
                 db.Comments.Add(comment);
 
+                Notification n = new Notification()
+                {
+                    ObjectID = comment.CommentID,
+                    Type = comment.Text.Substring(0, 30)
+                };
+
                 // if this is a child comment
                 if (comment.ParentCommentID != null)
                 {
-                    db.Notifications.Add(new Notification()
-                    {
-                        // the userid associated with this comment is the 
-                        // user of the parent comment's id
-                        UserID = db.Comments.Find(comment.ParentCommentID).User.Id,
-                        ObjectID = comment.CommentID,
-                        Type = "Comment",
-                    });
+                    // the userid associated with this comment is the 
+                    // user of the parent comment's id
+                    n.UserID = db.Comments.Find(comment.ParentCommentID).User.Id;
                 }
                 else // this is replying to the main post
                 {
-                    db.Notifications.Add(new Notification()
-                    {
-                        UserID = comment.ForumPost.UserID,
-                        ObjectID = comment.CommentID,
-                        Type = "Comment",
-                    });
+                    n.UserID = comment.ForumPost.UserID;
                 }
+                db.Notifications.Add(n);
 
                 db.SaveChanges();
             }
