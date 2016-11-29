@@ -7,7 +7,7 @@
         <div class="col-md-4 avatar">
             <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail" width="250" height="250"/>
             <div class="row">
-                <div class="hello">
+                <div class="subBtn">
                     @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
                     @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-default" })
                 </div>
