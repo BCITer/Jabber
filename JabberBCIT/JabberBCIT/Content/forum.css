@@ -4,40 +4,32 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-body {
-    margin-top: 50px;
-}
-.portfolio-item {
-    margin-bottom: 25px;
-}
-footer {
-    margin: 50px 0;
-}
-#wrapper {
-    padding-left: 0;
-}
-#page-wrapper {
-    width: 100%;
-    padding: 10px;
-    background-color: #fff;
-}
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 225px;
-    }
 
-    #page-wrapper {
-        padding: 10px;
-    }
-}
-.huge {
-    font-size: 50px;
-    line-height: normal;
-}
 
 /* Side Navigation */
 
 @media(min-width:768px) {
+    body {
+        margin-top: 50px;
+    }
+    .portfolio-item {
+        margin-bottom: 25px;
+    }
+    footer {
+        margin: 50px 0;
+    }
+    #wrapper {
+        padding-left: 0;
+    }
+    #page-wrapper {
+        width: 100%;
+        padding: 10px;
+        background-color: #fff;
+    }
+    .huge {
+        font-size: 50px;
+        line-height: normal;
+    }
     .side-nav {
         position: fixed;
         top: 51px;
@@ -60,9 +52,100 @@ footer {
         outline: none;
         background-color: #000 !important;
     }
+    #wrapper {
+        padding-left: 225px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+    }
+
+    /* Header */
+    .forum-header {
+        padding-bottom: 9px;
+        margin: 10px 0 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Posts */
+    .vote {
+        margin-right: auto;
+        margin-left: auto;
+        height: 18px;
+        width: 18px;
+        display:block;
+        cursor: pointer;
+    }
+    .vote-icon {
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+    .vote-count {
+        margin: 0px;
+        text-align:center;
+    }
+    .table-filter {
+	    background-color: #fff;
+	    border-bottom: 1px solid #eee;
+    }
+    .table-filter tbody tr:hover {
+	    cursor: pointer;
+	    background-color: #eee;
+    }
+    .table-filter tbody tr td {
+	    padding: 10px;
+	    vertical-align: middle;
+	    border-top-color: #eee;
+    }
+    .table-filter tbody tr td:nth-child(2) {
+	    padding: 2px;
+	    vertical-align: middle;
+	    border-top-color: #eee;
+    }
+    .table-filter tr td:first-child {
+	    width: 38px;
+    }
+    .table-filter tr td:nth-child(2) {
+	    width: 38px;
+    }
+    .table-filter .media-photo {
+	    width: 35px;
+    }
+    .table-filter .media-meta {
+        margin-left: 5px;
+	    font-size: 11px;
+	    color: #999;
+    }
+    .table-filter .media .title {
+	    color: #2BBCDE;
+	    font-size: 14px;
+	    font-weight: bold;
+	    line-height: normal;
+	    margin: 0;
+    }
+    .table-filter .media span.comments-count {
+        margin-top: 5px;
+        margin-left: 5px;
+        bottom: 0;
+        font-weight: bold;
+        font-size: .8em;
+	    color: #5cb85c;
+    }
+
 }
 
 @media(max-width:768px) {
+    body {
+        margin-top: 50px;
+    }
+    .row .forum-header small{
+        font-size: 14px;
+        text-align: center;
+    }
+    .row .forum-header b {
+        font-size: 28px;
+        text-align: center;
+    }
     .side-nav {
         margin: 0;
         width: 100%;
@@ -73,79 +156,10 @@ footer {
     }
     .side-nav li a:hover,
     .side-nav li a:focus {
-        background-color: #000 !important;
+        background-color: #fff !important;
+    }
+    #forum_sidebar .side-nav{
+        display: none !important;
     }
 }
 
-/* Header */
-
-.forum-header {
-    padding-bottom: 9px;
-    margin: 10px 0 0;
-    border-bottom: 1px solid #eee;
-}
-
-/* Posts */
-.vote {
-    margin-right: auto;
-    margin-left: auto;
-    height: 18px;
-    width: 18px;
-    display:block;
-    cursor: pointer;
-}
-.vote-icon {
-    margin-right: 10%;
-    margin-left: 10%;
-}
-.vote-count {
-    margin: 0px;
-    text-align:center;
-}
-.table-filter {
-	background-color: #fff;
-	border-bottom: 1px solid #eee;
-}
-.table-filter tbody tr:hover {
-	cursor: pointer;
-	background-color: #eee;
-}
-.table-filter tbody tr td {
-	padding: 10px;
-	vertical-align: middle;
-	border-top-color: #eee;
-}
-.table-filter tbody tr td:nth-child(2) {
-	padding: 2px;
-	vertical-align: middle;
-	border-top-color: #eee;
-}
-.table-filter tr td:first-child {
-	width: 38px;
-}
-.table-filter tr td:nth-child(2) {
-	width: 38px;
-}
-.table-filter .media-photo {
-	width: 35px;
-}
-.table-filter .media-meta {
-    margin-left: 5px;
-	font-size: 11px;
-	color: #999;
-}
-.table-filter .media .title {
-	color: #2BBCDE;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: normal;
-	margin: 0;
-}
-.table-filter .media span.comments-count {
-    margin-top: 5px;
-    margin-left: 5px;
-    bottom: 0;
-    font-weight: bold;
-    font-size: .8em;
-	color: #5cb85c;
-}

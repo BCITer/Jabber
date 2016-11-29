@@ -1,42 +1,30 @@
-﻿@using JabberBCIT.Models
-@model JabberBCIT.Models.CommentAndChildrenViewModel
-@{
-    ViewBag.Title = "CommentPartial";
-}
+﻿@model JabberBCIT.Models.CommentViewModel
+
 <tr>
     <td valign="top" style="width:40px">
-        <a href="#">
+        <a href="/Vote/Comment/@Model.comment.CommentID/1" class="voteButton">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
             </div>
         </a>
-        @*<p class="vote-count">@Html.DisplayFor(m => m.Votes)</p>*@
-        <p class="vote-count">1</p>
-        <a href="#">
+        <p class="vote-count">@Model.votes</p>
+        <a href="/Vote/Comment/@Model.comment.CommentID/-1" class="voteButton">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
             </div>
         </a>
     </td>
     <td>
-        <div class="media">
-            <div class="media-body">
-                <h4 class="title">
-                    @Model.comment.UserID
-                </h4>
-                <p>
-                    @Model.comment.Text
-                </p>
-            </div>
-            <table>
-                @{
-                    List<Comment> notChild = Model.comments.Where(x => x.ParentCommentID != Model.comment.CommentID).ToList();
-                    foreach (var comment in Model.comments.Where(x => x.ParentCommentID == Model.comment.CommentID).ToList())
-                    {
-                        @Html.Partial("CommentPartial", new JabberBCIT.Models.CommentAndChildrenViewModel() { comment = comment, comments = notChild });
-                    }
-                }
-            </table>
+        <div class="media-body">
+            <h4 class="title">@Model.comment.User.UserName</h4>
+            <p>@Model.comment.Text</p>
+            <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
         </div>
+        <table>
+            @foreach (var childComment in Model.childComments)
+            {
+                Html.RenderPartial("CommentPartial", childComment);
+            }
+        </table>
     </td>
 </tr>

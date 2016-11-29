@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
+using System.Web;
 
 namespace JabberBCIT.Models
 {
@@ -20,10 +21,19 @@ namespace JabberBCIT.Models
     /// </summary>
     public class ProfileViewModel
     {
+        public string Email { get; set; }
         public string UserName { get; set; }
         public string ProfilePicture { get; set; }
         public DateTime JoinDate { get; set; }
+        public string userId { get; set; }
+        public IEnumerable<ForumPost> posts { get; set; }
+
+        public ProfileViewModel()
+        {
+            posts = new List<ForumPost>();
+        }
     }
+   
     /// <summary>
     /// Edit profile view model.
     /// </summary>
@@ -31,7 +41,9 @@ namespace JabberBCIT.Models
     {
         public string ID { get; set; }
         [Required]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
+        [Display(Name = "Profile Picture")]
         public string ProfilePicture { get; set; }
 
     }

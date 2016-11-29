@@ -7,6 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using JabberBCIT.Models;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+using System.IO;
+using System.Web.Hosting;
+using System.Web.Configuration;
 
 namespace JabberBCIT.Controllers
 {
@@ -15,6 +20,14 @@ namespace JabberBCIT.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private UserManager _userManager;
+        private ChitterDbContext database = ChitterDbContext.dontUseThis();
+        private static string _cloudName = WebConfigurationManager.AppSettings["cloudName"];
+        private static string _apiKey = WebConfigurationManager.AppSettings["apiKey"];
+        private static string _apiSecret = WebConfigurationManager.AppSettings["apiSecret"];
+        private Cloudinary cloudinary = new Cloudinary(new Account(
+            _cloudName,
+            _apiKey,
+            _apiSecret));
 
         public ManageController()
         {
@@ -32,9 +45,9 @@ namespace JabberBCIT.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -55,12 +68,17 @@ namespace JabberBCIT.Controllers
         public async Task<ActionResult> Index(string id)
         {
             var user = await UserManager.FindByIdAsync(id);
+            var posts = database.ForumPosts.Where(f => f.UserID == user.Id);
             ProfileViewModel model = new ProfileViewModel
             {
                 UserName = user.UserName,
                 ProfilePicture = user.ProfilePicture,
-                JoinDate = user.JoinDate
+                JoinDate = user.JoinDate,
+                userId = id,
+                posts = posts.ToList(),
+                Email = user.Email
             };
+
             if (user.Id != User.Identity.GetUserId())
             {
                 return View(model);
@@ -82,12 +100,30 @@ namespace JabberBCIT.Controllers
             {
                 ID = user.Id,
                 UserName = user.UserName,
-                ProfilePicture = user.ProfilePicture
+                ProfilePicture = user.ProfilePicture,
             };
 
             return View(model);
         }
-
+        /// <summary>
+        /// This function will upload the image to cloudinary and return the secure URI to the client 
+        /// </summary>
+        /// <param name="file"> Image file </param>
+        /// <returns></returns>
+        public string UploadImage(HttpPostedFileBase file)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            string currPath = HostingEnvironment.ApplicationPhysicalPath;
+            string imagePath = currPath + "\\Images\\" + fileName;
+            file.SaveAs(imagePath); //Save our image temporarily to our Images folder
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(imagePath)
+            };
+            var uploadResult = cloudinary.Upload(uploadParams);
+            System.IO.File.Delete(imagePath); //delete our image from Images folder after we upload 
+            return uploadResult.SecureUri.ToString(); 
+        }
         [HttpPost]
         public async Task<ActionResult> Edit(EditProfileViewModel edit)
         {
@@ -96,6 +132,12 @@ namespace JabberBCIT.Controllers
                 return View(edit);
             }
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            edit.ProfilePicture = user.ProfilePicture; 
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                var file = Request.Files[0];
+                edit.ProfilePicture = UploadImage(file); 
+            }
             user.UserName = edit.UserName;
             user.ProfilePicture = edit.ProfilePicture;
 
@@ -369,7 +411,7 @@ namespace JabberBCIT.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -421,6 +463,6 @@ namespace JabberBCIT.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
