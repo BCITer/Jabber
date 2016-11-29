@@ -15,6 +15,7 @@ namespace JabberBCIT.Models
     {
         public Comment comment { get; set; }
         public int votes { get; set; }
+        public int hidden { get; set; }
         public List<CommentViewModel> childComments { get; set; }
     }
 }

@@ -19,7 +19,9 @@
             <h4 class="title">@Model.comment.User.UserName</h4>
             <p>@Model.comment.Text</p>
             <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
-        </div>
+            
+            <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Delete'")">Delete</button>
+    </div>
         <table>
             @foreach (var childComment in Model.childComments)
             {

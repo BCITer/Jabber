@@ -31,7 +31,7 @@ namespace JabberBCIT.Controllers
                 ViewBag.ForumTitle = tag;
 
                 // DO YOUR SORTING IN FOLLOWING METHOD//
-                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2))
+                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2));
 
                 return View(listPostViewModel);
             }
@@ -84,6 +84,27 @@ namespace JabberBCIT.Controllers
                 comment.PostID = id;
                 comment.ParentCommentID = commentID;
                 db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return new EmptyResult();
+            }
+            return RedirectToAction("ViewThread");
+        }
+
+        public ActionResult DeleteComment(long? commentID)
+        {
+            return View(db.Comments.Find(commentID));
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComment(long? commentID, long id)
+        {
+            
+            try
+            {
+                db.Comments.Find(commentID).Hidden = 1;
                 db.SaveChanges();
             }
             catch
