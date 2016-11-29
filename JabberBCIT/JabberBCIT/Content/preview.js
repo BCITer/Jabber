@@ -6,6 +6,8 @@
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#profile-picture').attr('src', e.target.result);
+                $('#fn').text(file.name);
+                $('#fs').text(file.size + " bytes");
             }
             reader.readAsDataURL(file);
         }
