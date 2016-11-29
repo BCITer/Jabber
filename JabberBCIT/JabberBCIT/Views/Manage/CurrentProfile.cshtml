@@ -1,7 +1,6 @@
 ﻿@model JabberBCIT.Models.ProfileViewModel
 
 @Styles.Render("~/Content/Profile.css")
-@Scripts.Render("~/Scripts/profile.js")
 
 <div id="container" class="container">
     <h1>My Profile</h1>
@@ -43,7 +42,7 @@
         </div>
     </div>
     <p>
-                @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
-                @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-default" })
     </p>
 </div>
