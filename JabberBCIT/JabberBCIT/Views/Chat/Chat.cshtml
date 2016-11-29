@@ -5,16 +5,50 @@
 }
 
 @Styles.Render("~/Content/Chat.css")
-
-@*<h2 id="Title">Chat</h2>*@
-<div id="chat" class="container">
-    <ul id="discussion"></ul>
-    <ul id="online_list">
-        <li id="online_list_header">Users Online</li>
-    </ul>
-    <input type="text" id="message" placeholder="Enter message here..." />
-    <input type="button" id="sendmessage" class="btn btn-default" value="Send" />
-    <input type="hidden" id="displayname" />
+<div id="wrapper">
+    <div id="left_column">
+        <div id="chat_sidebar">
+            <ul class="nav navbar-nav side-nav">
+                @*@foreach (var chat in Model) {*@
+                <li>
+                    <a href="#">Justin</a>
+                    <a href="#">Manish</a>
+                    <a href="#">Jason</a>
+                    <a href="#">Markus</a>
+                    <a href="#">Justin</a>
+                    <a href="#">Manish</a>
+                    <a href="#">Jason</a>
+                    <a href="#">Markus</a>
+                    <a href="#">Justin</a>
+                    <a href="#">Manish</a>
+                    <a href="#">Jason</a>
+                    <a href="#">Markus</a>
+                    <a href="#">Justin</a>
+                    <a href="#">Manish</a>
+                    <a href="#">Jason</a>
+                    <a href="#">Markus</a>
+                    <a href="#">Justin</a>
+                    <a href="#">Manish</a>
+                    <a href="#">Jason</a>
+                    <a href="#">Markus</a>
+                    <a href="#">Justin</a>
+                    <a href="#">Manish</a>
+                    <a href="#">Jason</a>
+                    <a href="#">Markus</a>
+                </li>
+                @*}*@
+            </ul>
+        </div>
+    </div>
+    <div id="chat" class="container">
+        <ul id="discussion"></ul>
+        @*<ul id="online_list">
+                <li id="online_list_header">Users Online</li>
+            </ul>*@
+        <input type="text" id="message" placeholder="Enter message here..." />
+        <input type="button" id="sendmessage" class="btn btn-default" value="Send" />
+        <input type="hidden" id="displayname" />
+    </div>
 </div>
 @section scripts {
     <!--Script references. -->
@@ -33,12 +67,12 @@
                 $('#sendmessage').focus().click();//give your submit an ID
 
                 //$('#discussion').scrollTop($('#discussion')[0].scrollHeight);
-                $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight")}, 10);
+                $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
             }
         }
         $('#message').keypress(keypressHandler);
     </script>
-               
+
     <script>
         function mouseClickSend() {
             $(this).blur();
