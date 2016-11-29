@@ -11,6 +11,6 @@ var randomColor = function () {
 
 $(document).ready(function () {
         $('.comment').each(function () {
-            $(this).css('border-left-color', randomColor());
+            $(this).css('border-left-color', '#180180180');
         });
 });
