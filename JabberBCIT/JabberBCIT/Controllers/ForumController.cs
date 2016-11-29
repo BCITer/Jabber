@@ -31,7 +31,7 @@ namespace JabberBCIT.Controllers
                 ViewBag.ForumTitle = tag;
 
                 // DO YOUR SORTING IN FOLLOWING METHOD//
-                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2))
+                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2));
 
                 return View(listPostViewModel);
             }
@@ -129,8 +129,8 @@ namespace JabberBCIT.Controllers
             model.ForEach(i => i.childComments = model.Where(ch => ch.comment.ParentCommentID == i.comment.CommentID).ToList());
             return model.Where(x => x.comment.ParentCommentID == null).ToList();
         }
-        
-        public void VoteComment(long id, short value)
+
+        public JsonResult VoteComment(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -148,11 +148,19 @@ namespace JabberBCIT.Controllers
                         Value = value
                     });
                     db.SaveChanges();
+                    return Json(
+                        new {
+                            id = "comment_votes_" + id,
+                            value = db.CommentsVotes.Where(x => x.CommentID == id).Sum(x => x.Value).ToString()
+                        },
+                        JsonRequestBehavior.AllowGet
+                    );
                 }
             }
+            return Json(new { });
         }
 
-        public void VotePost(long id, short value)
+        public JsonResult VotePost(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -170,8 +178,17 @@ namespace JabberBCIT.Controllers
                         Value = value
                     });
                     db.SaveChanges();
+                    return Json(
+                        new {
+                            id = "post_votes_" + id,
+                            value = db.ForumPostsVotes.Where(x => x.PostID == id).Sum(x => x.Value).ToString()
+                        }, 
+                        JsonRequestBehavior.AllowGet
+                    );
+
                 }
             }
+            return Json(new { });
         }
 
         [ChildActionOnly]

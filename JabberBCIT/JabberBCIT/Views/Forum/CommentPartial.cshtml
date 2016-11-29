@@ -7,7 +7,7 @@
                 <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
             </div>
         </a>
-        <p class="vote-count">@Model.votes</p>
+        <p class="vote-count" id="comment_votes_@Model.comment.CommentID">@Model.votes</p>
         <a href="/Vote/Comment/@Model.comment.CommentID/-1" class="voteButton">
             <div class="vote">
                 <span class="glyphicon glyphicon-chevron-down vote-icon"></span>

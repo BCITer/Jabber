@@ -10,16 +10,14 @@
     <!-- Custom CSS -->
     <link href="/Content/forum.css" rel="stylesheet">
     <!-- Janky voting code -->
-    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".voteButton").click(function (e) {
-                console.log("Please help");
                 e.preventDefault();
                 $.ajax({
                     url: $(this).attr("href"),
-                    success: function () {
-                        location.reload();
+                    success: function (result) {
+                        document.getElementById(result.id).innerHTML = result.value;
                     }
                 });
             });
@@ -48,7 +46,7 @@
                                     <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
                                 </div>
                             </a>
-                            <p class="vote-count">@Model.votes</p>
+                            <p class="vote-count" id="post_votes_@Model.post.PostID">@Model.votes</p>
                             <a href="/Vote/Post/@Model.post.PostID/-1" class="voteButton">
                                 <div class="vote">
                                     <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
