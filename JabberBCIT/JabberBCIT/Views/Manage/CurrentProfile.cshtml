@@ -1,18 +1,17 @@
 ﻿@model JabberBCIT.Models.ProfileViewModel
 
-@Styles.Render("~/Content/Profile.css")
-
 <div id="container" class="container">
     <h1>My Profile</h1>
     <hr />
     <div class="row">
         <div class="col-md-4 avatar">
             <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail" width="250" height="250"/>
-            
-            <label class="update btn btn-primary">
-                Upload&hellip; <input type="file" name="img" style="display: none;" onchange="@Url.Action("","")">
-            </label>
-           @*Html.ActionLink("UPLOAD", "EditImage", "Manage", null, new { @class = "update btn btn-default"})*@
+            <div class="row">
+                <div class="hello">
+                    @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
         </div>
         <div class="col-md-8 info">
             <table class="table">
@@ -41,8 +40,6 @@
             </table>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit Profile", "Edit", "Manage", null, new { @class = "btn btn-default" })
-        @Html.ActionLink("Reset Password", "ChangePassword", "Manage", null, new { @class = "btn btn-default" })
-    </p>
+    
+
 </div>
