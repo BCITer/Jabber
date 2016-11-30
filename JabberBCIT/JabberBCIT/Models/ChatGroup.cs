@@ -8,6 +8,6 @@ namespace JabberBCIT.Models
     public class ChatGroup
     {
         public string GroupName { get; set; }
-        public string[] Members { get; set; }
+        public string Members { get; set; }
     }
 }

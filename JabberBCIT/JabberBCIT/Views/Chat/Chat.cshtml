@@ -14,19 +14,13 @@
     {
         <div id="allChats">
             <div id="newChat"><br /><h5>Create New Chat</h5><br /></div>
-            <div class="chats"><br /><h5>Chat #1</h5><br /></div>
-            <div class="chats"><br /><h5>Chat #2</h5><br /></div>
-            <div class="chats"><br /><h5>Chat #3</h5><br /></div>
-            <div class="chats"><br /><h5>Chat #4</h5><br /></div>
-            <div class="chats"><br /><h5>Chat #5</h5><br /></div>
-            <div class="chats"><br /><h5>Chat #6</h5><br /></div>
-            <div class="chats"><br /><h5>Chat #7</h5><br /></div>
         </div>
         <div id="allMessages">
             @Html.TextBoxFor(model => model.GroupName, htmlAttributes: new { @id = "addName", @placeholder="Group Name" })
             <input type="text" name="memberSearch" id="memberSearch" placeholder="UserName" />
             <input type="button" value="Add" id="addMember" />
-            @Html.LabelFor(model => model.Members, htmlAttributes: new { @id = "memberList" })
+            <label id="memberList"/>
+            @Html.HiddenFor(model => model.Members, htmlAttributes: new { @id = "membersHidden"})
             <input type="submit" value="Done" id="createConversation" />
         </div>
         <div id="allMembers">
@@ -43,7 +37,6 @@
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
         $(function () {
-            var newChatMembers = new Array();
             $(document).on('click', '#newChat', function (e) {
                 if (!$('#memberSearch').is(":visible")) {
                     $('#addName').show();
@@ -66,9 +59,33 @@
                 });
             });
             $(document).on('click', '#addMember', function (e) {
-                $('#memberList').html($('#memberList').html() + "<br />" + $('#memberSearch').val())
-                newChatMembers.push($('#memberSearch').val())
+                $('#memberList').html($('#memberList').html() + $('#memberSearch').val() + "<br/>")
+                $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ")
                 $('#memberSearch').val('');
+            });
+            $(document).on('click', '#createConversation', function (e) {
+                e.preventDefault(); // <------------------ stop default behaviour of button
+                $('#allChats').append("<div class=\"chats\"><br /><h3>" + $('#addName').val() + "</h3><br /></div>");
+                var element = this;
+                $.ajax({
+                    url: "/Home/SaveDetailedInfo",
+                    type: "POST",
+                    data: JSON.stringify({ 'Options': someData }),
+                    dataType: "json",
+                    traditional: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data.status == "Success") {
+                            alert("Done");
+                            $(element).closest("form").submit(); //<------------ submit form
+                        } else {
+                            alert("Error occurs on the Database level!");
+                        }
+                    },
+                    error: function () {
+                        alert("An error has occured!!!");
+                    }
+                });
             });
         });
     </script>
