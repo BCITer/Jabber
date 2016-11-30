@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace JabberBCIT.Controllers
 {
@@ -68,6 +70,41 @@ namespace JabberBCIT.Controllers
                 return new EmptyResult();
             }
             return RedirectToAction(post.Subforum.Name, new { id = post.PostID });
+        }
+
+        public ActionResult DeletePost(long id)
+        {
+            return View(db.ForumPosts.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult DeletePost(string tag, long id)
+        {
+            DataTable dtNames = new DataTable();
+            string sqlQuery = "delete from ForumPosts where PostID = '" + id + "'";
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChitterContext"].ConnectionString;
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conn);
+                da.Fill(dtNames);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            /*
+            try
+            {
+                db.ForumPosts.Remove(db.ForumPosts.Find(id));
+                db.SaveChanges();
+            }
+            catch
+            {
+                return new EmptyResult();
+            }
+            */
+            return RedirectToAction( tag , "Forum");
         }
 
         public ActionResult CreateComment()

@@ -32,6 +32,13 @@ namespace JabberBCIT
                 url: "Forum/{tag}/{id}",
                 defaults: new { controller = "Forum", action = "ViewThread"}
             );
+
+            routes.MapRoute(
+                name: "DeletePost",
+                url: "Forum/{tag}/{id}/Delete",
+                defaults: new { controller = "Forum", action = "DeletePost" }
+            );
+
             routes.MapRoute(
                 name: "ViewForum",
                 url: "Forum/{tag}",
