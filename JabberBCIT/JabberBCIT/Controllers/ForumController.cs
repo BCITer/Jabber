@@ -16,7 +16,7 @@ namespace JabberBCIT.Controllers
         ChitterDbContext db = ChitterDbContext.Create;
 
         // GET: Forum
-        public ActionResult Index(string tag)
+        public ActionResult Index(string tag = "Global")
         {
             if (db.Subforums.Any(x => x.Name == tag))
             {
@@ -39,6 +39,69 @@ namespace JabberBCIT.Controllers
             }
             return new EmptyResult();
         }
+		
+		/// <summary>
+        /// Display create subforum view.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CreateSubForum()
+        {
+            return View();
+        }
+        /// <summary>
+        /// Creates subforum and adds to database.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult CreateSubForum(CreateSubForumViewModel model)
+        {
+            //if modelstate is valid
+            if (ModelState.IsValid)
+            {
+                //create subforum off model
+                var subforum = new Subforum
+                {
+                    Name = model.Name
+                };
+
+                //get all subforums in db
+                var currentsubforums = db.Subforums.ToList();
+                // the subforum id we are going to assign
+                int newId = 1;
+                //loop through subforums
+                foreach (Subforum s in currentsubforums)
+                {
+                    ++newId;
+                    //if existing subforum name equals subforum name to be inserted
+                    if (s.Name == subforum.Name)
+                    {
+                        //display error
+                        ViewBag.CreateSubForumError = "Subforum name already exists";
+                        //return view with error messages
+                        return View(model);
+                    }
+                }
+                //attempt to insert into db
+                try
+                {
+                    subforum.SubforumID = newId;
+                    db.Subforums.Add(subforum);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    //return white screen
+                    return new EmptyResult();
+                }
+                //redirect subforum view
+                return RedirectToAction("Index", new { tag = subforum.Name });
+            }
+            //if modelstate failed, return view with error messages
+            return View(model);
+        }
+		
+		
 
         public int sortFunction(PostViewModel p1, PostViewModel p2)
         {
