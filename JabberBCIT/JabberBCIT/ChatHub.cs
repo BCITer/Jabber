@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 
-namespace JabberBCIT {
+namespace JabberBCIT
+{
     public class ChatHub : Hub {
-        public void Send(string name, string message) {
+        
+        /// <summary>
+        /// This method is called on the client side to broadcast a message to al clients
+        /// </summary>
+        /// <param name="message">message recieved from the client to be broadcasted to all clients</param>
+        public void Send(string message) {
+            
             if (message != "")
-                Clients.All.addNewMessageToPage(name, message);
+                Clients.All.addNewMessageToPage(Context.User.Identity.Name, message);
         }
     }
 }

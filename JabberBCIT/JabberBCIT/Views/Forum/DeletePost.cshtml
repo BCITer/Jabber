@@ -1,0 +1,34 @@
+﻿@model JabberBCIT.Models.ForumPost
+
+@{
+    ViewBag.Title = "DeletePost";
+}
+
+@Styles.Render("~/Content/createForumPost.css")
+
+<div class="container">
+    <div class="row forum">
+        <div class="col-md-offset-1 col-md-10">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <h2>Delete This Post</h2>
+                    <hr />
+                    <div class="form-group">
+                        <p>@Model.PostTitle</p>
+                        <div class="col-md-10">
+                            <p>@Model.Message</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Delete" class="btn btn-default submitBtn" />
+                            <button class="btn" onclick="location.href='@Url.Action("Index", "Forum")';return false;">Back to List</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
