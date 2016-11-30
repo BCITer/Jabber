@@ -68,18 +68,18 @@ namespace JabberBCIT.Controllers
         [HttpPost]
         public ActionResult CreateComment(Comment comment, long? commentID, long id)
         {
-            try
             {
                 comment.UserID = User.Identity.GetUserId();
                 comment.PostTimestamp = DateTime.Now;
                 comment.PostID = id;
                 comment.ParentCommentID = commentID;
                 db.Comments.Add(comment);
+                db.SaveChanges();
 
                 Notification n = new Notification()
                 {
                     ObjectID = comment.CommentID,
-                    Type = comment.Text.Substring(0, 30)
+                    Type = new string(comment.Text.Take(30).ToArray()),
                 };
 
                 // if this is a child comment
@@ -97,10 +97,7 @@ namespace JabberBCIT.Controllers
 
                 db.SaveChanges();
             }
-            catch
-            {
-                return new EmptyResult();
-            }
+            
             return RedirectToAction("ViewThread");
         }
 

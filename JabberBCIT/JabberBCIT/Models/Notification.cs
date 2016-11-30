@@ -5,7 +5,7 @@ namespace JabberBCIT.Models
 
     public partial class Notification
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long NotificationID { get; set; }
 
         [Required]
