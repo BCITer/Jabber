@@ -8,15 +8,13 @@
             + '</strong>: ' + htmlEncode(message) + '</li>');
         $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
     };
-    // Get the user name and store it to prepend to messages.
-    $('#displayname').val(prompt('Enter your name:', ''));
     // Set initial focus to message input box.
     $('#message').focus();
     // Start the connection.
     $.connection.hub.start().done(function () {
         $('#sendmessage').click(function () {
             // Call the Send method on the hub.
-            chat.server.send($('#displayname').val(), $('#message').val());
+            chat.server.send($('#message').val());
             // Clear text box and reset focus for next comment.
             $('#message').val('').focus();
         });

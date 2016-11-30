@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace JabberBCIT.Controllers
 {
@@ -24,18 +26,28 @@ namespace JabberBCIT.Controllers
                     listPostViewModel.Add(new PostViewModel()
                     {
                         post = p,
+                        PostTimestamp = p.PostTimestamp,
                         votes = p.ForumPostsVotes.Sum(x => x.Value)
                     });
                 }
                 ViewBag.ForumTitle = tag;
 
-                // DO YOUR SORTING HERE //
-                listPostViewModel.Sort((post1, post2) => post2.votes.CompareTo(post1.votes));
-                // DO YOUR SORTING HERE //
+                // DO YOUR SORTING IN FOLLOWING METHOD//
+                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2));
 
                 return View(listPostViewModel);
             }
             return new EmptyResult();
+        }
+
+        public int sortFunction(PostViewModel p1, PostViewModel p2)
+        {
+            int compare = p2.votes.CompareTo(p1.votes);
+            if (compare == 0)
+            {
+                return p2.PostTimestamp.CompareTo(p1.PostTimestamp);
+            }
+            return compare;
         }
 
         public ActionResult CreatePost()
@@ -60,6 +72,41 @@ namespace JabberBCIT.Controllers
             return RedirectToAction(post.Subforum.Name, new { id = post.PostID });
         }
 
+        public ActionResult DeletePost(long id)
+        {
+            return View(db.ForumPosts.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult DeletePost(string tag, long id)
+        {
+            DataTable dtNames = new DataTable();
+            string sqlQuery = "delete from ForumPosts where PostID = '" + id + "'";
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChitterContext"].ConnectionString;
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conn);
+                da.Fill(dtNames);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            /*
+            try
+            {
+                db.ForumPosts.Remove(db.ForumPosts.Find(id));
+                db.SaveChanges();
+            }
+            catch
+            {
+                return new EmptyResult();
+            }
+            */
+            return RedirectToAction( tag , "Forum");
+        }
+
         public ActionResult CreateComment()
         {
             return View();
@@ -74,6 +121,27 @@ namespace JabberBCIT.Controllers
                 comment.PostID = id;
                 comment.ParentCommentID = commentID;
                 db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return new EmptyResult();
+            }
+            return RedirectToAction("ViewThread");
+        }
+
+        public ActionResult DeleteComment(long? commentID)
+        {
+            return View(db.Comments.Find(commentID));
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComment(long? commentID, long id)
+        {
+            
+            try
+            {
+                db.Comments.Find(commentID).Hidden = 1;
                 db.SaveChanges();
             }
             catch
