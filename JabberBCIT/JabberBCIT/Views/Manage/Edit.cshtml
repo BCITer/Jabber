@@ -3,7 +3,6 @@
     ViewBag.Title = "Edit Profile";
 }
 
-@Styles.Render("~/Content/Profile.css")
 <div class="container">
     <h1>Edit Profile</h1>
 
@@ -15,10 +14,14 @@
 
     <div class="row">
         <div class="col-md-4 avatar">
-            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail" width="250" height="250" />            
+            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail" width="250" height="250" />
+            @*<label class="update btn btn-primary">
+                    Upload&hellip; <input type="file" name="upload" style="display: none;">
+                </label>*@
+            @*Html.ActionLink("UPLOAD", "EditImage", "Manage", null, new { @class = "update btn btn-default"})*@
         </div>
         <div class="col-md-8 infoContainer">
-            @using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { encType = "multipart/form-data",name = "Upload", @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { encType = "multipart/form-data", name = "Upload", @class = "form-horizontal", role = "form" }))
             {
                 <h3>Personal info</h3>
                 <hr />
@@ -35,7 +38,11 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ProfilePicture, htmlAttributes: new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            <input type="file" id="Avatar" name="upload" />
+                            <label class="btn btn-default">
+                                Select a photo<input type="file" id="Avatar" name="upload" style="display: none;" />
+                            </label>
+                            <span id="fn"></span>&nbsp;&nbsp;
+                            <span id="fs"></span>
                         </div>
                     </div>
                     <div class="form-group">

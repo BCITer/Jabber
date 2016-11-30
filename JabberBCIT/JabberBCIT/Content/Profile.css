@@ -35,6 +35,10 @@
     left:0;
 }
 
+.hello {
+    margin:0px 62px;
+}
+
 /* Info Section */
 
 .table#profile-info tbody>tr>th:first-child {
