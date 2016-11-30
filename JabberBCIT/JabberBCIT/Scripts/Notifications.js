@@ -1,10 +1,8 @@
 ﻿$(document).ready(function () {
     // ANIMATEDLY DISPLAY THE NOTIFICATION COUNTER.
-
     $('#noti_Counter')
         .css({ opacity: 0 })
         .css({ top: '-10px' })
-        .text("10")
         .animate({ top: '-2px', opacity: 1 }, 500);
 
     $('#noti_Button').click(function () {
