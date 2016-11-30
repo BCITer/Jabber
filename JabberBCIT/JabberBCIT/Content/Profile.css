@@ -65,5 +65,7 @@ input[type=file]#Avatar {
 }
 
 input[type=submit]#profile-update {
+    background-color: dodgerblue;
+    color: #eee;
     margin-top: 7px;
 }
