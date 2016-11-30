@@ -373,6 +373,8 @@
     <Content Include="Views\Manage\PostHistory.cshtml" />
     <Content Include="Views\Manage\PostHistoryPartial.cshtml" />
     <Content Include="Views\Forum\CreateComment.cshtml" />
+    <Content Include="Views\Forum\DeleteComment.cshtml" />
+    <Content Include="Views\Forum\DeletePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
