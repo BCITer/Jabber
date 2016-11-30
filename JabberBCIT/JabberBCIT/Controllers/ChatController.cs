@@ -60,6 +60,34 @@ namespace JabberBCIT.Controllers
                  }*/
             }
             return View(cg);
-        }    
+        }
+
+        public ActionResult Autocomplete(string term)
+        {
+            List<string> users = new List<string>();
+
+            DataTable dtNames = new DataTable();
+
+            string sqlQuery = "select UserName from AspNetUsers";
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChitterContext"].ConnectionString;
+            
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conn);
+
+            da.Fill(dtNames);
+
+            foreach (DataRow row in dtNames.Rows)
+            {
+                string name = Convert.ToString(row["UserName"]);
+                users.Add(name);
+             }
+
+            var filteredItems = users.Where(
+                item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
+                );
+
+            return Json(filteredItems, JsonRequestBehavior.AllowGet);
+        }
     }
 }
