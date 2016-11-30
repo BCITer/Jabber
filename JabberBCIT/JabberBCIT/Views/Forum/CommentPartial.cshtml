@@ -1,30 +1,27 @@
 ﻿@model JabberBCIT.Models.CommentViewModel
 
-<tr class="comment container-fluid">
-    <td valign="top" style="width:40px">
-        <a href="/Vote/Comment/@Model.comment.CommentID/1" class="voteButton">
-            <div class="vote">
-                <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
+<table id="partial-comment" class="table">
+    <tr class="comment container-fluid">
+        <td>
+            <a href="/Vote/Comment/@Model.comment.CommentID/1" class="voteButton">
+                <span class="glyphicon glyphicon-chevron-up vote-icon-up"></span>
+            </a>
+            <p class="vote-count" id="comment_votes_@Model.comment.CommentID">@Model.votes</p>
+            <a href="/Vote/Comment/@Model.comment.CommentID/-1" class="voteButton">
+                <span class="glyphicon glyphicon-chevron-down vote-icon-down"></span>
+            </a>
+        </td>
+        <td>
+            <div class="media">
+                <h4 id="comment-title">@Model.comment.User.UserName</h4>
+                <p id="comment-content">@Model.comment.Text</p>
+                <button type="button" class="btn btn-reply pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
             </div>
-        </a>
-        <p class="vote-count" id="comment_votes_@Model.comment.CommentID">@Model.votes</p>
-        <a href="/Vote/Comment/@Model.comment.CommentID/-1" class="voteButton">
-            <div class="vote">
-                <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
-            </div>
-        </a>
-    </td>
-    <td>
-        <div class="media-body">
-            <h4 class="title">@Model.comment.User.UserName</h4>
-            <p>@Model.comment.Text</p>
-            <button type="button" class="btn pull-left" onclick="@("location.href='"+ @Model.comment.CommentID + "/Reply'")">Reply</button>
-        </div>
-        <table>
-            @foreach (var childComment in Model.childComments)
-            {
-                Html.RenderPartial("CommentPartial", childComment);
-            }
-        </table>
-    </td>
-</tr>
+            <table>
+                @foreach(var childComment in Model.childComments) {
+                    Html.RenderPartial("CommentPartial", childComment);
+                }
+            </table>
+        </td>
+    </tr>
+</table>

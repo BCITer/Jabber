@@ -1,5 +1,4 @@
-﻿@using JabberBCIT.Models
-@model PostViewModel
+﻿@model JabberBCIT.Models.PostViewModel
 @{
     ViewBag.Title = "ViewThread";
 }
@@ -37,45 +36,40 @@
             <div class="container-fluid">
                 <!-- Page Content -->
                 <!-- Page Heading -->
-                <table class="table table-filter">
+                <table id="view-thread" class="table">
                     <tr>
-                        <td></td>
                         <td>
                             <a href="/Vote/Post/@Model.post.PostID/1" class="voteButton">
-                                <div class="vote">
-                                    <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
-                                </div>
+                                <span class="glyphicon glyphicon-chevron-up vote-icon-up"></span>
                             </a>
-                            <p class="vote-count" id="post_votes_@Model.post.PostID">@Model.votes</p>
+                            <p class="vote-count">@Model.votes</p>
                             <a href="/Vote/Post/@Model.post.PostID/-1" class="voteButton">
-                                <div class="vote">
-                                    <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
-                                </div>
+                                <span class="glyphicon glyphicon-chevron-down vote-icon-down"></span>
                             </a>
                         </td>
                         <td>
-                            <br>
-                            <h1 class="forum-header">
+                            <h2 class="forum-header">
                                 <b>@Model.post.PostTitle</b>
                                 <br>
-                                <small>@Model.post.User.UserName</small>
-                            </h1>
+                            </h2>
+                            <p id="thread-owner">@Model.post.User.UserName</p>
                             <p>@Model.post.Message</p>
                             <form action="Reply">
-                                <input type="submit" class="btn" value="Reply" />
+                                <input type="submit" class="btn btn-reply" value="Reply" />
                             </form>
                         </td>
                     </tr>
                 </table>
                 <!-- ./Page Heading -->
+
                 <!-- Comments -->
                 <table>
-                    @foreach (var childComments in Model.childComments)
-                    {
+                    @foreach(var childComments in Model.childComments) {
                         Html.RenderPartial("CommentPartial", childComments);
                     }
                 </table>
                 <!-- ./Comments -->
+
                 <hr>
 
                 <!-- Footer -->
