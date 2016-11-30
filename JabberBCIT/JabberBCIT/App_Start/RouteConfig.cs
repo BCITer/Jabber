@@ -21,6 +21,12 @@ namespace JabberBCIT
                 defaults: new { controller = "Forum", action = "VoteComment" }
             );
 
+			routes.MapRoute(
+                name: "CreateSubForum",
+                url: "Forum/CreateSubForum",
+                defaults: new { controller = "Forum", action = "CreateSubForum" }
+            );
+			
             routes.MapRoute(
                 name: "CreatePost",
                 url: "Forum/{tag}/CreatePost",
