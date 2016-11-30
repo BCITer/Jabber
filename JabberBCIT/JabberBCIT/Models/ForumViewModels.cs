@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace JabberBCIT.Models
 {
@@ -6,6 +7,7 @@ namespace JabberBCIT.Models
     {
         public ForumPost post { get; set; }
         public int votes { get; set; }
+        public DateTime PostTimestamp { get; set; }
         public List<CommentViewModel> childComments { get; set; }
     }
 

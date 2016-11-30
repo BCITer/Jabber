@@ -274,6 +274,7 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\login.js" />
     <Content Include="Content\Notification.css" />
+    <Content Include="Content\preview.js" />
     <Content Include="Content\register.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />

@@ -24,18 +24,28 @@ namespace JabberBCIT.Controllers
                     listPostViewModel.Add(new PostViewModel()
                     {
                         post = p,
+                        PostTimestamp = p.PostTimestamp,
                         votes = p.ForumPostsVotes.Sum(x => x.Value)
                     });
                 }
                 ViewBag.ForumTitle = tag;
 
-                // DO YOUR SORTING HERE //
-                listPostViewModel.Sort((post1, post2) => post2.votes.CompareTo(post1.votes));
-                // DO YOUR SORTING HERE //
+                // DO YOUR SORTING IN FOLLOWING METHOD//
+                listPostViewModel.Sort((post1, post2) => sortFunction(post1, post2));
 
                 return View(listPostViewModel);
             }
             return new EmptyResult();
+        }
+
+        public int sortFunction(PostViewModel p1, PostViewModel p2)
+        {
+            int compare = p2.votes.CompareTo(p1.votes);
+            if (compare == 0)
+            {
+                return p2.PostTimestamp.CompareTo(p1.PostTimestamp);
+            }
+            return compare;
         }
 
         public ActionResult CreatePost()
@@ -119,8 +129,8 @@ namespace JabberBCIT.Controllers
             model.ForEach(i => i.childComments = model.Where(ch => ch.comment.ParentCommentID == i.comment.CommentID).ToList());
             return model.Where(x => x.comment.ParentCommentID == null).ToList();
         }
-        
-        public void VoteComment(long id, short value)
+
+        public JsonResult VoteComment(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -138,11 +148,19 @@ namespace JabberBCIT.Controllers
                         Value = value
                     });
                     db.SaveChanges();
+                    return Json(
+                        new {
+                            id = "comment_votes_" + id,
+                            value = db.CommentsVotes.Where(x => x.CommentID == id).Sum(x => x.Value).ToString()
+                        },
+                        JsonRequestBehavior.AllowGet
+                    );
                 }
             }
+            return Json(new { });
         }
 
-        public void VotePost(long id, short value)
+        public JsonResult VotePost(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -160,8 +178,17 @@ namespace JabberBCIT.Controllers
                         Value = value
                     });
                     db.SaveChanges();
+                    return Json(
+                        new {
+                            id = "post_votes_" + id,
+                            value = db.ForumPostsVotes.Where(x => x.PostID == id).Sum(x => x.Value).ToString()
+                        }, 
+                        JsonRequestBehavior.AllowGet
+                    );
+
                 }
             }
+            return Json(new { });
         }
 
         [ChildActionOnly]
