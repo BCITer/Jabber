@@ -93,6 +93,7 @@ namespace JabberBCIT.Controllers
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.ChangeProfileSuccess ? "Updated profile."
                 : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.UsernameError ? "That username has been already taken!"
                 : "";
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -138,7 +139,15 @@ namespace JabberBCIT.Controllers
                 var file = Request.Files[0];
                 edit.ProfilePicture = UploadImage(file); 
             }
-            user.UserName = edit.UserName;
+            // see if there is another person with the same name
+            if (database.Users.Where(u => u.UserName == edit.UserName).ToList().Any())
+            {
+                return RedirectToAction("Edit", "Manage", new { Message = ManageMessageId.UsernameError });
+            }
+            else
+            {
+                user.UserName = edit.UserName;
+            }   
             user.ProfilePicture = edit.ProfilePicture;
 
             var result = await UserManager.UpdateAsync(user);
@@ -460,7 +469,8 @@ namespace JabberBCIT.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            UsernameError
         }
 
         #endregion

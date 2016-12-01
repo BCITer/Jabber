@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace JabberBCIT.Models
 {
+	public class CreateSubForumViewModel
+    {
+        [DisplayName("Subforum Name")]
+        public string Name { get; set; }
+    }
+	
     public class PostViewModel
     {
         public ForumPost post { get; set; }
@@ -15,6 +22,7 @@ namespace JabberBCIT.Models
     {
         public Comment comment { get; set; }
         public int votes { get; set; }
+        public int hidden { get; set; }
         public List<CommentViewModel> childComments { get; set; }
     }
 }

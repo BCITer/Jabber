@@ -6,7 +6,7 @@
 
     <p class="text-success">@ViewBag.StatusMessage</p>
 
-    @Html.AntiForgeryToken()
+    
 
     <hr />
 
@@ -19,7 +19,7 @@
             {
                 <h3>Personal info</h3>
                 <hr />
-
+                @Html.AntiForgeryToken()
                 <div class="form-horizontal">
                     <div class="form-group">
                         @Html.HiddenFor(model => model.ID)

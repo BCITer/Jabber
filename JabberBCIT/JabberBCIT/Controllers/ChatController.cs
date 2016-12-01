@@ -166,7 +166,7 @@ namespace JabberBCIT.Controllers
                 string chatID = row["ChatID"].ToString();
                 string chatName = row["ChatName"].ToString();
 
-                html += "<div class=\"chats\" id=\"" + chatID + "\"><br /><h3>" + chatName + "</h3><br /></div>";
+                html += "<div class=\"chats\" id=\"" + chatID + "\"><br /><h3>" + chatName + "</h3></div>";
             }
             return html;
         }
@@ -186,7 +186,7 @@ namespace JabberBCIT.Controllers
             {
                 string userName = row["UserName"].ToString();
 
-                html += "<h4>" + userName + "</h4><br />";
+                html += "<a href=\"#\">" + userName + "</a>";
             }
             return html;
         }
@@ -207,7 +207,9 @@ namespace JabberBCIT.Controllers
                 string userName = row["UserName"].ToString();
                 string message = row["Message"].ToString();
 
-                html += "<p>" + userName + ": " + message + "</p><br />";
+                html += "<li><strong>" +userName + "</strong>: " + message + "</li>";
+
+
             }
             return html;
         }

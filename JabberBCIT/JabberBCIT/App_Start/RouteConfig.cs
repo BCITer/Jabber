@@ -21,6 +21,12 @@ namespace JabberBCIT
                 defaults: new { controller = "Forum", action = "VoteComment" }
             );
 
+			routes.MapRoute(
+                name: "CreateSubForum",
+                url: "Forum/CreateSubForum",
+                defaults: new { controller = "Forum", action = "CreateSubForum" }
+            );
+			
             routes.MapRoute(
                 name: "CreatePost",
                 url: "Forum/{tag}/CreatePost",
@@ -32,6 +38,13 @@ namespace JabberBCIT
                 url: "Forum/{tag}/{id}",
                 defaults: new { controller = "Forum", action = "ViewThread"}
             );
+
+            routes.MapRoute(
+                name: "DeletePost",
+                url: "Forum/{tag}/{id}/Delete",
+                defaults: new { controller = "Forum", action = "DeletePost" }
+            );
+
             routes.MapRoute(
                 name: "ViewForum",
                 url: "Forum/{tag}",
@@ -47,7 +60,13 @@ namespace JabberBCIT
                 url: "Forum/{tag}/{id}/{commentID}/Reply",
                 defaults: new { controller = "Forum", action = "CreateComment" }
             );
-           
+
+            routes.MapRoute(
+                name: "DeleteComment",
+                url: "Forum/{tag}/{id}/{commentID}/Delete",
+                defaults: new { controller = "Forum", action = "DeleteComment" }
+            );
+
             routes.MapRoute(
                 name: "EditProfile",
                 url: "Profile/Edit",

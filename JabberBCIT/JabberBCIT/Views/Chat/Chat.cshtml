@@ -9,34 +9,31 @@
 
 @Html.AntiForgeryToken()
 
-<div class="container2">
-    @using (Html.BeginForm("Chat", "Chat", FormMethod.Post, new { name = "Start", id="Start"}))
-    {
-        <div id="allChats">
-            <div id="newChat"><br /><h5>Create New Chat</h5><br /></div>
-            @Html.Raw(ViewBag.Chats)
-        </div>
-        <div id="center">
-            <div>
-                @Html.TextBoxFor(model => model.GroupName, htmlAttributes: new { @id = "addName", @placeholder = "Group Name" })
-                <input type="text" name="memberSearch" id="memberSearch" placeholder="UserName" />
-                <input type="button" value="Add" id="addMember" />
-                <label id="memberList" />
-                @Html.HiddenFor(model => model.Members, htmlAttributes: new { @id = "membersHidden" })
-                <input type="submit" value="Done" id="createConversation" />
-            </div>
-            <div id="allMessages">
-                @Html.Raw(ViewBag.Messages)
-            </div>
-            <input type="text" id="messageBox"/>
-            @Html.HiddenFor(model => model.NewMessage, htmlAttributes: new { @id = "newMessage" })
-        </div>
-        @Html.HiddenFor(model => model.ChatID, htmlAttributes: new { @id = "chatID" })
-        <div id="allMembers">
-            @Html.Raw(ViewBag.Members)
-        </div>
-    }
-
+<div id="wrapper">
+	@using (Html.BeginForm("Chat", "Chat", FormMethod.Post, new { name = "Start", id="Start"}))
+	{
+		<div class="side_columns">
+			<div class="chat_convos">
+				@Html.Raw(ViewBag.Chats)
+			</div>
+		</div>
+		<div id="chat" class="container">
+			@Html.HiddenFor(model => model.ChatID, htmlAttributes: new { @id = "chatID" })
+			<ul id="discussion">@Html.Raw(ViewBag.Messages)</ul>
+			<input type="text" id="message" placeholder="Enter message here..." />
+			<input type="button" id="sendmessage" class="btn btn-default" value="Send" />
+			<input type="hidden" id="displayname" />
+		</div>
+		<div class="side_columns">
+			<div class="chat_members">
+				<ul class="nav navbar-nav side-nav">
+					<li>
+						@Html.Raw(ViewBag.Members)
+					</li>
+				</ul>
+			</div>
+		</div>
+	}
 </div>
 @section scripts {
     <!--Script references. -->
@@ -89,8 +86,24 @@
                     $('#Start').submit();
                     $('#newMessage').val('');
                 }
-
             });
-        });
+		});
+         function keypressHandler(e) {
+            if (e.which == 13) { // user presses enter (13 is ascii for CR (enter))
+                e.preventDefault(); //stops default action: submitting form
+                $(this).blur();
+                $('#sendmessage').focus().click();//give your submit an ID
+
+                //$('#discussion').scrollTop($('#discussion')[0].scrollHeight);
+                $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
+            }
+        }
+        $('#message').keypress(keypressHandler);
+		 function mouseClickSend() {
+            $(this).blur();
+            //  $('#sendmessage').focus().click();//give your submit an ID
+            $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
+        }
     </script>
+
 }
