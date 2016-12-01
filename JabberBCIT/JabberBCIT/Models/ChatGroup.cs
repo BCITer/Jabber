@@ -9,5 +9,7 @@ namespace JabberBCIT.Models
     {
         public string GroupName { get; set; }
         public string Members { get; set; }
+        public int ChatID { get; set; }
+        public string NewMessage { get; set; }
     }
 }

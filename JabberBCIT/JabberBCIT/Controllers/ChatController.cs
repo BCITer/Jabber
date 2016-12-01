@@ -39,12 +39,28 @@ namespace JabberBCIT.Controllers
 
                 AddConversationMembers(chatID, User.Identity.GetUserId());
 
-                conn.Close();
             }
 
+            if (cg.ChatID >= 0)
+            {
+
+                ViewBag.Members = GetAllMembers(cg.ChatID);
+                ViewBag.Messages = GetAllMessages(cg.ChatID);
+            } else
+            {
+                ViewBag.Members = "";
+                ViewBag.Messages = "";
+            }
+
+            if (!String.IsNullOrEmpty(cg.NewMessage))
+            {
+                AddMessage(cg.ChatID, cg.NewMessage);
+            }
+
+            ViewBag.Chats = GetAllConversations();
+            conn.Close();
+
             ModelState.Clear();
-            //ModelState.Remove("Members");
-            ViewBag.HtmlStr = GetAllConversations();
             return View();
         }
 
@@ -153,6 +169,60 @@ namespace JabberBCIT.Controllers
                 html += "<div class=\"chats\" id=\"" + chatID + "\"><br /><h3>" + chatName + "</h3><br /></div>";
             }
             return html;
+        }
+
+        public string GetAllMembers(int chatID)
+        {
+            string html = "";
+
+            DataTable dtNames = new DataTable();
+
+            string sqlQuery = "select UserName from ChatConversationMembers a left join AspNetUsers b on a.UserID=b.Id where ChatID = '" + chatID + "'";
+
+            SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conn);
+            da.Fill(dtNames);
+
+            foreach (DataRow row in dtNames.Rows)
+            {
+                string userName = row["UserName"].ToString();
+
+                html += "<h4>" + userName + "</h4><br />";
+            }
+            return html;
+        }
+
+        public string GetAllMessages(int chatID)
+        {
+            string html = "";
+
+            DataTable dtNames = new DataTable();
+
+            string sqlQuery = "select UserName, \"Message\" from ChatMessages a left join AspNetUsers b on a.UserID=b.Id where ChatID = '" + chatID + "' order by \"Timestamp\" asc";
+
+            SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conn);
+            da.Fill(dtNames);
+
+            foreach (DataRow row in dtNames.Rows)
+            {
+                string userName = row["UserName"].ToString();
+                string message = row["Message"].ToString();
+
+                html += "<p>" + userName + ": " + message + "</p><br />";
+            }
+            return html;
+        }
+
+        public void AddMessage(int chatID, string message)
+        {
+            string sqlQuery = "insert into ChatMessages (ChatID, UserID, \"Message\", \"Timestamp\") values (@ChatID, @UserID, @Message, @Now)";
+
+            SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+            cmd.Parameters.AddWithValue("@ChatID", chatID);
+            cmd.Parameters.AddWithValue("@UserID", User.Identity.GetUserId());
+            cmd.Parameters.AddWithValue("@Message", message);
+            cmd.Parameters.AddWithValue("@Now", DateTime.Now);
+
+            cmd.ExecuteNonQuery();
         }
     }
 }

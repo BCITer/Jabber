@@ -14,19 +14,29 @@
     {
         <div id="allChats">
             <div id="newChat"><br /><h5>Create New Chat</h5><br /></div>
-            @Html.Raw(ViewBag.HtmlStr)
+            @Html.Raw(ViewBag.Chats)
         </div>
-        <div id="allMessages">
-            @Html.TextBoxFor(model => model.GroupName, htmlAttributes: new { @id = "addName", @placeholder="Group Name" })
-            <input type="text" name="memberSearch" id="memberSearch" placeholder="UserName" />
-            <input type="button" value="Add" id="addMember" />
-            <label id="memberList"/>
-            @Html.HiddenFor(model => model.Members, htmlAttributes: new { @id = "membersHidden"})
-            <input type="submit" value="Done" id="createConversation" />
+        <div id="center">
+            <div>
+                @Html.TextBoxFor(model => model.GroupName, htmlAttributes: new { @id = "addName", @placeholder = "Group Name" })
+                <input type="text" name="memberSearch" id="memberSearch" placeholder="UserName" />
+                <input type="button" value="Add" id="addMember" />
+                <label id="memberList" />
+                @Html.HiddenFor(model => model.Members, htmlAttributes: new { @id = "membersHidden" })
+                <input type="submit" value="Done" id="createConversation" />
+            </div>
+            <div id="allMessages">
+                @Html.Raw(ViewBag.Messages)
+            </div>
+            <input type="text" id="messageBox"/>
+            @Html.HiddenFor(model => model.NewMessage, htmlAttributes: new { @id = "newMessage" })
         </div>
+        @Html.HiddenFor(model => model.ChatID, htmlAttributes: new { @id = "chatID" })
         <div id="allMembers">
+            @Html.Raw(ViewBag.Members)
         </div>
     }
+
 </div>
 @section scripts {
     <!--Script references. -->
@@ -45,6 +55,10 @@
                     $('#addMember').show();
                     $('#memberList').show();
                     $('#createConversation').show();
+                    $('#chatID').val('-1');
+                    $('#allMessages').hide();
+                    $('#allMembers').hide();
+                    $('#messageBox').hide();
                 }
             });
             $(document).on('click', '.chats', function (e) {
@@ -53,6 +67,11 @@
                 $('#addMember').hide();
                 $('#memberList').hide();
                 $('#createConversation').hide();
+                $('#allMessages').show();
+                $('#allMembers').show();
+                $('#messageBox').show();
+                $('#chatID').val(this.id);
+                $('#Start').submit();
             });
             $(document).ready(function () {
                 $('#memberSearch').autocomplete({
@@ -63,6 +82,14 @@
                 $('#memberList').html($('#memberList').html() + $('#memberSearch').val() + "<br/>")
                 $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ")
                 $('#memberSearch').val('');
+            });
+            $('#messageBox').bind('keyup', function (e) {
+                if (e.keyCode === 13) { // 13 is enter key
+                    $('#newMessage').val($('#messageBox').val());
+                    $('#Start').submit();
+                    $('#newMessage').val('');
+                }
+
             });
         });
     </script>
