@@ -10,10 +10,11 @@
 @Html.AntiForgeryToken()
 
 <div class="container2">
-    @using (Html.BeginForm("Chat", "Chat", FormMethod.Post, new { name = "Start" }))
+    @using (Html.BeginForm("Chat", "Chat", FormMethod.Post, new { name = "Start", id="Start"}))
     {
         <div id="allChats">
             <div id="newChat"><br /><h5>Create New Chat</h5><br /></div>
+            @Html.Raw(ViewBag.HtmlStr)
         </div>
         <div id="allMessages">
             @Html.TextBoxFor(model => model.GroupName, htmlAttributes: new { @id = "addName", @placeholder="Group Name" })
@@ -62,30 +63,6 @@
                 $('#memberList').html($('#memberList').html() + $('#memberSearch').val() + "<br/>")
                 $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ")
                 $('#memberSearch').val('');
-            });
-            $(document).on('click', '#createConversation', function (e) {
-                e.preventDefault(); // <------------------ stop default behaviour of button
-                $('#allChats').append("<div class=\"chats\"><br /><h3>" + $('#addName').val() + "</h3><br /></div>");
-                var element = this;
-                $.ajax({
-                    url: "/Home/SaveDetailedInfo",
-                    type: "POST",
-                    data: JSON.stringify({ 'Options': someData }),
-                    dataType: "json",
-                    traditional: true,
-                    contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        if (data.status == "Success") {
-                            alert("Done");
-                            $(element).closest("form").submit(); //<------------ submit form
-                        } else {
-                            alert("Error occurs on the Database level!");
-                        }
-                    },
-                    error: function () {
-                        alert("An error has occured!!!");
-                    }
-                });
             });
         });
     </script>

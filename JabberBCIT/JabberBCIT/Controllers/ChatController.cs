@@ -42,9 +42,9 @@ namespace JabberBCIT.Controllers
                 conn.Close();
             }
 
-            //ModelState.Clear();
-            ModelState.Remove("GroupName");
-            ModelState.Remove("Members");
+            ModelState.Clear();
+            //ModelState.Remove("Members");
+            ViewBag.HtmlStr = GetAllConversations();
             return View();
         }
 
@@ -132,6 +132,27 @@ namespace JabberBCIT.Controllers
                 );
 
             return Json(filteredItems, JsonRequestBehavior.AllowGet);
+        }
+
+        public string GetAllConversations()
+        {
+            string html = "";
+
+            DataTable dtNames = new DataTable();
+
+            string sqlQuery = "select a.ChatID, ChatName from ChatConversation a left join ChatConversationMembers b on a.ChatID=b.ChatID where b.UserID = '" + User.Identity.GetUserId() + "'";
+
+            SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conn);
+            da.Fill(dtNames);
+
+            foreach (DataRow row in dtNames.Rows)
+            {
+                string chatID = row["ChatID"].ToString();
+                string chatName = row["ChatName"].ToString();
+
+                html += "<div class=\"chats\" id=\"" + chatID + "\"><br /><h3>" + chatName + "</h3><br /></div>";
+            }
+            return html;
         }
     }
 }
