@@ -25,13 +25,11 @@
     height:100vh;
     background-color: white;
     border:0.1px solid black;
-    float: left;
-    display: none;
 }
 
-#memberSearch, #addMember, #createConversation, #memberList, #addName, #allMessages, #messageBox {
+/*#memberSearch, #addMember, #createConversation, #memberList, #addName, #allMessages, #messageBox {
     display: none;
-}
+}*/
 
 #newChat:hover {
     background-color: lightgray;

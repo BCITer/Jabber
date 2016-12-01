@@ -52,10 +52,10 @@ namespace JabberBCIT.Controllers
                 ViewBag.Messages = "";
             }
 
-            if (!String.IsNullOrEmpty(cg.NewMessage))
+           /* if (!String.IsNullOrEmpty(cg.NewMessage))
             {
                 AddMessage(cg.ChatID, cg.NewMessage);
-            }
+            }*/
 
             ViewBag.Chats = GetAllConversations();
             conn.Close();
