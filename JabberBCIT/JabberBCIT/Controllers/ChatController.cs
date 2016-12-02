@@ -60,7 +60,7 @@ namespace JabberBCIT.Controllers
             ViewBag.Chats = GetAllConversations();
             conn.Close();
 
-            ModelState.Clear();
+            ModelState.Remove("memberList");
             return View();
         }
 
