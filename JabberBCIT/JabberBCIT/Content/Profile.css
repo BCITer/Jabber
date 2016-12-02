@@ -1,5 +1,5 @@
 ﻿.avatar > img {
-    margin:20px 50px;
+    margin:20px 90px;
 }
 
 .avatar >  label{
@@ -19,7 +19,6 @@
 }
 
 .avatar {
-
 }
 .avatar:hover img{
     opacity:0.5;
@@ -37,7 +36,7 @@
 }
 
 .subBtn {
-    margin:0px 70px;
+    margin:0px 62px;
 }
 
 /* Info Section */
@@ -66,5 +65,7 @@ input[type=file]#Avatar {
 }
 
 input[type=submit]#profile-update {
+    background-color: dodgerblue;
+    color: #eee;
     margin-top: 7px;
 }
