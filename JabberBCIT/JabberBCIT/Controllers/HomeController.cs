@@ -33,9 +33,11 @@ namespace JabberBCIT.Controllers {
             // get all of them, technically sort by the commentid so newer ones are at the top, same thing as date
              var notifications = db.Notifications.Where(x => x.UserID == id).OrderBy((notification => notification.ObjectID)).Take(5).ToList();
             var unseen = notifications.Sum(x => x.Seen);
-
-            notifications.ForEach(x => x.Seen = 0); // set all to seen
-            db.SaveChanges();
+            if (unseen > 0)
+            {
+                notifications.ForEach(x => x.Seen = 0); // set all to seen
+                db.SaveChanges();
+            }
 
             NotificationViewModel viewModel = new NotificationViewModel()
             {

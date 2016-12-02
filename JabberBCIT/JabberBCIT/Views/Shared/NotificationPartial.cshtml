@@ -3,6 +3,20 @@
 @Styles.Render("~/Content/Notifications.css")
 @Scripts.Render("~/Scripts/Notifications.js")
 
+@* really stupid, but small inline for displaying the amount of notifications *@
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @if (Model.newNotifications > 0)
+        {
+            $('#noti_Counter')
+                .text(@Model.newNotifications.ToString());
+        }
+        });
+</script>
+
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -10,12 +24,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li id="noti_Container" class="">
                 <div id="noti_Counter"> 
-                    @{ 
-                        if (Model.newNotifications != 0)
-                        {
-                            @Model.newNotifications;
-                        }
-                    }
+                    
                 </div>   <!--count of unseen notifications-->
                 <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
                 <div id="noti_Button"></div>
@@ -31,7 +40,6 @@
                             <br />
                         }
                     </div>
-                    <div class="seeAll"><a href="#">See All</a></div>
                 </div>
             </li>
         </ul>
