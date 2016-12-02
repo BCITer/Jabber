@@ -1,5 +1,5 @@
 ﻿.avatar > img {
-    margin:20px 90px;
+    margin:20px 50px;
 }
 
 .avatar >  label{
@@ -19,6 +19,7 @@
 }
 
 .avatar {
+
 }
 .avatar:hover img{
     opacity:0.5;
@@ -36,7 +37,7 @@
 }
 
 .subBtn {
-    margin:0px 62px;
+    margin:0px 70px;
 }
 
 /* Info Section */
