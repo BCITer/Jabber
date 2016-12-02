@@ -15,24 +15,35 @@
     {
         <div class="side_columns">
             <div class="chat_convos">
+                <div id="newChat"><br /><h3>Create New Chat</h3></div>
                 @Html.Raw(ViewBag.Chats)
             </div>
         </div>
         <div id="chat" class="container">
             @Html.HiddenFor(model => model.ChatID, htmlAttributes: new { @id = "chatID" })
-            <ul id="discussion">@Html.Raw(ViewBag.Messages)</ul>
+            <ul id="discussion">
+                @Html.Raw(ViewBag.Messages)
+            </ul>
             <input type="text" id="message" placeholder="Enter message here..." />
             <input type="button" id="sendmessage" class="btn btn-default" value="Send" />
             <input type="hidden" id="displayname" />
         </div>
         <div class="side_columns">
             <div class="chat_members">
-                <ul class="nav navbar-nav side-nav">
+                <ul id="memberList" class="nav navbar-nav side-nav">
                     <li>
                         @Html.Raw(ViewBag.Members)
                     </li>
                 </ul>
             </div>
+        </div>
+        <div id="newChatDiv">
+            @Html.TextBoxFor(model => model.GroupName, htmlAttributes: new { @id = "addName", @placeholder = "Group Name" })
+            <input type="text" name="memberSearch" id="memberSearch" placeholder="UserName" />
+            <input type="button" value="Add" id="addMember" />
+            <label id="members" />
+            @Html.HiddenFor(model => model.Members, htmlAttributes: new { @id = "membersHidden" })
+            <input type="submit" value="Done" id="createConversation" />
         </div>
     }
 </div>
@@ -62,6 +73,10 @@
                 }
             });
         });
+        con.start().done(function () {
+            var userId = "@User.Identity.GetUserId()";
+            hub.invoke('ConnectToGroups', userId, $('#chatID').val());            
+        });
       
         var sndFunc = function () {
             var msg = Trim($("#message").val());
@@ -79,31 +94,21 @@
         });
         $(function () {
             $(document).on('click', '#newChat', function (e) {
-                if (!$('#memberSearch').is(":visible")) {
-                    $('#addName').show();
-                    $('#memberSearch').show();
-                    $('#addMember').show();
-                    $('#memberList').show();
-                    $('#createConversation').show();
+                if (!$('#newChatDiv').is(":visible")) {
+                    $('#newChatDiv').show();
+                    $('#message').hide();
+                    $('#memberList').hide();
+                    $('#discussion').hide();
                     $('#chatID').val('-1');
-                    $('#allMessages').hide();
-                    $('#allMembers').hide();
-                    $('#messageBox').hide();
                 }
             });
             $(document).on('click', '.chats', function (e) {
-                $('#addName').hide();
-                $('#memberSearch').hide();
-                $('#addMember').hide();
-                $('#memberList').hide();
-                $('#createConversation').hide();
-                $('#allMessages').show();
-                $('#allMembers').show();
-                $('#messageBox').show();
+                $('#newChatDiv').hide();
+                $('#message').show();
+                $('#memberList').show();
+                $('#discussion').show();
                 $('#chatID').val(this.id);
-                
-                var userId = "@User.Identity.GetUserId()";
-                hub.invoke('ConnectToGroups', userId, $('#chatID').val());
+                $('#addName').val("");
                 $('#Start').submit();
             });
             $(document).ready(function () {
@@ -112,7 +117,7 @@
                 });
             });
             $(document).on('click', '#addMember', function (e) {
-                $('#memberList').html($('#memberList').html() + $('#memberSearch').val() + "<br/>")
+                $('#members').html($('#members').html() + $('#memberSearch').val() + "<br/>")
                 $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ")
                 $('#memberSearch').val('');
             });
@@ -124,13 +129,6 @@
                 }
             });
         });
-
-        /*$('#message').keypress(keypressHandler);
-         function mouseClickSend() {
-            $(this).blur();
-            //  $('#sendmessage').focus().click();//give your submit an ID
-            $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
-        }*/
     </script>
 
 }

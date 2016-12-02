@@ -50,15 +50,5 @@ namespace JabberBCIT
             }*/
             Groups.Add(Context.ConnectionId, chatID);
         }
-
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            return base.OnDisconnected(stopCalled);
-        }
-
-        public void JoinRoom(string userName, string roomName)
-        {
-            
-        }
     }
 }

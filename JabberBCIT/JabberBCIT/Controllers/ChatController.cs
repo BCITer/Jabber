@@ -41,27 +41,15 @@ namespace JabberBCIT.Controllers
 
             }
 
-            if (cg.ChatID >= 0)
-            {
-
-                ViewBag.Members = GetAllMembers(cg.ChatID);
-                ViewBag.Messages = GetAllMessages(cg.ChatID);
-            } else
-            {
-                ViewBag.Members = "";
-                ViewBag.Messages = "";
-            }
-
-           /* if (!String.IsNullOrEmpty(cg.NewMessage))
-            {
-                AddMessage(cg.ChatID, cg.NewMessage);
-            }*/
+            ViewBag.Members = GetAllMembers(cg.ChatID);
+            ViewBag.Messages = GetAllMessages(cg.ChatID);
 
             ViewBag.Chats = GetAllConversations();
             conn.Close();
 
-            ModelState.Remove("memberList");
-            return View();
+            ModelState.Remove("membersHidden");
+            cg.GroupName = "";
+            return View(cg);
         }
 
         public void NewChatConversation(string groupName)
@@ -212,19 +200,6 @@ namespace JabberBCIT.Controllers
 
             }
             return html;
-        }
-
-        public void AddMessage(int chatID, string message)
-        {
-            string sqlQuery = "insert into ChatMessages (ChatID, UserID, \"Message\", \"Timestamp\") values (@ChatID, @UserID, @Message, @Now)";
-
-            SqlCommand cmd = new SqlCommand(sqlQuery, conn);
-            cmd.Parameters.AddWithValue("@ChatID", chatID);
-            cmd.Parameters.AddWithValue("@UserID", User.Identity.GetUserId());
-            cmd.Parameters.AddWithValue("@Message", message);
-            cmd.Parameters.AddWithValue("@Now", DateTime.Now);
-
-            cmd.ExecuteNonQuery();
         }
     }
 }
