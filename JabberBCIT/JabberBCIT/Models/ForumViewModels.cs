@@ -6,7 +6,7 @@ namespace JabberBCIT.Models
 {
 	public class CreateSubForumViewModel
     {
-        [DisplayName("Subforum Name")]
+        [DisplayName("Topic")]
         public string Name { get; set; }
     }
 	
