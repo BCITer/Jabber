@@ -52,10 +52,8 @@ namespace JabberBCIT.Controllers
 
             ViewBag.Chats = GetAllConversations();
             conn.Close();
-
-            ModelState.Remove("membersHidden");
-            cg.GroupName = "";
-            return View(cg);
+            
+            return View();
         }
 
 
