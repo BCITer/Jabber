@@ -9,6 +9,7 @@
 }
 
 #discussion {
+    display: inline-block;
     padding-top: 6px;
     padding-left: 0;
     width: 100%;
@@ -21,28 +22,35 @@
     border-bottom-style: solid;
     border-bottom-width: 2px;
     border-bottom-color: rgba(0, 0, 0, 0.0980392);
+    text-align: left;
 }
-
+#chatmessage {
+    width: 100%;
+}
 #left {
+    display: block;
     font-size: 14px;
     white-space: pre-wrap;
-    padding: 6px 12px 6px 12px;
     color: black;
-    line-height: 1.28;
+    clear: left;
+    max-width: 60%;
+    box-sizing: content-box;
+    word-wrap: break-word;
+    margin: 0;
+    margin-bottom: 12px;
+    direction: ltr;
     background-color: #f1f0f0;
     border-bottom-right-radius: 18.2px;
     border-top-right-radius: 18.2px;
     border-top-left-radius: 18.2px;
     border-bottom-left-radius: 4px;
-    max-width: 60%;
-    clear: right;
-    box-sizing: content-box;
-    word-wrap: break-word;
-    margin: 0;
-    margin-bottom: 6px;
-    direction: ltr;
+    padding: 6px 12px 6px 12px;
 }
 
+#left span {
+    line-height: 1.28;
+    max-width: 60%;
+}
 #right {
     padding: 6px 12px 6px 12px;
     color: white;

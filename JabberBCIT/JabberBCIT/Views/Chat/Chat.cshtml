@@ -25,9 +25,9 @@
         </div>
         <div id="chat" class="container">
             @Html.HiddenFor(model => model.ChatID, htmlAttributes: new { @id = "chatID" })
-            <ul id="discussion">
+            <div id="discussion">
                 @Html.Raw(ViewBag.Messages)
-            </ul>
+            </div>
             <input type="text" id="message" placeholder="Enter message here..." />
             <input type="button" id="sendmessage" class="btn btn-default" value="Send" />
             <input type="hidden" id="displayname" />
@@ -93,7 +93,7 @@
         };
         hub.on('AddMessage', function (username, message) {
             console.log(username + ": " + message);
-            $("#discussion").append("<div id=\"right\"><span> <strong>" + username + ": </strong>" + message + "</span></div>");
+            $("#discussion").append("<div id=\"chatmessage>\"><div id=\"right\"><span><strong>" + username + ": </strong>" + message + "</span></div></div>");
 
         });
         $(function () {
