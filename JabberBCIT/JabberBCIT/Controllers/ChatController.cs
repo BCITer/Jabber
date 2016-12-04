@@ -154,7 +154,7 @@ namespace JabberBCIT.Controllers
                 string chatID = row["ChatID"].ToString();
                 string chatName = row["ChatName"].ToString();
 
-                html += "<div class=\"chats\" id=\"" + chatID + "\"><br /><h3>" + chatName + "</h3></div>";
+                html += "<a href=\"#\" class=\"chats\" id=\"" + chatID + "\">" + chatName + "</a>";
             }
             return html;
         }

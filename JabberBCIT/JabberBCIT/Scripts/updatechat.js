@@ -4,8 +4,8 @@
     // Create a function that the hub can call back to display messages.
     chat.client.addNewMessageToPage = function (name, message) {
         // Add the message to the page.
-        $('#discussion').append('<li><strong>' + htmlEncode(name)
-            + '</strong>: ' + htmlEncode(message) + '</li>');
+        $('#discussion').append('<div>' + '<span>' + htmlEncode(name)
+            + ': ' + htmlEncode(message) + '</span>' + '</div>');
         $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
     };
     // Set initial focus to message input box.

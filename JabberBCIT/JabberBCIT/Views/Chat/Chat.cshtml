@@ -15,8 +15,12 @@
     {
         <div class="side_columns">
             <div class="chat_convos">
-                <div id="newChat"><br /><h3>Create New Chat</h3></div>
-                @Html.Raw(ViewBag.Chats)
+                <div id="newChat" class="btn btn-default">Create New Chat</div>
+                <ul id="chatlist" class="nav navbar-nav side-nav">
+                    <li>
+                        @Html.Raw(ViewBag.Chats)
+                    </li>
+                </ul>
             </div>
         </div>
         <div id="chat" class="container">
@@ -89,7 +93,7 @@
         };
         hub.on('AddMessage', function (username, message) {
             console.log(username + ": " + message);
-            $("#discussion").append("<li><strong>" + username + "</strong>: " + message + "</li>");
+            $("#discussion").append("<div><span> <strong>" + username + ": </strong>" + message + "</span></div>");
 
         });
         $(function () {
