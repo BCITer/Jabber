@@ -100,6 +100,8 @@
                     $('#memberList').hide();
                     $('#discussion').hide();
                     $('#chatID').val('-1');
+                    $('#addName').val('');
+                    $('#membersHidden').val('');
                 }
             });
             $(document).on('click', '.chats', function (e) {
@@ -117,8 +119,8 @@
                 });
             });
             $(document).on('click', '#addMember', function (e) {
-                $('#members').html($('#members').html() + $('#memberSearch').val() + "<br/>")
-                $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ")
+                $('#members').html($('#members').html() + $('#memberSearch').val() + "<br/>");
+                $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ");
                 $('#memberSearch').val('');
             });
             $('#messageBox').bind('keyup', function (e) {

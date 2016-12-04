@@ -12,7 +12,8 @@ namespace JabberBCIT
         static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChitterContext"].ConnectionString;
         SqlConnection conn = new SqlConnection(connectionString);
         /// <summary>
-        /// This method is called on the client side to broadcast a message to al clients
+        /// This method is called on the client side to broadcast a message to al clients.
+        /// It also stores a copy of the message in the database.
         /// </summary>
         /// <param name="message">message recieved from the client to be broadcasted to all clients</param>
         public void Send(string roomName, string sender, string msg, string senderID) {
@@ -23,7 +24,7 @@ namespace JabberBCIT
             cmd.Parameters.AddWithValue("@ChatID", roomName);
             cmd.Parameters.AddWithValue("@UserID", senderID);
             cmd.Parameters.AddWithValue("@Message", msg);
-            cmd.Parameters.AddWithValue("@Now", DateTime.Now);
+            cmd.Parameters.AddWithValue("@Now", DateTime.UtcNow);
 
             conn.Open();
             cmd.ExecuteNonQuery();
@@ -31,23 +32,13 @@ namespace JabberBCIT
 
             Clients.Group(roomName).AddMessage(sender, msg);
         }
+        /// <summary>
+        /// Connects users to a specific conversation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="chatID"></param>
         public void ConnectToGroups(string sender, string chatID)
         {
-            /*DataTable dtNames = new DataTable();
-
-            string sqlQuery = "select ChatID from ChatConversationMembers where UserID = '" + 
-                               sender + "'";
-
-            SqlDataAdapter da = new SqlDataAdapter(sqlQuery, conn);
-            da.Fill(dtNames);
-            if(dtNames.Rows.Count > 0)
-            {
-                foreach (DataRow row in dtNames.Rows)
-                {
-                    string chatID = row["ChatID"].ToString();
-                    Groups.Add(Context.ConnectionId, chatID);
-                }
-            }*/
             Groups.Add(Context.ConnectionId, chatID);
         }
     }
