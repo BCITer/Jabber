@@ -39,6 +39,7 @@
     box-sizing: content-box;
     word-wrap: break-word;
     margin: 0;
+    margin-bottom: 6px;
     direction: ltr;
 }
 
@@ -58,6 +59,7 @@
     box-sizing: content-box;
     word-wrap: break-word;
     margin: 0;
+    margin-bottom: 6px;
     direction: ltr;
     display: block;
 }
