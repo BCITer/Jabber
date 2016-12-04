@@ -16,7 +16,6 @@
     height: 87vh;
     background: white;
     overflow-y: scroll;
-    display: inline-block;
     list-style: none;
     float: left;
     border-bottom-style: solid;
@@ -25,20 +24,20 @@
     text-align: left;
 }
 #chatmessage {
+    float: left;
     width: 100%;
 }
+
 #left {
-    display: block;
+    display: inline-block;
     font-size: 14px;
     white-space: pre-wrap;
     color: black;
     clear: left;
-    max-width: 60%;
-    box-sizing: content-box;
     word-wrap: break-word;
     margin: 0;
     margin-bottom: 12px;
-    direction: ltr;
+    max-width: 60%;
     background-color: #f1f0f0;
     border-bottom-right-radius: 18.2px;
     border-top-right-radius: 18.2px;
@@ -49,7 +48,7 @@
 
 #left span {
     line-height: 1.28;
-    max-width: 60%;
+    direction: ltr;
 }
 #right {
     padding: 6px 12px 6px 12px;
@@ -96,6 +95,7 @@
     font-size: 14px;
     margin-left: 0.25%;
     width: 100%;
+    height: 5vh;
     padding: 0;
     border-style: none;
     outline: none;
@@ -111,6 +111,8 @@
     background: transparent;
     border: none !important;
     font-size: 0;
+    visibility: hidden;
+    
 }
 
 .side-nav {
