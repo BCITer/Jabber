@@ -52,7 +52,9 @@
                         @foreach(var notification in Model.notifications)
                         {
                             <div>
-                                @notification.Type;
+                                <a href="/Forum/@notification.ObjectID">
+                                    @notification.Text
+                                </a>
                             </div>
                             <br />
                         }

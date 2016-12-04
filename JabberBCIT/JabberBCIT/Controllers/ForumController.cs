@@ -77,9 +77,10 @@ namespace JabberBCIT.Controllers
                 db.SaveChanges();
 
                 Notification n = new Notification()
-                {
-                    ObjectID = comment.CommentID,
-                    Type = new string(comment.Text.Take(30).ToArray()),
+                { // we can build the link to this post in here
+                    ObjectID = comment.ForumPost.Subforum.Name + '/' + comment.ForumPost.PostID.ToString(),
+                    Type = "Comment",
+                    Text = new string(comment.Text.Take(30).ToArray()),
                 };
 
                 // if this is a child comment
