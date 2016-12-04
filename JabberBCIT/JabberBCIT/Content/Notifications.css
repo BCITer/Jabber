@@ -17,7 +17,7 @@
 
 /* Red notify counter */
 #noti_Counter {
-    display: block;
+    display: none;
     position: absolute;
     background: #E1141E;
     color: #FFF;

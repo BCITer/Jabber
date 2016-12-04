@@ -5,13 +5,30 @@
 
 @* really stupid, but small inline for displaying the amount of notifications *@
 
-
 <script type="text/javascript">
     $(document).ready(function () {
         @if (Model.newNotifications > 0)
         {
-            $('#noti_Counter')
-                .text(@Model.newNotifications.ToString());
+            <text>
+                $('#noti_Counter')
+                .text(@Model.newNotifications.ToString())
+                .css({ opacity: 0 })
+                .css({ top: '-10px' })
+                .animate({ top: '-2px', opacity: 1 }, 500)
+                
+                $('$noti_Button')
+                .css({ 'backgorund-color': '#FFF' })
+                .css({ 'display': 'block' })
+        
+            </text>
+        }
+        else
+        {
+            <text>
+                $('#noti_Counter').fadeOut('fast');
+
+                $('#noti_Button').css('background-color', '#2E467C');
+            </text>
         }
         });
 </script>

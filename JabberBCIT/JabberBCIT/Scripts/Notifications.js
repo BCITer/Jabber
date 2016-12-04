@@ -1,10 +1,4 @@
 ﻿$(document).ready(function () {
-    // ANIMATEDLY DISPLAY THE NOTIFICATION COUNTER.
-    $('#noti_Counter')
-        .css({ opacity: 0 })
-        .css({ top: '-10px' })
-        .animate({ top: '-2px', opacity: 1 }, 500);
-
     $('#noti_Button').click(function () {
         // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
         $('#notifications').fadeToggle('fast', 'linear', function () {
