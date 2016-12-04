@@ -194,9 +194,12 @@ namespace JabberBCIT.Controllers
             {
                 string userName = row["UserName"].ToString();
                 string message = row["Message"].ToString();
-
-                html += "<li><strong>" +userName + "</strong>: " + message + "</li>";
-
+                string compare = User.Identity.GetUserName();
+                if (userName.Equals(compare)) {
+                    html += "<div id=\"right\"><span><strong>" + userName + ":</strong>" + message + "</span></div>";
+                } else {
+                    html += "<div id=\"left\"><span><strong>" + userName + ":</strong>" + message + "</span></div>";
+                }
 
             }
             return html;

@@ -93,7 +93,7 @@
         };
         hub.on('AddMessage', function (username, message) {
             console.log(username + ": " + message);
-            $("#discussion").append("<div><span> <strong>" + username + ": </strong>" + message + "</span></div>");
+            $("#discussion").append("<div id=\"right\"><span> <strong>" + username + ": </strong>" + message + "</span></div>");
 
         });
         $(function () {
