@@ -14,7 +14,7 @@
     @using (Html.BeginForm("Chat", "Chat", FormMethod.Post, new { name = "Start", id = "Start" })) {
         <div class="side_columns">
             <div class="chat_convos">
-                <div id="newChat" class="btn btn-default">Create New Chat</div>
+                <div id="newChat" class="btn btn-default">+ Create New Chat</div>
                 <ul id="chatlist" class="nav navbar-nav side-nav">
                     <li>
                         @Html.Raw(ViewBag.Chats)
@@ -106,9 +106,6 @@
             $(document).on('click', '#newChat', function (e) {
                 if (!$('#newChatDiv').is(":visible")) {
                     $('#newChatDiv').show();
-                    //$('#message').hide();
-                    //$('#memberList').hide();
-                    //$('#discussion').hide();
                     $('#chatID').val('-1');
                     $('#addName').val('');
                     $('#membersHidden').val('');
