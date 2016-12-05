@@ -186,7 +186,7 @@ namespace JabberBCIT.Controllers
                 string chatID = row["ChatID"].ToString();
                 string chatName = row["ChatName"].ToString();
 
-                html += "<div class=\"chats\" id=\"" + chatID + "\"><br /><h3>" + chatName + "</h3></div>";
+                html += "<a href=\"#\" class=\"chats\" id=\"" + chatID + "\">" + chatName + "</a>";
             }
             return html;
         }
@@ -236,9 +236,12 @@ namespace JabberBCIT.Controllers
             {
                 string userName = row["UserName"].ToString();
                 string message = row["Message"].ToString();
-
-                html += "<li><strong>" +userName + "</strong>: " + message + "</li>";
-
+                string compare = User.Identity.GetUserName();
+                if (userName.Equals(compare)) {
+                    html += "<div id =\"chatmessage\"><div id=\"right\"><span><strong>" + userName + ": </strong>" + message + "</span></div></div>";
+                } else {
+                    html += "<div id =\"chatmessage\"><div id=\"left\"><span><strong>" + userName + ": </strong>" + message + "</span></div></div>";
+                }
 
             }
             return html;
