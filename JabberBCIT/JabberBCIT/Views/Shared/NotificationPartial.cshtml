@@ -33,32 +33,25 @@
         });
 </script>
 
-
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-        <ul class="nav navbar-nav navbar-right">
-            <li id="noti_Container" class="">
-                <div id="noti_Counter"> 
+<ul class="nav navbar-nav navbar-right">
+    <li id="noti_Container" class="">
+        <div id="noti_Counter"> 
                     
-                </div>   <!--count of unseen notifications-->
-                <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
-                <div id="noti_Button"></div>
-                <!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                <div id="notifications">
-                    <h3>Notifications</h3>
-                    <div>
-                        @foreach(var notification in Model.notifications)
-                        {
-                            <div class="notification_segment">
-                                <a href="/Forum/@notification.ObjectID/"> @notification.Text </a>
-                            </div>
-                            <br />
-                        }
+        </div>   <!--count of unseen notifications-->
+        <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
+        <div id="noti_Button"></div>
+        <!--THE NOTIFICAIONS DROPDOWN BOX.-->
+        <div id="notifications">
+            <h3>Notifications</h3>
+            <div>
+                @foreach(var notification in Model.notifications)
+                {
+                    <div class="notification_text">
+                        <a href="/Forum/@notification.ObjectID/">@notification.Text</a>
                     </div>
-                </div>
-            </li>
-        </ul>
-    }
-}
+                    <br />
+                }
+            </div>
+        </div>
+    </li>
+</ul>

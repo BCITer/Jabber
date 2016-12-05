@@ -2,8 +2,9 @@
     position: relative;
 }
 
-.notification_segment{
-    z-index: 10;
+.notification_text{
+    z-index: 3;
+    position:relative;
 }
 
 /* Circle button */
@@ -32,7 +33,7 @@
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Notification window, hidden when page loads */
@@ -45,7 +46,8 @@
     background: #FFF;
     border: solid 1px rgba(100, 100, 100, .20);
     -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .20);
-    z-index: 0;
+    z-index: 1;
+    
 }
 /* Arrow over notification window */
 #notifications:before {
