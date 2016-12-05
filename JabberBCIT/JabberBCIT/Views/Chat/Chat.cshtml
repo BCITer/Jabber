@@ -123,9 +123,11 @@
                 });
             });
             $(document).on('click', '#addMember', function (e) {
-                $('#members').html($('#members').html() + $('#memberSearch').val() + "<br/>");
-                $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ");
-                $('#memberSearch').val('');
+                if ($('#memberSearch').val() != "") {
+                    $('#members').html($('#members').html() + $('#memberSearch').val() + "<br/>");
+                    $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ");
+                    $('#memberSearch').val('');
+                }
             });
             $('#messageBox').bind('keyup', function (e) {
                 if (e.keyCode === 13) { // 13 is enter key
