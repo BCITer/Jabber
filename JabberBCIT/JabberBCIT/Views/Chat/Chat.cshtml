@@ -11,8 +11,7 @@
 @Html.AntiForgeryToken()
 
 <div id="wrapper">
-    @using (Html.BeginForm("Chat", "Chat", FormMethod.Post, new { name = "Start", id = "Start" }))
-    {
+    @using (Html.BeginForm("Chat", "Chat", FormMethod.Post, new { name = "Start", id = "Start" })) {
         <div class="side_columns">
             <div class="chat_convos">
                 <div id="newChat" class="btn btn-default">Create New Chat</div>
@@ -44,10 +43,16 @@
         <div id="newChatDiv">
             @Html.TextBoxFor(model => model.GroupName, htmlAttributes: new { @id = "addName", @placeholder = "Group Name" })
             <input type="text" name="memberSearch" id="memberSearch" placeholder="UserName" />
-            <input type="button" value="Add" id="addMember" />
-            <label id="members" />
-            @Html.HiddenFor(model => model.Members, htmlAttributes: new { @id = "membersHidden" })
-            <input type="submit" value="Done" id="createConversation" />
+            <input type="button" value="Add" id="addMember" class="btn btn-default" />
+            <div>
+                <ul id="members">
+                    <li>
+                    @Html.HiddenFor(model => model.Members, htmlAttributes: new { @id = "membersHidden" })
+                    </li>
+                </ul>
+            </div>
+            <input type="submit" class="btn btn-default" value="Done" id="createConversation" />
+            <input type="button" class="btn btn-default" value="Cancel" id="cancel" />
         </div>
     }
 </div>
@@ -79,9 +84,9 @@
         });
         con.start().done(function () {
             var userId = "@User.Identity.GetUserId()";
-            hub.invoke('ConnectToGroups', userId, $('#chatID').val());            
+            hub.invoke('ConnectToGroups', userId, $('#chatID').val());
         });
-      
+
         var sndFunc = function () {
             var msg = Trim($("#message").val());
             var username = "@User.Identity.GetUserName()";
@@ -94,15 +99,16 @@
         hub.on('AddMessage', function (username, message) {
             console.log(username + ": " + message);
             $("#discussion").append("<div id=\"chatmessage>\"><div id=\"right\"><span><strong>" + username + ": </strong>" + message + "</span></div></div>");
+            $('#discussion').animate({ scrollTop: $('#discussion').prop("scrollHeight") }, 10);
 
         });
         $(function () {
             $(document).on('click', '#newChat', function (e) {
                 if (!$('#newChatDiv').is(":visible")) {
                     $('#newChatDiv').show();
-                    $('#message').hide();
-                    $('#memberList').hide();
-                    $('#discussion').hide();
+                    //$('#message').hide();
+                    //$('#memberList').hide();
+                    //$('#discussion').hide();
                     $('#chatID').val('-1');
                     $('#addName').val('');
                     $('#membersHidden').val('');
@@ -117,17 +123,19 @@
                 $('#addName').val("");
                 $('#Start').submit();
             });
+            $(document).on('click', '#cancel', function (e) {
+                $('#newChatDiv').hide();
+            });
             $(document).ready(function () {
                 $('#memberSearch').autocomplete({
                     source: `@Url.Action("Autocomplete")`
                 });
             });
             $(document).on('click', '#addMember', function (e) {
-                if ($('#memberSearch').val() != "") {
-                    $('#members').html($('#members').html() + $('#memberSearch').val() + "<br/>");
-                    $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ");
-                    $('#memberSearch').val('');
-                }
+                //add the html below
+                $('#members').html($('#members').html() + "<li>" + $('#memberSearch').val() + "</li>");
+                $('#membersHidden').val($('#membersHidden').val() + $('#memberSearch').val() + " | ");
+                $('#memberSearch').val('');
             });
             $('#messageBox').bind('keyup', function (e) {
                 if (e.keyCode === 13) { // 13 is enter key
