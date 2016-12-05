@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace JabberBCIT.Controllers
 {
-    // [Authorize] Uncommenting this makes it so you have to login to view the forums
+    //[Authorize] 
     public class ForumController : Controller
     {
         ChitterDbContext db = ChitterDbContext.Create;

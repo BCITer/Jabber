@@ -12,6 +12,7 @@ using System.Configuration;
 
 namespace JabberBCIT.Controllers
 {
+    [Authorize]
     public class ChatController : Controller
     {
         //Our connection to the database
