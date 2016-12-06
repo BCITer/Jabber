@@ -1,9 +1,8 @@
 ﻿#noti_Container {
-    position: relative;
+    /*position: ;*/
 }
 
 .notification_text{
-    z-index: 3;
     position:relative;
 }
 

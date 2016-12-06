@@ -46,10 +46,9 @@
             <div>
                 @foreach(var notification in Model.notifications)
                 {
-                    <div class="notification_text">
-                        <a href="/Forum/@notification.ObjectID/">@notification.Text</a>
+                    <div>
+                        <a class="notification_text" href="/Forum/@notification.ObjectID/">@notification.Text</a>
                     </div>
-                    <br />
                 }
             </div>
         </div>
