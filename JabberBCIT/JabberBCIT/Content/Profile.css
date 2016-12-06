@@ -1,15 +1,15 @@
 ﻿.avatar > img {
-    margin:20px 90px;
+    margin:20px 35px;
+    width: 250px;
+    height: 250px;
+
 }
 
-.avatar >  label{
-    margin:20px 90px;
-}
 .info {
    margin-top:20px;
 }
 
-.img-thumbnail {
+.img-rounded {
     user-drag: none; 
     user-select: none;
     -moz-user-select: none;
@@ -18,8 +18,12 @@
     -ms-user-select: none;
 }
 
+.infoContainer {
+}
+
 .avatar {
 }
+
 .avatar:hover img{
     opacity:0.5;
 }

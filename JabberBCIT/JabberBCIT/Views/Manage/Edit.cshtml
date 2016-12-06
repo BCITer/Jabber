@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-md-4 avatar">
-            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-thumbnail" width="250" height="250" />
+            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-rounded"/>
             @*<label class="update btn btn-primary">
                     Upload&hellip; <input type="file" name="upload" style="display: none;">
                 </label>*@
@@ -61,3 +61,5 @@
         @Html.ActionLink("Back to profile", "Index", "Manage", new { id = Model.ID }, null)
     </div>
 </div>
+
+@Scripts.Render("~/Content/preview.js")
