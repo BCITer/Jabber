@@ -1,9 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Jabber</title>
@@ -15,7 +12,14 @@
         @Styles.Render("~/Content/Comment.less")
     @Styles.Render("~/Content/forgetPassword.css")
     @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/Profile.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/login")
+    @Scripts.Render("~/Scripts/site.js")
+    @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/Scripts/comment.js")
+
 </head>
 <body class="body-content">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -180,12 +184,5 @@
     @RenderBody()
 
     <footer></footer>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/HomeGlobal")
-    @Scripts.Render("~/Scripts/site.js")
-    @RenderSection("scripts", required: false)
-    @Scripts.Render("~/Scripts/comment.js")
 </body>
 </html>

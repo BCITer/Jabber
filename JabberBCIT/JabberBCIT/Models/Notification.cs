@@ -1,29 +1,42 @@
 namespace JabberBCIT.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class Notification
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public Notification()
+        {
+            Seen = 1; // always need to set it to unseen
+        }
+
         public long NotificationID { get; set; }
 
         [Required]
         [StringLength(128)]
         public string UserID { get; set; }
 
-        //ForumPost/Comment/Chat/Message
+        /// <summary>
+        /// forumpost/comment/chat/message
+        /// </summary>
         [Required]
         [StringLength(500)]
         public string Type { get; set; }
 
-        //PostID/CommentID/ChatID/MessageID
-        public long ObjectID { get; set; }
-
-        //0 for no, 1 for yes
+        /// <summary>
+        /// postid/commentid/chatid/messageid
+        /// </summary>
+        [StringLength(500)]
+        public string ObjectID { get; set; }
+        
+        /// <summary>
+        /// 1 for no, 0 for yes, so we can sum the amount that are unseen
+        /// </summary>
         public short Seen { get; set; }
+
+        /// <summary>
+        /// trim the blurb of the reply to fit it in
+        /// </summary>
+        [StringLength(50)]
+        public string Text { get; set; }
     }
 }

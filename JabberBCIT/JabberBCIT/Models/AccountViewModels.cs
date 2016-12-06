@@ -113,4 +113,10 @@ namespace JabberBCIT.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class NotificationViewModel
+    {
+        public List<Notification> notifications { get; set; }
+        public int newNotifications { get; set; }
+    }
 }
