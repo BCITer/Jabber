@@ -53,8 +53,8 @@
                             <h2 class="forum-header">
                                 <b>@Model.post.PostTitle</b>
                                 <br>
-                            </h2>
-                            <p id="thread-owner">@Model.post.User.UserName</p>
+                                <small>@Model.author</small>
+                            </h1>
                             <p>@Model.post.Message</p>
                             <form action="Reply">
                                 <input type="submit" class="btn btn-reply" value="Reply" />

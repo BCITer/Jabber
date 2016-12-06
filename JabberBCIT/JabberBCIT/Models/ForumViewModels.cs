@@ -13,6 +13,7 @@ namespace JabberBCIT.Models
     public class PostViewModel
     {
         public ForumPost post { get; set; }
+        public string author { get; set; }
         public int votes { get; set; }
         public DateTime PostTimestamp { get; set; }
         public List<CommentViewModel> childComments { get; set; }
@@ -21,6 +22,7 @@ namespace JabberBCIT.Models
     public class CommentViewModel
     {
         public Comment comment { get; set; }
+        public string author { get; set; }
         public int votes { get; set; }
         public int hidden { get; set; }
         public List<CommentViewModel> childComments { get; set; }
