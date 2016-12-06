@@ -15,7 +15,7 @@ namespace JabberBCIT.Models
         {
             IdentityResult result = await base.ValidateAsync(user);
 
-            if (!user.Email.ToLower().EndsWith("@my.bcit.ca"))
+            if (!user.Email.ToLower().EndsWith("@my.bcit.ca") && !user.Email.ToLower().EndsWith("@bcit.ca"))
             {
                 var errors = result.Errors.ToList();
                 errors.Add("You can only register with a BCIT email address");
