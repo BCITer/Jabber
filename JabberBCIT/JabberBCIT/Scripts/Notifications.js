@@ -23,8 +23,4 @@
             $('#noti_Button').css('background-color', '#2E467C');
         }
     });
-
-    $('#notifications').click(function () {
-        return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
-    });
 });
