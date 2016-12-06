@@ -188,7 +188,6 @@ namespace JabberBCIT.Controllers
                 { // we can build the link to this post in here
                     ObjectID = comment.ForumPost.Subforum.Name + '/' + comment.ForumPost.PostID.ToString(),
                     Type = "Comment",
-                    Text = new string(comment.Text.Take(30).ToArray()),
                 };
 
                 // if this is a child comment
@@ -196,11 +195,14 @@ namespace JabberBCIT.Controllers
                 {
                     // the userid associated with this comment is the 
                     // user of the parent comment's id
-                    n.UserID = db.Comments.Find(comment.ParentCommentID).User.Id;
+                    var user = db.Comments.Find(comment.ParentCommentID).User;
+                    n.UserID = user.Id;
+                    n.Text = "Reply to your comment by " + user.UserName + ": " + new string(comment.Text.Take(30).ToArray());
                 }
                 else // this is replying to the main post
                 {
                     n.UserID = comment.ForumPost.UserID;
+                    n.Text = "Reply to your post by: " + comment.ForumPost.User.UserName + ": " + new string(comment.Text.Take(30).ToArray());
                 }
                 db.Notifications.Add(n);
 
