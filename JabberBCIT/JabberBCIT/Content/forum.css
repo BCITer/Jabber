@@ -225,3 +225,11 @@
 .btn-reply {
     margin-bottom: 10px;
 }
+
+#New_Topic_button{
+        width: calc(98%);
+}
+
+.pull-right {
+    width:inherit;
+}
