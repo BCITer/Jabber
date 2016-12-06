@@ -25,6 +25,7 @@ namespace JabberBCIT.Controllers
                     listPostViewModel.Add(new PostViewModel()
                     {
                         post = p,
+                        author = db.Users.First(x => x.Id == p.UserID).UserName,
                         PostTimestamp = p.PostTimestamp,
                         votes = p.ForumPostsVotes.Sum(x => x.Value)
                     });
@@ -239,6 +240,7 @@ namespace JabberBCIT.Controllers
             {
                 PostViewModel viewModel = new PostViewModel();
                 viewModel.post = db.ForumPosts.Find(id);
+                viewModel.author = db.Users.First(x => x.Id == viewModel.post.UserID).UserName;
                 viewModel.votes = viewModel.post.ForumPostsVotes.Sum(x => x.Value);
                 viewModel.childComments = getCommentTree(id);
                 
@@ -258,6 +260,7 @@ namespace JabberBCIT.Controllers
                 {
                     votes = comment.CommentsVotes.Sum(x => x.Value),
                     comment = comment,
+                    author = db.Users.First(x => x.Id == comment.UserID).UserName,
                     childComments = new List<CommentViewModel>(),
                 });
             }
