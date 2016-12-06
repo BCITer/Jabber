@@ -274,7 +274,7 @@
     <Content Include="Content\HomeGlobal.js" />
     <Content Include="Content\login.css" />
     <Content Include="Content\login.js" />
-    <Content Include="Content\Notification.css" />
+    <Content Include="Content\Notifications.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
@@ -319,6 +319,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Notifications.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\site.js" />
@@ -368,7 +369,7 @@
     <Content Include="Views\Forum\PostPartial.cshtml" />
     <Content Include="Views\Forum\ViewThread.cshtml" />
     <Content Include="Views\Forum\CommentPartial.cshtml" />
-    <Content Include="Views\Shared\_NotificationPartial.cshtml" />
+    <Content Include="Views\Shared\NotificationPartial.cshtml" />
     <Content Include="Views\Forum\SidebarPartial.cshtml" />
     <Content Include="Views\Manage\PostHistory.cshtml" />
     <Content Include="Views\Manage\PostHistoryPartial.cshtml" />

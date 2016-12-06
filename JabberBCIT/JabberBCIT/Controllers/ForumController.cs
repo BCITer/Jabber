@@ -216,6 +216,76 @@ namespace JabberBCIT.Controllers
 
         public ActionResult ViewThread(long id)
         {
+            }
+            return new EmptyResult();
+        }
+
+        public ActionResult CreatePost()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreatePost(ForumPost post, string tag)
+        {
+            try
+            {
+                post.UserID = User.Identity.GetUserId();
+                post.PostTimestamp = DateTime.Now;
+                post.Subforum = db.Subforums.Where(x => x.Name == tag).FirstOrDefault();
+                db.ForumPosts.Add(post);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return new EmptyResult();
+            }
+            return RedirectToAction(post.Subforum.Name, new { id = post.PostID });
+        }
+
+        public ActionResult CreateComment()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateComment(Comment comment, long? commentID, long id)
+        {
+            {
+                comment.UserID = User.Identity.GetUserId();
+                comment.PostTimestamp = DateTime.Now;
+                comment.PostID = id;
+                comment.ParentCommentID = commentID;
+                db.Comments.Add(comment);
+                db.SaveChanges();
+
+                Notification n = new Notification()
+                { // we can build the link to this post in here
+                    ObjectID = comment.ForumPost.Subforum.Name + '/' + comment.ForumPost.PostID.ToString(),
+                    Type = "Comment",
+                    Text = new string(comment.Text.Take(30).ToArray()),
+                };
+
+                // if this is a child comment
+                if (comment.ParentCommentID != null)
+                {
+                    // the userid associated with this comment is the 
+                    // user of the parent comment's id
+                    n.UserID = db.Comments.Find(comment.ParentCommentID).User.Id;
+                }
+                else // this is replying to the main post
+                {
+                    n.UserID = comment.ForumPost.UserID;
+                }
+                db.Notifications.Add(n);
+
+                db.SaveChanges();
+            }
+            
+            return RedirectToAction("ViewThread");
+        }
+
+        public ActionResult ViewThread(long id)
+        {
             if (db.ForumPosts.Any(x => x.PostID == id))
             {
                 PostViewModel viewModel = new PostViewModel();

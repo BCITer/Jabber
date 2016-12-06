@@ -6,18 +6,10 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li id="noti_Container" class="hidden-xs">
-            <div id="noti_Counter"></div>   <!--SHOW NOTIFICATIONS COUNT.-->
-            <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
-            <div id="noti_Button"></div>
-            <!--THE NOTIFICAIONS DROPDOWN BOX.-->
-            <div id="notifications">
-                <h3>Notifications</h3>
-                <div style="height:300px;"></div>
-                <div class="seeAll"><a href="#">See All</a></div>
-            </div>
-        </li>
         <li>
+            @{ Html.RenderAction("NotificationPartial", "Home"); }
+        </li>
+        <li id="hello">
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
