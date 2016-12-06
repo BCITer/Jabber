@@ -22,10 +22,10 @@
         <div class="media-body">
             @if (Model.comment.Hidden == 0)
             {
-                <h4 class="title">@Model.comment.User.UserName</h4>
+                <h4 class="title">@Model.author</h4>
                 <p>@Model.comment.Text</p>
                 <button type="button" class="btn pull-left" onclick="@("location.href='" + @Model.comment.CommentID + "/Reply'")">Reply</button>
-                if (User.Identity.GetUserName().Equals(Model.comment.User.UserName))
+                if (User.Identity.GetUserName().Equals(Model.author))
                 {
                     <button type="button" class="btn pull-left" onclick="@("location.href='" + @Model.comment.CommentID + "/Delete'")">Delete</button>
                 }

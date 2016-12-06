@@ -1,11 +1,8 @@
 namespace JabberBCIT.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
+    
     //This only shows distinct new messages (no duplicates) (seen == 0)
     public partial class NewNotification
     {

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
 using System.Data;
@@ -26,6 +25,7 @@ namespace JabberBCIT.Controllers
                     listPostViewModel.Add(new PostViewModel()
                     {
                         post = p,
+                        author = db.Users.First(x => x.Id == p.UserID).UserName,
                         PostTimestamp = p.PostTimestamp,
                         votes = p.ForumPostsVotes.Sum(x => x.Value)
                     });
@@ -117,6 +117,7 @@ namespace JabberBCIT.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult CreatePost(ForumPost post, string tag)
         {
@@ -174,10 +175,10 @@ namespace JabberBCIT.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult CreateComment(Comment comment, long? commentID, long id)
         {
-            try
             {
                 comment.UserID = User.Identity.GetUserId();
                 comment.PostTimestamp = DateTime.Now;
@@ -185,11 +186,30 @@ namespace JabberBCIT.Controllers
                 comment.ParentCommentID = commentID;
                 db.Comments.Add(comment);
                 db.SaveChanges();
+
+                Notification n = new Notification()
+                { // we can build the link to this post in here
+                    ObjectID = comment.ForumPost.Subforum.Name + '/' + comment.ForumPost.PostID.ToString(),
+                    Type = "Comment",
+                    Text = new string(comment.Text.Take(30).ToArray()),
+                };
+
+                // if this is a child comment
+                if (comment.ParentCommentID != null)
+                {
+                    // the userid associated with this comment is the 
+                    // user of the parent comment's id
+                    n.UserID = db.Comments.Find(comment.ParentCommentID).User.Id;
+                }
+                else // this is replying to the main post
+                {
+                    n.UserID = comment.ForumPost.UserID;
+                }
+                db.Notifications.Add(n);
+
+                db.SaveChanges();
             }
-            catch
-            {
-                return new EmptyResult();
-            }
+
             return RedirectToAction("ViewThread");
         }
 
@@ -214,12 +234,13 @@ namespace JabberBCIT.Controllers
             return RedirectToAction("ViewThread");
         }
 
-        public ActionResult ViewThread(long id)
+                public ActionResult ViewThread(long id)
         {
             if (db.ForumPosts.Any(x => x.PostID == id))
             {
                 PostViewModel viewModel = new PostViewModel();
                 viewModel.post = db.ForumPosts.Find(id);
+                viewModel.author = db.Users.First(x => x.Id == viewModel.post.UserID).UserName;
                 viewModel.votes = viewModel.post.ForumPostsVotes.Sum(x => x.Value);
                 viewModel.childComments = getCommentTree(id);
                 
@@ -227,7 +248,7 @@ namespace JabberBCIT.Controllers
             }
             return new EmptyResult();
         }
-
+        
         List<CommentViewModel> getCommentTree(long basePostID)
         {
             List<CommentViewModel> model = new List<CommentViewModel>();
@@ -239,6 +260,7 @@ namespace JabberBCIT.Controllers
                 {
                     votes = comment.CommentsVotes.Sum(x => x.Value),
                     comment = comment,
+                    author = db.Users.First(x => x.Id == comment.UserID).UserName,
                     childComments = new List<CommentViewModel>(),
                 });
             }

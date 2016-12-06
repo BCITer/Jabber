@@ -20,7 +20,6 @@ namespace JabberBCIT.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private UserManager _userManager;
-        private ChitterDbContext database = ChitterDbContext.dontUseThis();
         private static string _cloudName = WebConfigurationManager.AppSettings["cloudName"];
         private static string _apiKey = WebConfigurationManager.AppSettings["apiKey"];
         private static string _apiSecret = WebConfigurationManager.AppSettings["apiSecret"];
@@ -28,6 +27,7 @@ namespace JabberBCIT.Controllers
             _cloudName,
             _apiKey,
             _apiSecret));
+        private ChitterDbContext database = ChitterDbContext.Create;
 
         public ManageController()
         {
