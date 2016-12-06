@@ -20,6 +20,13 @@ namespace JabberBCIT.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private UserManager _userManager;
+        private static string _cloudName = WebConfigurationManager.AppSettings["cloudName"];
+        private static string _apiKey = WebConfigurationManager.AppSettings["apiKey"];
+        private static string _apiSecret = WebConfigurationManager.AppSettings["apiSecret"];
+        private Cloudinary cloudinary = new Cloudinary(new Account(
+            _cloudName,
+            _apiKey,
+            _apiSecret));
         private ChitterDbContext database = ChitterDbContext.Create;
 
         public ManageController()

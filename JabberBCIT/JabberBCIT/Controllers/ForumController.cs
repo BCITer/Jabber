@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using JabberBCIT.Models;
 using System.Data;
@@ -117,6 +116,7 @@ namespace JabberBCIT.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult CreatePost(ForumPost post, string tag)
         {
@@ -174,79 +174,7 @@ namespace JabberBCIT.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult CreateComment(Comment comment, long? commentID, long id)
-        {
-            try
-            {
-                comment.UserID = User.Identity.GetUserId();
-                comment.PostTimestamp = DateTime.Now;
-                comment.PostID = id;
-                comment.ParentCommentID = commentID;
-                db.Comments.Add(comment);
-                db.SaveChanges();
-            }
-            catch
-            {
-                return new EmptyResult();
-            }
-            return RedirectToAction("ViewThread");
-        }
 
-        public ActionResult DeleteComment(long? commentID)
-        {
-            return View(db.Comments.Find(commentID));
-        }
-
-        [HttpPost]
-        public ActionResult DeleteComment(long? commentID, long id)
-        {
-            
-            try
-            {
-                db.Comments.Find(commentID).Hidden = 1;
-                db.SaveChanges();
-            }
-            catch
-            {
-                return new EmptyResult();
-            }
-            return RedirectToAction("ViewThread");
-        }
-
-        public ActionResult ViewThread(long id)
-        {
-            }
-            return new EmptyResult();
-        }
-
-        public ActionResult CreatePost()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CreatePost(ForumPost post, string tag)
-        {
-            try
-            {
-                post.UserID = User.Identity.GetUserId();
-                post.PostTimestamp = DateTime.Now;
-                post.Subforum = db.Subforums.Where(x => x.Name == tag).FirstOrDefault();
-                db.ForumPosts.Add(post);
-                db.SaveChanges();
-            }
-            catch
-            {
-                return new EmptyResult();
-            }
-            return RedirectToAction(post.Subforum.Name, new { id = post.PostID });
-        }
-
-        public ActionResult CreateComment()
-        {
-            return View();
-        }
         [HttpPost]
         public ActionResult CreateComment(Comment comment, long? commentID, long id)
         {
@@ -280,11 +208,32 @@ namespace JabberBCIT.Controllers
 
                 db.SaveChanges();
             }
-            
+
             return RedirectToAction("ViewThread");
         }
 
-        public ActionResult ViewThread(long id)
+        public ActionResult DeleteComment(long? commentID)
+        {
+            return View(db.Comments.Find(commentID));
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComment(long? commentID, long id)
+        {
+            
+            try
+            {
+                db.Comments.Find(commentID).Hidden = 1;
+                db.SaveChanges();
+            }
+            catch
+            {
+                return new EmptyResult();
+            }
+            return RedirectToAction("ViewThread");
+        }
+
+                public ActionResult ViewThread(long id)
         {
             if (db.ForumPosts.Any(x => x.PostID == id))
             {
@@ -297,7 +246,7 @@ namespace JabberBCIT.Controllers
             }
             return new EmptyResult();
         }
-
+        
         List<CommentViewModel> getCommentTree(long basePostID)
         {
             List<CommentViewModel> model = new List<CommentViewModel>();
