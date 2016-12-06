@@ -4,6 +4,11 @@ namespace JabberBCIT.Models
 
     public partial class Notification
     {
+        public Notification()
+        {
+            Seen = 1; // always need to set it to unseen
+        }
+
         public long NotificationID { get; set; }
 
         [Required]

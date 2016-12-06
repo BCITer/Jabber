@@ -34,8 +34,8 @@ namespace JabberBCIT.Controllers {
              var notifications = db.Notifications.Where(x => x.UserID == id).OrderBy((notification => notification.ObjectID)).Take(5).ToList();
             var unseen = notifications.Sum(x => x.Seen);
             if (unseen > 0)
-            {
-                notifications.ForEach(x => x.Seen = 0); // set all to seen
+            { // set all to seen, just as fast as checking them all beforehand.. probably
+                notifications.ForEach(x => x.Seen = 0);
                 db.SaveChanges();
             }
 
