@@ -22,6 +22,7 @@ namespace JabberBCIT.Models
 
         [Required]
         [StringLength(500)]
+        [Display(Name = "Title")]
         public string PostTitle { get; set; }
 
         public string Message { get; set; }

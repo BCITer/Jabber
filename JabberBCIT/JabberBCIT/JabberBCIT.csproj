@@ -234,6 +234,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Models\AspNetRole.cs" />
+    <Compile Include="Models\ChatGroup.cs" />
     <Compile Include="Models\ForumViewModels.cs" />
     <Compile Include="Models\NewNotification.cs" />
     <Compile Include="Models\Notification.cs" />
@@ -360,7 +361,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
-    <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Shared\_LoginOverLay.cshtml" />
     <Content Include="Views\Forum\CreatePost.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -374,6 +374,10 @@
     <Content Include="Views\Manage\PostHistory.cshtml" />
     <Content Include="Views\Manage\PostHistoryPartial.cshtml" />
     <Content Include="Views\Forum\CreateComment.cshtml" />
+    <Content Include="Views\Chat\Chat.cshtml" />
+	<Content Include="Views\Forum\CreateSubForum.cshtml" />
+    <Content Include="Views\Forum\DeleteComment.cshtml" />
+    <Content Include="Views\Forum\DeletePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,6 @@
-﻿@model JabberBCIT.Models.PostViewModel
+﻿@using JabberBCIT.Models
+@using Microsoft.AspNet.Identity
+@model PostViewModel
 @{
     ViewBag.Title = "ViewThread";
 }
@@ -57,6 +59,10 @@
                             <form action="Reply">
                                 <input type="submit" class="btn btn-reply" value="Reply" />
                             </form>
+                            @if (User.Identity.GetUserName().Equals(Model.post.User.UserName))
+                            {
+                                <button type="button" class="btn pull-left" onclick="@("location.href+='/Delete'")">Delete</button>
+                            }
                         </td>
                     </tr>
                 </table>
