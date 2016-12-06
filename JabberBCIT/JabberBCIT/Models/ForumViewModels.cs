@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace JabberBCIT.Models
 {
+	public class CreateSubForumViewModel
+    {
+        [DisplayName("Topic")]
+        public string Name { get; set; }
+    }
+	
     public class PostViewModel
     {
         public ForumPost post { get; set; }
