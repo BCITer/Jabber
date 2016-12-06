@@ -10,46 +10,47 @@
         @if (Model.newNotifications > 0)
         {
             <text> // whack, because you need a text tag to use jquery
-                $('#noti_Counter')
-                .text(@Model.newNotifications.ToString())
-                .css({ opacity: 0 })
-                .css({ top: '-10px' })
-                .animate({ top: '-2px', opacity: 1 }, 500)
-                
-                $('$noti_Button')
-                .css({ 'backgorund-color': '#FFF' })
-                .css({ 'display': 'block' })
-        
-            </text>
+        $('#noti_Counter')
+        .text(@Model.newNotifications.ToString())
+        .css({ opacity: 0 })
+        .css({ top: '-10px' })
+        .animate({ top: '-2px', opacity: 1 }, 500)
+
+        $('$noti_Button')
+        .css({ 'backgorund-color': '#FFF' })
+        .css({ 'display': 'block' })
+
+        </text>
         }
         else
         {
             <text>
-                $('#noti_Counter').fadeOut('fast');
+        $('#noti_Counter').fadeOut('fast');
 
-                $('#noti_Button').css('background-color', '#2E467C');
-            </text>
+        $('#noti_Button').css('background-color', '#2E467C');
+        </text>
         }
-        });
+    });
 </script>
 
 <ul class="nav navbar-nav navbar-right">
     <li id="noti_Container" class="">
-        <div id="noti_Counter"> 
-                    
+        <div id="noti_Counter">
+
         </div>   <!--count of unseen notifications-->
         <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
         <div id="noti_Button"></div>
         <!--THE NOTIFICAIONS DROPDOWN BOX.-->
         <div id="notifications">
-            <h3>Notifications</h3>
-            <div>
-                @foreach(var notification in Model.notifications)
-                {
-                    <div>
-                        <a class="notification_text" href="/Forum/@notification.ObjectID/">@notification.Text</a>
-                    </div>
-                }
+            <h5 id="title"><strong>Notifications</strong></h5>
+            <div id="list">
+                <ul id="notification_text">
+                    @foreach (var notification in Model.notifications) {
+                        <li>
+                            <a href="/Forum/@notification.ObjectID/">Comment: @notification.Text</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </li>

@@ -1,66 +1,71 @@
-﻿.nav .row{
+﻿.nav .row {
     position: absolute;
     display: none;
     float: left;
     clear: both;
     margin-top: 22px;
-    right:30px;
-    top:28px;
+    right: 30px;
+    top: 28px;
     width: 350px;
     background-color: #fff;
     padding: 0 2% 2% 2%;
     border-style: solid;
-    -webkit-border-radius: 3px; 
+    -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 #loginContatiner {
     color: #eee;
 }
 
-#loginContatiner .form-horizontal > h1 {    
-    text-align:center;
-    font-size: 46px;
-    padding-bottom: 40px;
-}
+    #loginContatiner .form-horizontal > h1 {
+        text-align: center;
+        font-size: 46px;
+        padding-bottom: 40px;
+    }
 
-#loginContatiner .btn {
-    background-color: dodgerblue;
-    width:100%;
-    color:#eee;
-}
+    #loginContatiner .btn {
+        background-color: dodgerblue;
+        width: 100%;
+        color: #eee;
+    }
 
-#loginContatiner .btn:hover {
-    background-color: #EBEBEB;
-    width:100%;
-    color:#000000;
-}
+        #loginContatiner .btn:hover {
+            background-color: #EBEBEB;
+            width: 100%;
+            color: #000000;
+        }
 
-#loginContatiner form {
-    margin-top: 100px;
-    background-color:rgba(0,0,0,0.8);
-    padding: 10px 50px 50px;
-    border-radius: 5px;
-    box-shadow: 0 0 12px black;
-}
+    #loginContatiner form {
+        margin-top: 100px;
+        background-color: rgba(0,0,0,0.8);
+        padding: 10px 50px 50px;
+        border-radius: 5px;
+        box-shadow: 0 0 12px black;
+    }
 
 #bg {
-  position: fixed; 
-  top: -50%; 
-  left: -50%; 
-  width: 200%; 
-  height: 200%;
-  z-index: -1;
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
 }
 
-#bg > img {
-  position: absolute;
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  margin: auto; 
-  min-width: 50%;
-  min-height: 50%;
+    #bg > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        min-width: 50%;
+        min-height: 50%;
+    }
+
+#hello a{
+    padding-left: 0;
+
 }

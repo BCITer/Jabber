@@ -9,7 +9,7 @@
         <li>
             @{ Html.RenderAction("NotificationPartial", "Home"); }
         </li>
-        <li>
+        <li id="hello">
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
