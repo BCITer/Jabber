@@ -105,12 +105,9 @@ namespace JabberBCIT.Controllers
 
         public int sortFunction(PostViewModel p1, PostViewModel p2)
         {
-            int compare = p2.votes.CompareTo(p1.votes);
-            if (compare == 0)
-            {
-                return p2.PostTimestamp.CompareTo(p1.PostTimestamp);
-            }
-            return compare;
+            int p1value = 2*p1.votes - (DateTime.Now - p1.PostTimestamp).Days;
+            int p2value = 2*p2.votes - (DateTime.Now - p2.PostTimestamp).Days;
+            return (p2value - p1value);
         }
 
         public ActionResult CreatePost()
