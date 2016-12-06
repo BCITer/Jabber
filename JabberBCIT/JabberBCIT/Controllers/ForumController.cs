@@ -105,12 +105,9 @@ namespace JabberBCIT.Controllers
 
         public int sortFunction(PostViewModel p1, PostViewModel p2)
         {
-            int compare = p2.votes.CompareTo(p1.votes);
-            if (compare == 0)
-            {
-                return p2.PostTimestamp.CompareTo(p1.PostTimestamp);
-            }
-            return compare;
+            int p1value = 2*p1.votes - (DateTime.Now - p1.PostTimestamp).Days;
+            int p2value = 2*p2.votes - (DateTime.Now - p2.PostTimestamp).Days;
+            return (p2value - p1value);
         }
 
         public ActionResult CreatePost()
@@ -191,7 +188,6 @@ namespace JabberBCIT.Controllers
                 { // we can build the link to this post in here
                     ObjectID = comment.ForumPost.Subforum.Name + '/' + comment.ForumPost.PostID.ToString(),
                     Type = "Comment",
-                    Text = new string(comment.Text.Take(30).ToArray()),
                 };
 
                 // if this is a child comment
@@ -199,11 +195,14 @@ namespace JabberBCIT.Controllers
                 {
                     // the userid associated with this comment is the 
                     // user of the parent comment's id
-                    n.UserID = db.Comments.Find(comment.ParentCommentID).User.Id;
+                    var user = db.Comments.Find(comment.ParentCommentID).User;
+                    n.UserID = user.Id;
+                    n.Text = "Reply to your comment by " + user.UserName + ": " + new string(comment.Text.Take(30).ToArray());
                 }
                 else // this is replying to the main post
                 {
                     n.UserID = comment.ForumPost.UserID;
+                    n.Text = "Reply to your post by: " + comment.ForumPost.User.UserName + ": " + new string(comment.Text.Take(30).ToArray());
                 }
                 db.Notifications.Add(n);
 
@@ -272,8 +271,8 @@ namespace JabberBCIT.Controllers
             model.ForEach(i => i.childComments = model.Where(ch => ch.comment.ParentCommentID == i.comment.CommentID).ToList());
             return model.Where(x => x.comment.ParentCommentID == null).ToList();
         }
-
-        public JsonResult VoteComment(long id, short value)
+        
+        public ActionResult VoteComment(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -292,7 +291,8 @@ namespace JabberBCIT.Controllers
                     });
                     db.SaveChanges();
                     return Json(
-                        new {
+                        new
+                        {
                             id = "comment_votes_" + id,
                             value = db.CommentsVotes.Where(x => x.CommentID == id).Sum(x => x.Value).ToString()
                         },
@@ -303,7 +303,7 @@ namespace JabberBCIT.Controllers
             return Json(new { });
         }
 
-        public JsonResult VotePost(long id, short value)
+        public ActionResult VotePost(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -322,17 +322,18 @@ namespace JabberBCIT.Controllers
                     });
                     db.SaveChanges();
                     return Json(
-                        new {
+                        new
+                        {
                             id = "post_votes_" + id,
                             value = db.ForumPostsVotes.Where(x => x.PostID == id).Sum(x => x.Value).ToString()
-                        }, 
+                        },
                         JsonRequestBehavior.AllowGet
                     );
-
                 }
             }
             return Json(new { });
         }
+
 
         [ChildActionOnly]
         public ActionResult SidebarPartial()

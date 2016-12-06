@@ -10,14 +10,15 @@
     @Styles.Render("~/Content/forum.css")
     <!-- Janky voting code -->
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".voteButton").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: $(this).attr("href"),
-                    success: function (result) {
-                        document.getElementById(result.id).innerHTML = result.value;
-                    }
+            $(document).ready(function() {
+                $(".voteButton").click(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url:$(this).attr("href"),
+                        success: function (result) {
+                            document.getElementById(result.id).innerHTML = result.value;
+                        }
+                    });
                 });
             });
         });

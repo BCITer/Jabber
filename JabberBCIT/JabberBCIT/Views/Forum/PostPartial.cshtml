@@ -4,6 +4,9 @@
 }
 <tr>
     <td>
+        <p class="vote-count" id="post_votes_@Model.post.PostID">@Model.votes</p>
+    </td>
+    <td>
         <a href="/Vote/Post/@Model.post.PostID/1" class="voteButton">
             <span class="glyphicon glyphicon-chevron-up vote-icon-up"></span>
         </a>
