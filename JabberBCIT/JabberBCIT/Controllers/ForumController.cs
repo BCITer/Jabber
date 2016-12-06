@@ -273,7 +273,7 @@ namespace JabberBCIT.Controllers
             return model.Where(x => x.comment.ParentCommentID == null).ToList();
         }
         
-        public void VoteComment(long id, short value)
+        public ActionResult VoteComment(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -291,11 +291,20 @@ namespace JabberBCIT.Controllers
                         Value = value
                     });
                     db.SaveChanges();
+                    return Json(
+                        new
+                        {
+                            id = "comment_votes_" + id,
+                            value = db.CommentsVotes.Where(x => x.CommentID == id).Sum(x => x.Value).ToString()
+                        },
+                        JsonRequestBehavior.AllowGet
+                    );
                 }
             }
+            return Json(new { });
         }
 
-        public void VotePost(long id, short value)
+        public ActionResult VotePost(long id, short value)
         {
             if (value == 1 || value == -1)
             {
@@ -313,9 +322,19 @@ namespace JabberBCIT.Controllers
                         Value = value
                     });
                     db.SaveChanges();
+                    return Json(
+                        new
+                        {
+                            id = "post_votes_" + id,
+                            value = db.ForumPostsVotes.Where(x => x.PostID == id).Sum(x => x.Value).ToString()
+                        },
+                        JsonRequestBehavior.AllowGet
+                    );
                 }
             }
+            return Json(new { });
         }
+
 
         [ChildActionOnly]
         public ActionResult SidebarPartial()
