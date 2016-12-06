@@ -7,6 +7,9 @@
 
 <div id="forum_sidebar">
     <ul class="nav navbar-nav side-nav">
+        <li>
+            <button type="button" class="btn btn-primary pull-right" onclick="@("location.href='"+ Url.Action("CreateSubForum","Forum")+ "'")">+ New Topic</button>
+        </li>
         @foreach (var subforum in Model)
         {
             <li>

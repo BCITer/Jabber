@@ -40,3 +40,36 @@
     box-shadow: 0 0 12px black;
     color: #fff;
 }
+
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+#registerP{
+    background-image: url('../../Images/registerBG.jpg');
+}
+#registerP h1 {
+    text-align:center;
+    font-size: 46px;
+    padding-bottom: 40px;
+}
+
+#registerP .btn {
+    background-color: dodgerblue;
+    width:100%;
+    color:#eee;
+}
+.container .register{
+    margin-top: 100px;
+    background-color:rgba(0,0,0,0.8);
+    padding: 10px 50px 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 12px black;
+    color: #fff;
+}
