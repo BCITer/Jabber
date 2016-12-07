@@ -143,7 +143,7 @@ namespace JabberBCIT.Controllers
                 edit.ProfilePicture = UploadImage(file); 
             }
             // see if there is another person with the same name
-            if (database.Users.Where(u => u.UserName == edit.UserName).ToList().Any())
+            if (database.Users.Where(u => u.UserName == edit.UserName).ToList().Any() && !(user.UserName == edit.UserName))
             {
                 return RedirectToAction("Edit", "Manage", new { Message = ManageMessageId.UsernameError });
             }
