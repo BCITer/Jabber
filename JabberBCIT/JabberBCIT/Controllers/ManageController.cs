@@ -83,7 +83,7 @@ namespace JabberBCIT.Controllers
             {
                 return View(model);
             }
-            //return view with edit button if profile viewed is same as one logged in
+            //return view with  t button if profile viewed is same as one logged in
             return View("CurrentProfile", model);
         }
 
