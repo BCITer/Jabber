@@ -42,7 +42,8 @@ namespace JabberBCIT.Controllers
                         AddConversationMembers(chatID, GetUserID(member.Trim()));
                     }
                 }
-                catch (Exception e) { }
+                catch (Exception e) {
+                    Console.WriteLine(e.ToString());                }
 
                 AddConversationMembers(chatID, User.Identity.GetUserId());
 
@@ -112,7 +113,9 @@ namespace JabberBCIT.Controllers
             {
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e) { }
+            catch (Exception e) {
+                Console.WriteLine(e.ToString());
+            }
             
         }
 
