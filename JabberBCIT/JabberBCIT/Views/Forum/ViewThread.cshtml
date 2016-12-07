@@ -50,27 +50,30 @@
                             </a>
                         </td>
                         <td>
-                            <h2 class="forum-header">
+                            <h1 class="forum-header">
                                 <b>@Model.post.PostTitle</b>
                                 <br>
-                                <small>@Model.author</small>
+                                <span id="author">Author: @Model.author</span>
                             </h1>
-                            <p>@Model.post.Message</p>
-                            <form action="Reply">
-                                <input type="submit" class="btn btn-reply" value="Reply" />
-                            </form>
-                            @if (User.Identity.GetUserName().Equals(Model.post.User.UserName))
-                            {
-                                <button type="button" class="btn pull-left" onclick="@("location.href+='/Delete'")">Delete</button>
-                            }
+                            <div id="comment">
+                                <span id="message">@Model.post.Message</span>
+                            </div>
+                            <div>
+                                <form action="Reply">
+                                    <input type="submit" id="reply_a" @*class="btn btn-reply"*@ value="Reply" />
+                                </form>
+                                @if (User.Identity.GetUserName().Equals(Model.post.User.UserName)) {
+                                    <a class="btn pull-left" id="delete_a" onclick="@("location.href+='/Delete'")">Delete</a>
+                                }
+                            </div>
+
                         </td>
                     </tr>
                 </table>
                 <!-- ./Page Heading -->
-
                 <!-- Comments -->
-                <table>
-                    @foreach(var childComments in Model.childComments) {
+                <table id="subcomments">
+                    @foreach (var childComments in Model.childComments) {
                         Html.RenderPartial("CommentPartial", childComments);
                     }
                 </table>
