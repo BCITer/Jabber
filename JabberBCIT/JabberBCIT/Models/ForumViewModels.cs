@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace JabberBCIT.Models
 {
 	public class CreateSubForumViewModel
     {
         [DisplayName("Topic")]
+        [Required]
         public string Name { get; set; }
     }
 	
