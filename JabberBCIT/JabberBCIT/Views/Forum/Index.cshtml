@@ -21,7 +21,6 @@
                     });
                 });
             });
-        });
     </script>
 </head>
 <body style="padding-top: 0px;">
@@ -34,8 +33,7 @@
                         <h1 id="header-forum">
                             <b>@ViewBag.ForumTitle</b>
                             <br>
-                            <small>Talk about your stuff!</small>
-                            <button type="button" id="button-create-post" class="btn btn-primary pull-right" onclick="@("location.href='"+ Url.Action("CreatePost","Forum")+ "'")">Create Post</button>
+                            <button type="button" class="btn btn-primary pull-right" onclick="@("location.href='" + Url.Action("CreatePost", "Forum") + "'")">Create Post</button>
                         </h1>
                     </div>
                 </div>
