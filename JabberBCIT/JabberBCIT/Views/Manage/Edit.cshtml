@@ -4,8 +4,8 @@
 <div class="container">
     <h1>Edit Profile</h1>
 
-    <p class="text-success">@ViewBag.StatusMessage</p>
-
+    <p class="text-success">@ViewBag.StatusSuccess</p>
+    <p class="text-danger">@ViewBag.StatusError</p>
     
 
     <hr />
@@ -43,7 +43,6 @@
                 </div>
             }
             <br /> 
-            @Html.Action("ChangePassword", new JabberBCIT.Models.ChangePasswordViewModel { })
         </div>
     </div>
     <div>
