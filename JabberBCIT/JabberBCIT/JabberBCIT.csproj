@@ -268,12 +268,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chat.css" />
+    <Content Include="Content\Comment.css" />
     <Content Include="Content\createForumPost.css" />
     <Content Include="Content\forum.css" />
-    <Content Include="Content\forum.js" />
-    <Content Include="Content\HomeGlobal.js" />
+    <Content Include="Scripts\forum.js" />
+    <Content Include="Scripts\HomeGlobal.js" />
     <Content Include="Content\login.css" />
-    <Content Include="Content\login.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Content\Notifications.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\Site.css" />
@@ -375,7 +376,7 @@
     <Content Include="Views\Manage\PostHistoryPartial.cshtml" />
     <Content Include="Views\Forum\CreateComment.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
-	<Content Include="Views\Forum\CreateSubForum.cshtml" />
+    <Content Include="Views\Forum\CreateSubForum.cshtml" />
     <Content Include="Views\Forum\DeleteComment.cshtml" />
     <Content Include="Views\Forum\DeletePost.cshtml" />
   </ItemGroup>
