@@ -272,18 +272,19 @@
     <Compile Include="Models\CustomUserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\about.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chat.css" />
     <Content Include="Content\confirmEmail.css" />
+    <Content Include="Content\Comment.css" />
     <Content Include="Content\createForumPost.css" />
     <Content Include="Content\forum.css" />
-    <Content Include="Content\forum.js" />
-    <Content Include="Content\HomeGlobal.js" />
+    <Content Include="Scripts\forum.js" />
+    <Content Include="Scripts\HomeGlobal.js" />
     <Content Include="Content\login.css" />
-    <Content Include="Content\login.js" />
-    <Content Include="Content\Notification.css" />
-    <Content Include="Content\preview.js" />
+    <Content Include="Scripts\login.js" />
+    <Content Include="Content\Notifications.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
@@ -314,7 +315,6 @@
     <Content Include="Content\Home.less" />
     <Content Include="ConnectionStrings.config" />
     <Content Include="AppSettings.config" />
-    <Content Include="Content\Comment.less" />
     <None Include="Properties\PublishProfiles\4956 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\TechProLab420161022090937 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -418,7 +418,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60098</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

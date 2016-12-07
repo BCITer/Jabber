@@ -20,9 +20,9 @@ namespace JabberBCIT {
                       "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/HomeGlobal").Include(
-                     "~/Content/HomeGlobal.js"));
+                     "~/Scripts/HomeGlobal.js"));
              bundles.Add(new ScriptBundle("~/bundles/forum").Include(
-                   "~/Content/forum.js"));
+                   "~/Scripts/forum.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",

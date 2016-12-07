@@ -1,16 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
 @model JabberBCIT.Models.CommentViewModel
 
+<link href="/Content/comment.css" rel="stylesheet">
+<script type="text/javascript" src="~/Scripts/comment.js"></script>
+
 <tr>
-    <td valign="top" style="width:40px">
-        @if (Model.comment.Hidden == 0)
-        {
+    <td valign="top" style="width:20px">
+        @if (Model.comment.Hidden == 0) {
             <a href="/Vote/Comment/@Model.comment.CommentID/1" class="voteButton">
                 <div class="vote">
                     <span class="glyphicon glyphicon-chevron-up vote-icon"></span>
                 </div>
             </a>
-            <p class="vote-count" id="comment_votes_@Model.comment.CommentID">@Model.votes</p>
+            <span class="vote-count" id="comment_votes_@Model.comment.CommentID">@Model.votes</span>
             <a href="/Vote/Comment/@Model.comment.CommentID/-1" class="voteButton">
                 <div class="vote">
                     <span class="glyphicon glyphicon-chevron-down vote-icon"></span>
@@ -19,24 +21,27 @@
         }
     </td>
     <td>
-        <div class="media-body">
-            @if (Model.comment.Hidden == 0)
-            {
-                <h4 class="title">@Model.author</h4>
-                <p>@Model.comment.Text</p>
-                <button type="button" class="btn pull-left" onclick="@("location.href='" + @Model.comment.CommentID + "/Reply'")">Reply</button>
-                if (User.Identity.GetUserName().Equals(Model.author))
-                {
-                    <button type="button" class="btn pull-left" onclick="@("location.href='" + @Model.comment.CommentID + "/Delete'")">Delete</button>
-                }
-            }else
-            {
-                <p>This comment has been deleted</p>
+        @*<div class="media-body">*@
+        <div class="comment container-fluid" id="full_comment">
+            @if (Model.comment.Hidden == 0) {
+                
+                <p id="text">@Model.comment.Text</p>
+                <div id="bottom_line">
+                    <p class="title">by: @Model.author</p>
+                    <a class="btn pull-left" id="reply_a" onclick="@("location.href='" + @Model.comment.CommentID + "/Reply'")">Reply</a>
+
+                    @if(User.Identity.GetUserName().Equals(Model.author)) {
+                    <a class="btn pull-left" id="delete_a" onclick="@("location.href='" + @Model.comment.CommentID + "/Delete'")">Delete</a>
+                    }
+                </div>
+            }
+            else {
+                <p id="deleted">This comment has been deleted.</p>
             }
         </div>
-        <table>
-            @foreach (var childComment in Model.childComments)
-            {
+
+        <table id="subsubcomments">
+            @foreach (var childComment in Model.childComments) {
                 Html.RenderPartial("CommentPartial", childComment);
             }
         </table>

@@ -1,62 +1,22 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
-<div class="body-content">
-    <div class="comment container-fluid">
-        <div class=" tick">
-            <label>USERNAME</label>
-            <p>
-                He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured.
-                If Trump Ipsum weren’t my own words, perhaps I’d be dating it. Lorem Ispum is a choke artist. It
-                chokes! I will write some great placeholder text – and nobody writes better placeholder text
-                than me, believe me – and I’ll write it very inexpensively. I will write some great, great text
-                on your website’s Southern border, and I will make Google pay for that text. Mark my words.
-            </p>
-        </div>
-        <div class="tick" style="width: 31px">
-            <p class="block">
-                <button class="comment_vote" style="background-image: url('../../Images/arrow_upward_white_24dp_1x.png');"></button>
-                <br/>
-                9000+
-                <button class="comment_vote" style="background-image: url('../../Images/arrow_downward_white_24dp_1x.png');"></button>
-            </p>
-        </div>
-        <div class="buttens">
-            <button class="btn btn-info btn-sm">REPLY</button>
-            <button class="btn btn-info btn-sm">REPORT</button>
-        </div>
-        @* secound comment *@
-
-        <div class="comment container-fluid">
-            <div class=" tick">
-                <label>USERNAME1</label>
-                <p>
-                    He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured.
-                    If Trump Ipsum weren’t my own words, perhaps I’d be dating it. Lorem Ispum is a choke artist. It
-                    chokes! I will write some great placeholder text – and nobody writes better placeholder text
-                    than me, believe me – and I’ll write it very inexpensively. I will write some great, great text
-                    on your website’s Southern border, and I will make Google pay for that text. Mark my words.
-                </p>
-            </div>
-            <div class="tick" style="width: 31px">
-                <p class="block">
-                    <button class="comment_vote" style="background-image: url('../../Images/arrow_upward_white_24dp_1x.png');"></button>
+﻿<body>
+    <div id="page">
+        <h2>About us</h2>
+        <div class="body-content">
+            <div id="about">
+                <p id="main">
+                    Jabber for BCIT was created by Set 4D of the Fall 2016 Semester. Through this
+                    project we learned large project structure techniques, proper Git flow and management,
+                    how to create a successful MVC app and much more. We are proud to offer this site to 
+                    all to use at anytime. With a fully functioning forum and chat to talk to your friend 
+                    we hope you find out site helpful and useful in the future.
                     <br />
-                    9000+
-                    <button class="comment_vote" style="background-image: url('../../Images/arrow_downward_white_24dp_1x.png');"></button>
+                    Thank you from set 4D
                 </p>
+                
             </div>
-
-            <div class="buttens">
-                <button class="btn btn-info btn-sm">REPLY</button>
-                <button class="btn btn-info btn-sm">REPORT</button>
-            </div>
+            @*put team image here*@
+            <img id="class_image" src="../../Images/11-4.jpg" />
         </div>
     </div>
-</div>
-
-@Styles.Render("~/Content/Comment.less")
+</body>
+@Styles.Render("~/Content/about.css")

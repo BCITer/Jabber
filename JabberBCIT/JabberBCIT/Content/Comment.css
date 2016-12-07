@@ -1,0 +1,74 @@
+﻿body {
+}
+
+#reply_a {
+    padding: 0;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 0;
+}
+
+#delete_a {
+    padding: 0;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 0;
+
+}
+
+.vote-count {
+    padding-left: 3px;
+    margin-bottom: 1px;
+}
+
+#text {
+    margin: 0;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.title {
+    margin-bottom: 0;
+    font-size: 12px;
+    float: left;
+}
+
+.comment {
+    border-left-style: solid;
+    border-left-width: 4px;
+    border-top-style: solid;
+    border-width: 2px;
+    padding-bottom: 4px;
+    /*border-left-color: rgb(55, 86, 145);*/
+}
+
+/*.media-body:nth-child(even) {
+    border-left-style: solid;
+    border-left-width: 4px;
+    border-left-color: rgb(118, 160, 86);
+}*/
+
+#bottom_line {
+    margin-top: 5px;
+    padding-left: 10px;
+    display: inline-block;
+}
+
+#deleted {
+    padding-top: 5px;
+    margin-bottom: 0;
+    padding-left: 5px;
+}
+
+#subcomments {
+    width: 100%;
+}
+
+#subsubcomments {
+    width: 100%;
+}
+
+#full_comment {
+    padding-bottom: 0;
+}
