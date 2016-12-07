@@ -18,12 +18,6 @@ namespace JabberBCIT.Controllers {
             return View();
         }
 
-        [Authorize]
-        public ActionResult Contact() {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
         [ChildActionOnly]
         public ActionResult NotificationPartial()
@@ -31,7 +25,7 @@ namespace JabberBCIT.Controllers {
             ChitterDbContext db = ChitterDbContext.Create;
             var id = User.Identity.GetUserId();
             // get all of them, technically sort by the commentid so newer ones are at the top, same thing as date
-             var notifications = db.Notifications.Where(x => x.UserID == id).OrderBy((notification => notification.ObjectID)).Take(5).ToList();
+             var notifications = db.Notifications.Where(x => x.UserID == id).OrderByDescending((notification => notification.ObjectID)).Take(5).ToList();
             var unseen = notifications.Sum(x => x.Seen);
             if (unseen > 0)
             { // set all to seen, just as fast as checking them all beforehand.. probably

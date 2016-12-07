@@ -47,7 +47,7 @@
                 <ul id="notification_text">
                     @foreach (var notification in Model.notifications) {
                         <li>
-                            <a href="/Forum/@notification.ObjectID/">Comment: @notification.Text</a>
+                            <a href="/Forum/@notification.ObjectID/">@notification.Text</a>
                         </li>
                     }
                 </ul>
