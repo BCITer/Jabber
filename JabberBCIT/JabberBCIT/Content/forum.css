@@ -54,6 +54,7 @@
     }
     #wrapper {
         padding-left: 225px;
+        overflow-x: hidden;
     }
 
     #page-wrapper {
@@ -195,6 +196,8 @@
 
 #view-thread {
 	margin-bottom: 0;
+    background-color: rgba(0,0,0, 0.1);
+    width: 100%;
 }
 #view-thread tr td #thread-owner {
 	font-size: 11px;
@@ -232,4 +235,39 @@
 
 .pull-right {
     width:inherit;
+}
+
+#delete_a {
+    margin-top: 5px;
+    padding: 0;
+}
+
+#reply_a {
+    display: inline-block;
+    float:left;
+    border-color: none;
+    background-color: rgba(0,0,0, 0);
+    border-style: none;
+    color: #428bca;
+    margin-top: 5px;
+
+}
+    #reply_a:hover,
+    #reply_a:focus,
+    #reply_a:active
+     {
+        color: #000;
+        outline: none !important;
+    }
+#author {
+    font-size: 16px;
+}
+
+#comment {
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 7px;
+    border-color: rgba(0,0,0, 0.05);
+    padding: 2px 8px 1px 8px;
 }
