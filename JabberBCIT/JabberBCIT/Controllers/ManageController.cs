@@ -83,18 +83,21 @@ namespace JabberBCIT.Controllers
             {
                 return View(model);
             }
-            //return view with edit button if profile viewed is same as one logged in
+            //return view with  t button if profile viewed is same as one logged in
             return View("CurrentProfile", model);
         }
 
         public async Task<ActionResult> Edit(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
+            ViewBag.StatusSuccess =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.ChangeProfileSuccess ? "Updated profile."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.UsernameError ? "That username has been already taken!"
                 : "";
+
+            ViewBag.StatusError =
+                 message == ManageMessageId.Error ? "An error has occurred."
+                 : message == ManageMessageId.UsernameError ? "That username has been already taken!"
+                 : "";
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             EditProfileViewModel model = new EditProfileViewModel
@@ -328,7 +331,8 @@ namespace JabberBCIT.Controllers
                 }
                 AddErrors(result);
             }
-            return RedirectToAction("Edit");
+            ViewBag.currentPasswordError = "Invalid current password!";
+            return View();
         }
 
         //

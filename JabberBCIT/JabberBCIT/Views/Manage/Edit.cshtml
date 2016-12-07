@@ -6,18 +6,16 @@
 <div class="container">
     <h1>Edit Profile</h1>
 
-    <p class="text-success">@ViewBag.StatusMessage</p>
-
+    <p class="text-success">@ViewBag.StatusSuccess</p>
+    <p class="text-danger">@ViewBag.StatusError</p>
     
 
     <hr />
 
     <div class="row">
         <div class="col-md-4 avatar">
-            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-rounded"/>
-            @*<label class="update btn btn-primary">
-                    Upload&hellip; <input type="file" name="upload" style="display: none;">
-                </label>*@
+            <img src="@Model.ProfilePicture" alt="Profile image" id="profile-picture" class="img-rounded" width="250" height="250"/>
+            
             @*Html.ActionLink("UPLOAD", "EditImage", "Manage", null, new { @class = "update btn btn-default"})*@
         </div>
         <div class="col-md-8 infoContainer">
@@ -52,8 +50,7 @@
                     </div>
                 </div>
             }
-            @*<br /> 
-            @Html.Action("ChangePassword", new JabberBCIT.Models.ChangePasswordViewModel { })*@
+            <br /> 
         </div>
     </div>
     <br /> 
