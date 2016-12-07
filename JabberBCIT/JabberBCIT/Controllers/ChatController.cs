@@ -27,10 +27,10 @@ namespace JabberBCIT.Controllers
         /// <returns></returns>
         public ActionResult Chat(ChatGroup cg)
         {
+            conn.Open();
+
             if (!String.IsNullOrEmpty(cg.GroupName))
             {
-                conn.Open();
-
                 NewChatConversation(cg.GroupName);
                 
                 int chatID = GetChatID();
@@ -47,6 +47,20 @@ namespace JabberBCIT.Controllers
 
                 AddConversationMembers(chatID, User.Identity.GetUserId());
 
+            }
+
+            System.Diagnostics.Debug.WriteLine("bool: " + cg.IsCreateNew.ToString());
+
+            if (!cg.IsCreateNew)
+            {
+                try
+                {
+                    foreach (string member in cg.Members.Split('|'))
+                    {
+                        AddConversationMembers(cg.ChatID, GetUserID(member.Trim()));
+                    }
+                }
+                catch (Exception e) { }
             }
 
             ViewBag.Members = GetAllMembers(cg.ChatID);
