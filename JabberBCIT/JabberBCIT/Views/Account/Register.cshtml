@@ -5,11 +5,11 @@
 
 @Styles.Render("~/Content/register")
 
-<div id="bg" style="background-image: url('../../Images/registerBG.jpg');">
- 
+<div id="bg">
+    <img src="~/Images/registerBG.jpg" />
 </div>
 
-<div class="container" id="" >
+<div class="container" id="registerP" >
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "register", role = "form" }))
