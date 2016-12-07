@@ -83,7 +83,7 @@ namespace JabberBCIT.Controllers
             {
                 return View(model);
             }
-            //return view with edit button if profile viewed is same as one logged in
+            //return view with  t button if profile viewed is same as one logged in
             return View("CurrentProfile", model);
         }
 
@@ -140,7 +140,7 @@ namespace JabberBCIT.Controllers
                 edit.ProfilePicture = UploadImage(file); 
             }
             // see if there is another person with the same name
-            if (database.Users.Where(u => u.UserName == edit.UserName).ToList().Any() && !(user.UserName == edit.UserName))
+            if (database.Users.Where(u => u.UserName == edit.UserName).ToList().Any())
             {
                 return RedirectToAction("Edit", "Manage", new { Message = ManageMessageId.UsernameError });
             }
