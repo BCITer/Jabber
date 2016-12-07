@@ -35,6 +35,9 @@
             <div class="chat_members">
                 <ul id="memberList" class="nav navbar-nav side-nav">
                     <li>
+                        <input type="button" value=" + Add New Member" id="additionalMember" class="btn btn-default" />
+                    </li>
+                    <li>
                         @Html.Raw(ViewBag.Members)
                     </li>
                 </ul>
@@ -53,6 +56,7 @@
             </div>
             <input type="submit" class="btn btn-default" value="Done" id="createConversation" />
             <input type="button" class="btn btn-default" value="Cancel" id="cancel" />
+            @Html.HiddenFor(model => model.IsCreateNew, htmlAttributes: new { @id = "isCreateNew" })
         </div>
     }
 </div>
@@ -108,13 +112,25 @@
             });
             $(document).on('click', '#newChat', function (e) {
                 if (!$('#newChatDiv').is(":visible")) {
+                    $('#isCreateNew').val('true');
+                    $('#addName').show();
                     $('#newChatDiv').show();
                     $('#chatID').val('-1');
                     $('#addName').val('');
                     $('#membersHidden').val('');
                 }
             });
+            $(document).on('click', '#additionalMember', function (e) {
+                if (!$('#newChatDiv').is(":visible")) {
+                    $('#isCreateNew').val('false');
+                    $('#addName').hide();
+                    $('#additionalMemberDiv').hide();
+                    $('#newChatDiv').show();
+                    $('#membersHidden').val('');
+                }
+            });
             $(document).on('click', '.chats', function (e) {
+                $('#additionalMember').show();
                 $('#newChatDiv').hide();
                 $('#message').show();
                 $('#memberList').show();
