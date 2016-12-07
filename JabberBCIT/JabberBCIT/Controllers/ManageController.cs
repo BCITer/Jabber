@@ -89,12 +89,15 @@ namespace JabberBCIT.Controllers
 
         public async Task<ActionResult> Edit(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
+            ViewBag.StatusSuccess =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.ChangeProfileSuccess ? "Updated profile."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.UsernameError ? "That username has been already taken!"
                 : "";
+
+            ViewBag.StatusError =
+                 message == ManageMessageId.Error ? "An error has occurred."
+                 : message == ManageMessageId.UsernameError ? "That username has been already taken!"
+                 : "";
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             EditProfileViewModel model = new EditProfileViewModel
@@ -140,7 +143,7 @@ namespace JabberBCIT.Controllers
                 edit.ProfilePicture = UploadImage(file); 
             }
             // see if there is another person with the same name
-            if (database.Users.Where(u => u.UserName == edit.UserName).ToList().Any())
+            if (database.Users.Where(u => u.UserName == edit.UserName).ToList().Any() && !(user.UserName == edit.UserName))
             {
                 return RedirectToAction("Edit", "Manage", new { Message = ManageMessageId.UsernameError });
             }
@@ -328,7 +331,8 @@ namespace JabberBCIT.Controllers
                 }
                 AddErrors(result);
             }
-            return RedirectToAction("Edit");
+            ViewBag.currentPasswordError = "Invalid current password!";
+            return View();
         }
 
         //

@@ -36,7 +36,7 @@ namespace JabberBCIT.Models
         /// <summary>
         /// trim the blurb of the reply to fit it in
         /// </summary>
-        [StringLength(50)]
+        [StringLength(500)]
         public string Text { get; set; }
     }
 }

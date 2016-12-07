@@ -233,6 +233,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Http404.aspx.cs">
+      <DependentUpon>Http404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Http404.aspx.designer.cs">
+      <DependentUpon>Http404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\ChatGroup.cs" />
     <Compile Include="Models\ForumViewModels.cs" />
@@ -281,6 +288,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Http404.aspx" />
     <Content Include="Images\11-4.jpg" />
     <Content Include="Images\arrow_downward_white_24dp_1x.png" />
     <Content Include="Images\arrow_downward_white_24dp_2x.png" />
@@ -338,7 +346,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
