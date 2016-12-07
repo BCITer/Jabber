@@ -11,5 +11,6 @@ namespace JabberBCIT.Models
         public string Members { get; set; }
         public int ChatID { get; set; }
         public string NewMessage { get; set; }
+        public Boolean IsCreateNew { get; set; }
     }
 }
