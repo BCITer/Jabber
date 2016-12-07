@@ -19,33 +19,28 @@
     color: #eee;
 }
 
-    #loginContatiner .form-horizontal > h1 {
-        text-align: center;
-        font-size: 46px;
-        padding-bottom: 40px;
-    }
+#loginContatiner .form-horizontal > h1 {
+    text-align: center;
+    font-size: 46px;
+    padding-bottom: 40px;
+}
 
-    #loginContatiner .btn {
-        background-color: dodgerblue;
+#loginContatiner .btn {
+    background-color: dodgerblue;
+    width: 100%;
+    color: #eee;
+}
+
+    #loginContatiner .btn:hover {
+        background-color: #EBEBEB;
         width: 100%;
-        color: #eee;
+        color: #000000;
     }
 
-        #loginContatiner .btn:hover {
-            background-color: #EBEBEB;
-            width: 100%;
-            color: #000000;
-        }
-
-    #loginContatiner form {
-        margin-top: 100px;
-        background-color: rgba(0,0,0,0.8);
-        padding: 10px 50px 50px;
-        border-radius: 5px;
-        box-shadow: 0 0 12px black;
-    }
-
-#hello a{
-    padding-left: 0;
-
+#loginContatiner form {
+    margin-top: 100px;
+    background-color: rgba(0,0,0,0.8);
+    padding: 10px 50px 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 12px black;
 }
