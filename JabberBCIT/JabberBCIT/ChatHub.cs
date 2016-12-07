@@ -37,7 +37,7 @@ namespace JabberBCIT
                 conn.Close();
             } catch (Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
             } finally
             {
                 conn.Close();
