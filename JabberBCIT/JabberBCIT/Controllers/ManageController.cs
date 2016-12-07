@@ -91,7 +91,7 @@ namespace JabberBCIT.Controllers
         {
             ViewBag.StatusSuccess =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.ChangeProfileSuccess ? "Updated profile.
+                : message == ManageMessageId.ChangeProfileSuccess ? "Updated profile."
                 : "";
 
             ViewBag.StatusError =

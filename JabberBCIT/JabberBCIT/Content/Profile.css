@@ -1,25 +1,29 @@
 ﻿.avatar > img {
-    margin:20px 90px;
+    margin:20px 35px;
+    width: 250px;
+    height: 250px;
+
 }
 
-.avatar >  label{
-    margin:20px 90px;
-}
 .info {
    margin-top:20px;
 }
 
-.img-thumbnail {
+.img-rounded {
     user-drag: none; 
-user-select: none;
--moz-user-select: none;
--webkit-user-drag: none;
--webkit-user-select: none;
--ms-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.infoContainer {
 }
 
 .avatar {
 }
+
 .avatar:hover img{
     opacity:0.5;
 }
@@ -33,4 +37,39 @@ user-select: none;
 .avatar label.update {
     top:0;
     left:0;
+}
+
+.subBtn {
+    margin:0px 62px;
+}
+
+/* Info Section */
+
+.table#profile-info tbody>tr>th:first-child {
+    width: 200px;
+}
+
+.table#profile-info tbody>tr:first-child>th {
+    border-top: 0;
+}
+
+.table#profile-post tbody>tr>th:first-child {
+    border-top: 0;
+    width: 200px;
+}
+
+.table#profile-post tbody>tr>th:nth-child(2) {
+    border-top: 0;
+}
+
+/* Edit Profile */
+
+input[type=file]#Avatar {
+    margin-top: 5px;
+}
+
+input[type=submit]#profile-update {
+    background-color: dodgerblue;
+    color: #eee;
+    margin-top: 7px;
 }

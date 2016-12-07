@@ -154,10 +154,14 @@
     height: 100%;
 }
 
+#members_list {
+    float: right;
+}
+
 #chat {
     padding: 0;
     float: left;
-    width: 70%;
+    max-width: 70%;
     height: 100%;
 }
 

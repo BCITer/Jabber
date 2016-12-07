@@ -8,7 +8,8 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/login")
     @Styles.Render("~/Content/notification")
-    @Styles.Render("~/Content/register.css")
+        @Styles.Render("~/Content/register.css")
+        @Styles.Render("~/Content/Comment.less")
     @Styles.Render("~/Content/forgetPassword.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -22,7 +23,7 @@
 </head>
 <body class="body-content">
     <div class="navbar navbar-inverse navbar-fixed-top">
-        
+
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -32,21 +33,21 @@
                 </button>
                 @Html.ActionLink("Jabber", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 <div class="dropdown" style="display:none">
-                   
+
                     <button class="btn btn-primary btn-circle" data-toggle="dropdown">
                         <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>
                     </button>
                 </div>
-             </div>
+            </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Forum", "Global", "Forum")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Chat", "Chat", "Chat")</li>
                 </ul>
-                @Html.Partial("_LoginPartial", new JabberBCIT.Models.LoginViewModel { })                
-            </div>            
-        </div>        
+                @Html.Partial("_LoginPartial", new JabberBCIT.Models.LoginViewModel { })
+            </div>
+        </div>
     </div>
 
     @RenderBody()
